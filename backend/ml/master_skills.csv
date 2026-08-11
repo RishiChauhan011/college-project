@@ -1,0 +1,116 @@
+id,skill,category,source,enabled,synonyms,skill_type
+T001,Python,Technical,from_frequency_data,TRUE,,Language
+T002,SQL,Technical,from_frequency_data,TRUE,,Language
+T003,AWS,Technical,from_frequency_data,TRUE,Amazon Web Services,Tool
+T004,Azure,Technical,from_frequency_data,TRUE,Microsoft Azure,Tool
+T005,Django,Technical,from_frequency_data,TRUE,,Framework
+T006,Flask,Technical,from_frequency_data,TRUE,,Framework
+T007,Excel,Technical,from_frequency_data,TRUE,MS Excel;Microsoft Excel,Tool
+T008,Power BI,Technical,manually_added,TRUE,PowerBI;Power-BI,Tool
+T009,Docker,Technical,manually_added,TRUE,,Tool
+T010,Git,Technical,manually_added,TRUE,GitHub;Version Control,Tool
+T011,Kubernetes,Technical,manually_added,TRUE,K8s,Tool
+T012,Tableau,Technical,manually_added,TRUE,,Tool
+T013,TensorFlow,Technical,manually_added,TRUE,Tensor Flow,Framework
+T014,PyTorch,Technical,manually_added,TRUE,Py Torch,Framework
+T015,Scikit-learn,Technical,manually_added,TRUE,sklearn;Scikit Learn,Framework
+T016,Java,Technical,manually_added,TRUE,,Language
+T017,JavaScript,Technical,manually_added,TRUE,JS,Language
+T018,React,Technical,manually_added,TRUE,React.js;ReactJS,Framework
+T019,Node.js,Technical,manually_added,TRUE,NodeJS;Node JS,Framework
+T020,Next.js,Technical,manually_added,TRUE,NextJS,Framework
+T021,Vue.js,Technical,manually_added,TRUE,VueJS;Vue,Framework
+T022,Express.js,Technical,manually_added,TRUE,ExpressJS;Express,Framework
+T023,C++,Technical,manually_added,TRUE,CPP,Language
+T024,C#,Technical,manually_added,TRUE,C Sharp,Language
+T025,.NET,Technical,manually_added,TRUE,DotNet;Dot Net,Framework
+T026,ASP.NET,Technical,manually_added,TRUE,ASP Net,Framework
+T027,MongoDB,Technical,manually_added,TRUE,Mongo DB,Tool
+T028,PostgreSQL,Technical,manually_added,TRUE,Postgres,Tool
+T029,API,Technical,from_frequency_data,TRUE,APIs;REST API,Knowledge Area
+T030,Cloud Computing,Technical,from_frequency_data,TRUE,Cloud,Knowledge Area
+T031,Backend Development,Technical,from_frequency_data,TRUE,Backend,Knowledge Area
+T032,Web Development,Technical,manually_added,TRUE,,Knowledge Area
+T033,Automation,Technical,from_frequency_data,TRUE,,Knowledge Area
+T034,Software Testing,Technical,from_frequency_data,TRUE,Testing;QA,Knowledge Area
+T035,Programming,Technical,from_frequency_data,TRUE,Coding,Knowledge Area
+T036,Spark,Technical,manually_added,TRUE,Apache Spark,Framework
+T037,Hadoop,Technical,manually_added,FALSE,,Tool
+D001,Machine Learning,Domain,manually_added,TRUE,ML,Knowledge Area
+D002,Deep Learning,Domain,manually_added,TRUE,DL,Knowledge Area
+D003,Data Science,Domain,from_frequency_data,TRUE,Data Scientist;Data Scientists,Broad Domain
+D004,Data Analysis,Domain,manually_added,TRUE,Data Analytics;Data Analyst;Data Analysts,Knowledge Area
+D005,Data Engineering,Domain,manually_added,TRUE,Data Engineer;Data Engineers,Knowledge Area
+D006,Artificial Intelligence,Domain,from_frequency_data,TRUE,AI,Broad Domain
+D007,Natural Language Processing,Domain,manually_added,TRUE,NLP,Knowledge Area
+D008,Computer Vision,Domain,manually_added,TRUE,CV,Knowledge Area
+D009,Predictive Analytics,Domain,from_frequency_data,TRUE,,Knowledge Area
+D010,Statistics,Domain,manually_added,TRUE,Statistical Analysis,Knowledge Area
+D011,Generative AI,Domain,from_frequency_data,TRUE,GenAI;Gen AI,Knowledge Area
+D012,Large Language Models,Domain,manually_added,TRUE,LLM;LLMs,Knowledge Area
+D013,Retrieval Augmented Generation,Domain,manually_added,TRUE,RAG,Knowledge Area
+D014,Agentic AI,Domain,from_frequency_data,TRUE,,Knowledge Area
+D015,Feature Engineering,Domain,manually_added,TRUE,,Knowledge Area
+D016,Model Deployment,Domain,from_frequency_data,TRUE,MLOps,Knowledge Area
+D017,Data Pipelines,Domain,from_frequency_data,TRUE,Data Pipeline,Knowledge Area
+D018,Algorithms,Domain,from_frequency_data,TRUE,,Knowledge Area
+D019,Time Series Analysis,Domain,manually_added,TRUE,Time Series,Knowledge Area
+D020,Prompt Engineering,Domain,manually_added,TRUE,,Knowledge Area
+S001,Communication,Soft Skill,from_frequency_data,TRUE,,Soft Skill
+S002,Leadership,Soft Skill,manually_added,TRUE,,Soft Skill
+S003,Teamwork,Soft Skill,manually_added,TRUE,Team Player,Soft Skill
+S004,Collaboration,Soft Skill,manually_added,TRUE,,Soft Skill
+S005,Problem Solving,Soft Skill,from_frequency_data,TRUE,,Soft Skill
+S006,Critical Thinking,Soft Skill,manually_added,TRUE,,Soft Skill
+S007,Stakeholder Management,Soft Skill,from_frequency_data,TRUE,,Soft Skill
+S008,Analytical Thinking,Soft Skill,from_frequency_data,TRUE,Analytical Skills,Soft Skill
+S009,Adaptability,Soft Skill,manually_added,TRUE,,Soft Skill
+S010,Time Management,Soft Skill,manually_added,TRUE,,Soft Skill
+D021,Business Intelligence,Domain,from_frequency_data,TRUE,BI,Knowledge Area
+D022,LangChain,Domain,manually_added,TRUE,,Framework
+D023,LangGraph,Domain,manually_added,TRUE,,Framework
+D024,Vector Database,Domain,manually_added,TRUE,Vector DB,Tool
+D025,AI Agents,Domain,manually_added,TRUE,,Knowledge Area
+T038,Database Management,Technical,from_frequency_data,TRUE,Databases,Knowledge Area
+T039,Technical Documentation,Technical,from_frequency_data,TRUE,Documentation,Knowledge Area
+T040,Spring Boot,Technical,from_frequency_data,TRUE,Spring,Framework
+T041,Microservices,Technical,from_frequency_data,TRUE,,Knowledge Area
+T042,Adobe Creative Suite,Technical,manually_added,TRUE,Adobe,Tool
+T043,Photoshop,Technical,from_frequency_data,TRUE,,Tool
+T044,Illustrator,Technical,from_frequency_data,TRUE,,Tool
+T045,Figma,Technical,from_frequency_data,TRUE,,Tool
+T046,After Effects,Technical,manually_added,TRUE,,Tool
+T047,Premiere Pro,Technical,manually_added,TRUE,,Tool
+T048,Video Editing,Technical,from_frequency_data,TRUE,Video Editor;Video Production,Knowledge Area
+T049,Wireframing,Technical,from_frequency_data,TRUE,Wireframes,Knowledge Area
+T050,Google Analytics,Technical,from_frequency_data,TRUE,GA,Tool
+D026,Data Visualization,Domain,from_frequency_data,TRUE,,Knowledge Area
+D027,Requirements Gathering,Domain,from_frequency_data,TRUE,Requirement Gathering;gather requirements;gathering requirements;system requirements;business requirements;document requirements,Knowledge Area
+D028,Business Analysis,Domain,from_frequency_data,TRUE,Business Analyst;Business Analysts,Knowledge Area
+D029,Motion Graphics,Domain,from_frequency_data,TRUE,Motion Graphic Designer;Motion Graphic,Knowledge Area
+D030,Animation,Domain,from_frequency_data,TRUE,,Knowledge Area
+D031,Branding,Domain,from_frequency_data,TRUE,brand identity;brand elements;brand strategy,Knowledge Area
+D032,UI/UX Design,Domain,from_frequency_data,TRUE,UI UX Design;UIUX;UI/UX;UI UX;UI/UX Designer;UI UX Designer,Knowledge Area
+D033,SEO,Domain,from_frequency_data,TRUE,Search Engine Optimization,Knowledge Area
+D034,SEM,Domain,from_frequency_data,TRUE,Search Engine Marketing,Knowledge Area
+D035,Content Marketing,Domain,from_frequency_data,TRUE,,Knowledge Area
+D036,Email Marketing,Domain,from_frequency_data,TRUE,,Knowledge Area
+D037,Social Media Marketing,Domain,from_frequency_data,TRUE,Social Media Manager;Social Media Marketer;SMM;Social Media;Social Media Specialist,Knowledge Area
+D038,Content Strategy,Domain,from_frequency_data,TRUE,Content Strategist,Knowledge Area
+D039,Content Writing,Domain,from_frequency_data,TRUE,Content Writer;Copywriter;Copy Writer;Copywriting,Knowledge Area
+D040,Keyword Research,Domain,from_frequency_data,TRUE,,Knowledge Area
+D041,Campaign Management,Domain,from_frequency_data,TRUE,,Knowledge Area
+D042,Paid Advertising,Domain,from_frequency_data,TRUE,Paid Ads;paid marketing;paid search;social ads,Knowledge Area
+D043,Curriculum Development,Domain,from_frequency_data,TRUE,,Knowledge Area
+D044,Lesson Planning,Domain,from_frequency_data,TRUE,,Knowledge Area
+D045,Classroom Management,Domain,from_frequency_data,TRUE,,Knowledge Area
+D046,Instructional Design,Domain,from_frequency_data,TRUE,,Knowledge Area
+D047,Teaching,Domain,from_frequency_data,TRUE,Teacher;Educator;Tutoring;Tutor;Professor;Assistant Professor;Associate Professor;Lecturer,Broad Domain
+D048,Academic Research,Domain,from_frequency_data,TRUE,,Knowledge Area
+S011,Mentoring,Soft Skill,manually_added,TRUE,,Soft Skill
+T051,Full Stack Development,Technical,manually_added,TRUE,Full Stack;Full-Stack;Fullstack,Knowledge Area
+T052,Frontend Development,Technical,manually_added,TRUE,Frontend;Front-End;Front end;Client-side,Knowledge Area
+T053,Software Engineering,Technical,manually_added,TRUE,Software Engineer;Software Engineering;Software Engineers,Knowledge Area
+D049,Graphic Design,Domain,manually_added,TRUE,Graphic Designer;Graphic Designing;Graphic Designers;Visual Design;Visual Designer,Broad Domain
+D050,Digital Marketing,Domain,manually_added,TRUE,Digital Marketer;Digital Marketing Specialist,Broad Domain
+D051,Marketing Strategy,Domain,manually_added,TRUE,Marketing Executive;Marketing Specialist;Marketing Coordinator;Marketing Manager,Broad Domain

@@ -1,0 +1,12 @@
+certifi==2026.6.17
+charset-normalizer==3.4.7
+idna==3.18
+python-dotenv==1.2.2
+requests==2.34.2
+urllib3==2.7.0
+fastapi>=0.100.0
+uvicorn>=0.22.0
+pydantic>=2.0.0
+pdfplumber==0.11.10
+rapidfuzz==4.2.1
+spacy==3.12.1

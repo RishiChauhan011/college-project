@@ -1,0 +1,2424 @@
+{
+  "generated_at": "2026-07-17T05:35:33.127510+00:00",
+  "overall": {
+    "total_jobs": 2986,
+    "total_unique_skills_matched": 112,
+    "top_skills": [
+      {
+        "skill": "Artificial Intelligence",
+        "count": 487
+      },
+      {
+        "skill": "Teaching",
+        "count": 347
+      },
+      {
+        "skill": "Social Media Marketing",
+        "count": 307
+      },
+      {
+        "skill": "Machine Learning",
+        "count": 286
+      },
+      {
+        "skill": "Python",
+        "count": 269
+      },
+      {
+        "skill": "Data Analysis",
+        "count": 235
+      },
+      {
+        "skill": "Data Science",
+        "count": 203
+      },
+      {
+        "skill": "Backend Development",
+        "count": 196
+      },
+      {
+        "skill": "Graphic Design",
+        "count": 194
+      },
+      {
+        "skill": "Digital Marketing",
+        "count": 190
+      },
+      {
+        "skill": "Full Stack Development",
+        "count": 187
+      },
+      {
+        "skill": "SEO",
+        "count": 187
+      },
+      {
+        "skill": "Business Analysis",
+        "count": 168
+      },
+      {
+        "skill": "Communication",
+        "count": 155
+      },
+      {
+        "skill": "Java",
+        "count": 148
+      },
+      {
+        "skill": "API",
+        "count": 145
+      },
+      {
+        "skill": "Software Engineering",
+        "count": 137
+      },
+      {
+        "skill": "SQL",
+        "count": 132
+      },
+      {
+        "skill": "Cloud Computing",
+        "count": 129
+      },
+      {
+        "skill": "Business Intelligence",
+        "count": 129
+      }
+    ],
+    "top_companies": [
+      {
+        "company": "Capco",
+        "count": 37
+      },
+      {
+        "company": "eBay",
+        "count": 37
+      },
+      {
+        "company": "Kyndryl",
+        "count": 33
+      },
+      {
+        "company": "Warner Bros. Discovery",
+        "count": 31
+      },
+      {
+        "company": "Unknown",
+        "count": 29
+      },
+      {
+        "company": "AKS University",
+        "count": 22
+      },
+      {
+        "company": "Danaher",
+        "count": 20
+      },
+      {
+        "company": "Morningstar",
+        "count": 18
+      },
+      {
+        "company": "Allianz Commercial",
+        "count": 17
+      },
+      {
+        "company": "Qrata",
+        "count": 15
+      }
+    ],
+    "top_cities": [
+      {
+        "city": "Bangalore",
+        "count": 679
+      },
+      {
+        "city": "India",
+        "count": 631
+      },
+      {
+        "city": "Mumbai",
+        "count": 283
+      },
+      {
+        "city": "Hyderabad",
+        "count": 225
+      },
+      {
+        "city": "Pune",
+        "count": 159
+      },
+      {
+        "city": "Chennai",
+        "count": 144
+      },
+      {
+        "city": "Noida",
+        "count": 106
+      },
+      {
+        "city": "Delhi",
+        "count": 103
+      },
+      {
+        "city": "Ahmedabad",
+        "count": 77
+      },
+      {
+        "city": "Coimbatore",
+        "count": 35
+      }
+    ]
+  },
+  "by_domain": {
+    "AI & Data Science": {
+      "total_jobs": 722,
+      "average_skills_per_job": 2.81,
+      "top_skills": [
+        {
+          "skill": "Artificial Intelligence",
+          "count": 301
+        },
+        {
+          "skill": "Machine Learning",
+          "count": 252
+        },
+        {
+          "skill": "Data Science",
+          "count": 188
+        },
+        {
+          "skill": "Data Analysis",
+          "count": 177
+        },
+        {
+          "skill": "Python",
+          "count": 78
+        },
+        {
+          "skill": "Generative AI",
+          "count": 63
+        },
+        {
+          "skill": "Large Language Models",
+          "count": 55
+        },
+        {
+          "skill": "SQL",
+          "count": 52
+        },
+        {
+          "skill": "Cloud Computing",
+          "count": 50
+        },
+        {
+          "skill": "Automation",
+          "count": 41
+        },
+        {
+          "skill": "Data Engineering",
+          "count": 36
+        },
+        {
+          "skill": "Algorithms",
+          "count": 33
+        },
+        {
+          "skill": "Natural Language Processing",
+          "count": 32
+        },
+        {
+          "skill": "Programming",
+          "count": 31
+        },
+        {
+          "skill": "Statistics",
+          "count": 31
+        },
+        {
+          "skill": "Software Engineering",
+          "count": 29
+        },
+        {
+          "skill": "Deep Learning",
+          "count": 28
+        },
+        {
+          "skill": "Retrieval Augmented Generation",
+          "count": 28
+        },
+        {
+          "skill": "Teaching",
+          "count": 25
+        },
+        {
+          "skill": "API",
+          "count": 24
+        }
+      ],
+      "category_breakdown": {
+        "technical": 534,
+        "domain": 1420,
+        "soft": 78
+      },
+      "top_companies": [
+        {
+          "company": "Capco",
+          "count": 21
+        },
+        {
+          "company": "Warner Bros. Discovery",
+          "count": 17
+        },
+        {
+          "company": "eBay",
+          "count": 14
+        },
+        {
+          "company": "Novartis",
+          "count": 12
+        },
+        {
+          "company": "Kyndryl",
+          "count": 10
+        },
+        {
+          "company": "Deutsche Bank",
+          "count": 9
+        },
+        {
+          "company": "MSCI",
+          "count": 7
+        },
+        {
+          "company": "Standard Chartered Bank",
+          "count": 7
+        },
+        {
+          "company": "MSD",
+          "count": 7
+        },
+        {
+          "company": "EXL",
+          "count": 6
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "Bangalore",
+          "count": 208
+        },
+        {
+          "city": "India",
+          "count": 197
+        },
+        {
+          "city": "Hyderabad",
+          "count": 69
+        },
+        {
+          "city": "Mumbai",
+          "count": 47
+        },
+        {
+          "city": "Pune",
+          "count": 44
+        },
+        {
+          "city": "Chennai",
+          "count": 27
+        },
+        {
+          "city": "Noida",
+          "count": 24
+        },
+        {
+          "city": "Delhi",
+          "count": 12
+        },
+        {
+          "city": "Gurgaon",
+          "count": 11
+        },
+        {
+          "city": "Ahmedabad",
+          "count": 10
+        }
+      ],
+      "salary": {
+        "total_jobs": 722,
+        "jobs_with_salary_disclosed": 151,
+        "jobs_without_salary_disclosed": 571,
+        "disclosure_rate_percent": 20.9,
+        "average_salary_min": 1011381.0,
+        "average_salary_max": 1997540.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    },
+    "Software Development": {
+      "total_jobs": 643,
+      "average_skills_per_job": 3.22,
+      "top_skills": [
+        {
+          "skill": "Backend Development",
+          "count": 183
+        },
+        {
+          "skill": "Python",
+          "count": 177
+        },
+        {
+          "skill": "Full Stack Development",
+          "count": 172
+        },
+        {
+          "skill": "Java",
+          "count": 141
+        },
+        {
+          "skill": "API",
+          "count": 115
+        },
+        {
+          "skill": "Software Engineering",
+          "count": 103
+        },
+        {
+          "skill": "Frontend Development",
+          "count": 94
+        },
+        {
+          "skill": "Programming",
+          "count": 71
+        },
+        {
+          "skill": "Artificial Intelligence",
+          "count": 66
+        },
+        {
+          "skill": "Spring Boot",
+          "count": 65
+        },
+        {
+          "skill": "React",
+          "count": 59
+        },
+        {
+          "skill": "Node.js",
+          "count": 55
+        },
+        {
+          "skill": "AWS",
+          "count": 50
+        },
+        {
+          "skill": "Database Management",
+          "count": 49
+        },
+        {
+          "skill": "Cloud Computing",
+          "count": 48
+        },
+        {
+          "skill": "Django",
+          "count": 48
+        },
+        {
+          "skill": "JavaScript",
+          "count": 45
+        },
+        {
+          "skill": "Microservices",
+          "count": 45
+        },
+        {
+          "skill": "SQL",
+          "count": 41
+        },
+        {
+          "skill": "Software Testing",
+          "count": 39
+        }
+      ],
+      "category_breakdown": {
+        "technical": 1839,
+        "domain": 161,
+        "soft": 71
+      },
+      "top_companies": [
+        {
+          "company": "eBay",
+          "count": 22
+        },
+        {
+          "company": "Kyndryl",
+          "count": 20
+        },
+        {
+          "company": "Danaher",
+          "count": 19
+        },
+        {
+          "company": "Warner Bros. Discovery",
+          "count": 14
+        },
+        {
+          "company": "Morningstar",
+          "count": 10
+        },
+        {
+          "company": "Allianz Commercial",
+          "count": 10
+        },
+        {
+          "company": "Moody's",
+          "count": 7
+        },
+        {
+          "company": "Capco",
+          "count": 7
+        },
+        {
+          "company": "ABB",
+          "count": 6
+        },
+        {
+          "company": "S&P Global",
+          "count": 6
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "Bangalore",
+          "count": 181
+        },
+        {
+          "city": "India",
+          "count": 120
+        },
+        {
+          "city": "Mumbai",
+          "count": 59
+        },
+        {
+          "city": "Hyderabad",
+          "count": 54
+        },
+        {
+          "city": "Pune",
+          "count": 52
+        },
+        {
+          "city": "Chennai",
+          "count": 44
+        },
+        {
+          "city": "Noida",
+          "count": 20
+        },
+        {
+          "city": "Delhi",
+          "count": 19
+        },
+        {
+          "city": "Ahmedabad",
+          "count": 10
+        },
+        {
+          "city": "Jaipur",
+          "count": 8
+        }
+      ],
+      "salary": {
+        "total_jobs": 643,
+        "jobs_with_salary_disclosed": 320,
+        "jobs_without_salary_disclosed": 323,
+        "disclosure_rate_percent": 49.8,
+        "average_salary_min": 676969.0,
+        "average_salary_max": 1383750.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    },
+    "Business Analytics": {
+      "total_jobs": 366,
+      "average_skills_per_job": 2.23,
+      "top_skills": [
+        {
+          "skill": "Business Analysis",
+          "count": 160
+        },
+        {
+          "skill": "Business Intelligence",
+          "count": 113
+        },
+        {
+          "skill": "Data Analysis",
+          "count": 51
+        },
+        {
+          "skill": "Power BI",
+          "count": 51
+        },
+        {
+          "skill": "Requirements Gathering",
+          "count": 48
+        },
+        {
+          "skill": "Artificial Intelligence",
+          "count": 41
+        },
+        {
+          "skill": "SQL",
+          "count": 39
+        },
+        {
+          "skill": "Data Engineering",
+          "count": 30
+        },
+        {
+          "skill": "Technical Documentation",
+          "count": 22
+        },
+        {
+          "skill": "Cloud Computing",
+          "count": 21
+        },
+        {
+          "skill": "Communication",
+          "count": 21
+        },
+        {
+          "skill": "Software Testing",
+          "count": 20
+        },
+        {
+          "skill": "Excel",
+          "count": 17
+        },
+        {
+          "skill": "Data Visualization",
+          "count": 17
+        },
+        {
+          "skill": "Leadership",
+          "count": 13
+        },
+        {
+          "skill": "Azure",
+          "count": 12
+        },
+        {
+          "skill": "Tableau",
+          "count": 12
+        },
+        {
+          "skill": "Automation",
+          "count": 11
+        },
+        {
+          "skill": "Machine Learning",
+          "count": 11
+        },
+        {
+          "skill": "Python",
+          "count": 11
+        }
+      ],
+      "category_breakdown": {
+        "technical": 261,
+        "domain": 506,
+        "soft": 51
+      },
+      "top_companies": [
+        {
+          "company": "Genpact India",
+          "count": 13
+        },
+        {
+          "company": "Amazon",
+          "count": 11
+        },
+        {
+          "company": "Capco",
+          "count": 9
+        },
+        {
+          "company": "Accenture",
+          "count": 7
+        },
+        {
+          "company": "EXL",
+          "count": 5
+        },
+        {
+          "company": "Reckitt",
+          "count": 5
+        },
+        {
+          "company": "Allianz Commercial",
+          "count": 4
+        },
+        {
+          "company": "Deutsche Bank",
+          "count": 4
+        },
+        {
+          "company": "UPS",
+          "count": 4
+        },
+        {
+          "company": "Kyndryl",
+          "count": 3
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "Bangalore",
+          "count": 94
+        },
+        {
+          "city": "India",
+          "count": 86
+        },
+        {
+          "city": "Hyderabad",
+          "count": 48
+        },
+        {
+          "city": "Mumbai",
+          "count": 28
+        },
+        {
+          "city": "Pune",
+          "count": 28
+        },
+        {
+          "city": "Chennai",
+          "count": 18
+        },
+        {
+          "city": "Noida",
+          "count": 15
+        },
+        {
+          "city": "Ahmedabad",
+          "count": 7
+        },
+        {
+          "city": "Navi Mumbai",
+          "count": 4
+        },
+        {
+          "city": "Surat",
+          "count": 3
+        }
+      ],
+      "salary": {
+        "total_jobs": 366,
+        "jobs_with_salary_disclosed": 57,
+        "jobs_without_salary_disclosed": 309,
+        "disclosure_rate_percent": 15.6,
+        "average_salary_min": 668860.0,
+        "average_salary_max": 1187722.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    },
+    "Graphic Design": {
+      "total_jobs": 433,
+      "average_skills_per_job": 2.26,
+      "top_skills": [
+        {
+          "skill": "Graphic Design",
+          "count": 172
+        },
+        {
+          "skill": "UI/UX Design",
+          "count": 100
+        },
+        {
+          "skill": "Motion Graphics",
+          "count": 96
+        },
+        {
+          "skill": "Social Media Marketing",
+          "count": 85
+        },
+        {
+          "skill": "Video Editing",
+          "count": 58
+        },
+        {
+          "skill": "Adobe Creative Suite",
+          "count": 48
+        },
+        {
+          "skill": "Photoshop",
+          "count": 43
+        },
+        {
+          "skill": "Branding",
+          "count": 40
+        },
+        {
+          "skill": "Communication",
+          "count": 39
+        },
+        {
+          "skill": "Wireframing",
+          "count": 36
+        },
+        {
+          "skill": "Illustrator",
+          "count": 35
+        },
+        {
+          "skill": "Animation",
+          "count": 30
+        },
+        {
+          "skill": "Artificial Intelligence",
+          "count": 29
+        },
+        {
+          "skill": "Figma",
+          "count": 29
+        },
+        {
+          "skill": "Digital Marketing",
+          "count": 19
+        },
+        {
+          "skill": "After Effects",
+          "count": 16
+        },
+        {
+          "skill": "Collaboration",
+          "count": 15
+        },
+        {
+          "skill": "Software Testing",
+          "count": 14
+        },
+        {
+          "skill": "Premiere Pro",
+          "count": 9
+        },
+        {
+          "skill": "Leadership",
+          "count": 6
+        }
+      ],
+      "category_breakdown": {
+        "technical": 317,
+        "domain": 591,
+        "soft": 69
+      },
+      "top_companies": [
+        {
+          "company": "Unknown",
+          "count": 6
+        },
+        {
+          "company": "Talent Pro",
+          "count": 4
+        },
+        {
+          "company": "Merito",
+          "count": 3
+        },
+        {
+          "company": "Qrata",
+          "count": 3
+        },
+        {
+          "company": "TIGI HR Solution Pvt. Ltd.",
+          "count": 3
+        },
+        {
+          "company": "PlaySimple Games",
+          "count": 3
+        },
+        {
+          "company": "Peak Hire Solutions",
+          "count": 3
+        },
+        {
+          "company": "Kaapro Management Solutions",
+          "count": 3
+        },
+        {
+          "company": "Koffeetech Communications",
+          "count": 2
+        },
+        {
+          "company": "Digital Refresh Networks",
+          "count": 2
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "Bangalore",
+          "count": 92
+        },
+        {
+          "city": "Mumbai",
+          "count": 88
+        },
+        {
+          "city": "India",
+          "count": 63
+        },
+        {
+          "city": "Hyderabad",
+          "count": 27
+        },
+        {
+          "city": "Chennai",
+          "count": 24
+        },
+        {
+          "city": "Delhi",
+          "count": 20
+        },
+        {
+          "city": "Noida",
+          "count": 17
+        },
+        {
+          "city": "Ahmedabad",
+          "count": 11
+        },
+        {
+          "city": "Pune",
+          "count": 9
+        },
+        {
+          "city": "Indore",
+          "count": 8
+        }
+      ],
+      "salary": {
+        "total_jobs": 433,
+        "jobs_with_salary_disclosed": 147,
+        "jobs_without_salary_disclosed": 286,
+        "disclosure_rate_percent": 33.9,
+        "average_salary_min": 679456.0,
+        "average_salary_max": 1311361.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    },
+    "Digital Marketing": {
+      "total_jobs": 465,
+      "average_skills_per_job": 2.11,
+      "top_skills": [
+        {
+          "skill": "Social Media Marketing",
+          "count": 221
+        },
+        {
+          "skill": "SEO",
+          "count": 185
+        },
+        {
+          "skill": "Digital Marketing",
+          "count": 162
+        },
+        {
+          "skill": "Content Strategy",
+          "count": 61
+        },
+        {
+          "skill": "Content Writing",
+          "count": 44
+        },
+        {
+          "skill": "Artificial Intelligence",
+          "count": 38
+        },
+        {
+          "skill": "Keyword Research",
+          "count": 33
+        },
+        {
+          "skill": "SEM",
+          "count": 31
+        },
+        {
+          "skill": "Communication",
+          "count": 25
+        },
+        {
+          "skill": "Branding",
+          "count": 22
+        },
+        {
+          "skill": "Content Marketing",
+          "count": 21
+        },
+        {
+          "skill": "Google Analytics",
+          "count": 19
+        },
+        {
+          "skill": "Paid Advertising",
+          "count": 13
+        },
+        {
+          "skill": "Email Marketing",
+          "count": 12
+        },
+        {
+          "skill": "Leadership",
+          "count": 12
+        },
+        {
+          "skill": "Automation",
+          "count": 9
+        },
+        {
+          "skill": "Analytical Thinking",
+          "count": 8
+        },
+        {
+          "skill": "Video Editing",
+          "count": 8
+        },
+        {
+          "skill": "Marketing Strategy",
+          "count": 8
+        },
+        {
+          "skill": "Graphic Design",
+          "count": 6
+        }
+      ],
+      "category_breakdown": {
+        "technical": 54,
+        "domain": 877,
+        "soft": 52
+      },
+      "top_companies": [
+        {
+          "company": "Unnati",
+          "count": 7
+        },
+        {
+          "company": "RECEX",
+          "count": 6
+        },
+        {
+          "company": "Kaapro Management Solutions",
+          "count": 4
+        },
+        {
+          "company": "Hunarstreet Technologies Pvt Ltd",
+          "count": 4
+        },
+        {
+          "company": "Jobgether",
+          "count": 4
+        },
+        {
+          "company": "Qrata",
+          "count": 4
+        },
+        {
+          "company": "Gururo",
+          "count": 3
+        },
+        {
+          "company": "Intellikart Ventures LLP",
+          "count": 3
+        },
+        {
+          "company": "Fresh Prints",
+          "count": 3
+        },
+        {
+          "company": "Byte Elephants Technologies Pvt Ltd",
+          "count": 3
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "India",
+          "count": 89
+        },
+        {
+          "city": "Bangalore",
+          "count": 65
+        },
+        {
+          "city": "Mumbai",
+          "count": 51
+        },
+        {
+          "city": "Delhi",
+          "count": 42
+        },
+        {
+          "city": "Ahmedabad",
+          "count": 35
+        },
+        {
+          "city": "Noida",
+          "count": 21
+        },
+        {
+          "city": "Pune",
+          "count": 19
+        },
+        {
+          "city": "Chennai",
+          "count": 17
+        },
+        {
+          "city": "Hyderabad",
+          "count": 14
+        },
+        {
+          "city": "Indore",
+          "count": 11
+        }
+      ],
+      "salary": {
+        "total_jobs": 465,
+        "jobs_with_salary_disclosed": 207,
+        "jobs_without_salary_disclosed": 258,
+        "disclosure_rate_percent": 44.5,
+        "average_salary_min": 355923.0,
+        "average_salary_max": 622995.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    },
+    "Education": {
+      "total_jobs": 357,
+      "average_skills_per_job": 1.34,
+      "top_skills": [
+        {
+          "skill": "Teaching",
+          "count": 319
+        },
+        {
+          "skill": "Communication",
+          "count": 33
+        },
+        {
+          "skill": "Curriculum Development",
+          "count": 16
+        },
+        {
+          "skill": "Mentoring",
+          "count": 14
+        },
+        {
+          "skill": "Artificial Intelligence",
+          "count": 12
+        },
+        {
+          "skill": "Leadership",
+          "count": 11
+        },
+        {
+          "skill": "Collaboration",
+          "count": 10
+        },
+        {
+          "skill": "Critical Thinking",
+          "count": 9
+        },
+        {
+          "skill": "Programming",
+          "count": 7
+        },
+        {
+          "skill": "Classroom Management",
+          "count": 6
+        },
+        {
+          "skill": "Excel",
+          "count": 6
+        },
+        {
+          "skill": "Cloud Computing",
+          "count": 3
+        },
+        {
+          "skill": "Python",
+          "count": 3
+        },
+        {
+          "skill": "Statistics",
+          "count": 3
+        },
+        {
+          "skill": "Algorithms",
+          "count": 3
+        },
+        {
+          "skill": "Machine Learning",
+          "count": 3
+        },
+        {
+          "skill": "Data Science",
+          "count": 2
+        },
+        {
+          "skill": "Academic Research",
+          "count": 2
+        },
+        {
+          "skill": "Video Editing",
+          "count": 2
+        },
+        {
+          "skill": "Express.js",
+          "count": 1
+        }
+      ],
+      "category_breakdown": {
+        "technical": 30,
+        "domain": 371,
+        "soft": 79
+      },
+      "top_companies": [
+        {
+          "company": "AKS University",
+          "count": 22
+        },
+        {
+          "company": "Unknown",
+          "count": 15
+        },
+        {
+          "company": "iSchools Inc.",
+          "count": 10
+        },
+        {
+          "company": "Refining Skills Academy",
+          "count": 9
+        },
+        {
+          "company": "Foundation SVKM",
+          "count": 8
+        },
+        {
+          "company": "Bloomingdale International School",
+          "count": 6
+        },
+        {
+          "company": "2coms",
+          "count": 6
+        },
+        {
+          "company": "Connectfor",
+          "count": 5
+        },
+        {
+          "company": "Unison World School",
+          "count": 4
+        },
+        {
+          "company": "Adhyaapan",
+          "count": 4
+        }
+      ],
+      "top_cities": [
+        {
+          "city": "India",
+          "count": 76
+        },
+        {
+          "city": "Bangalore",
+          "count": 39
+        },
+        {
+          "city": "Satna",
+          "count": 22
+        },
+        {
+          "city": "Coimbatore",
+          "count": 17
+        },
+        {
+          "city": "Chennai",
+          "count": 14
+        },
+        {
+          "city": "Hyderabad",
+          "count": 13
+        },
+        {
+          "city": "Mysore",
+          "count": 12
+        },
+        {
+          "city": "Mumbai",
+          "count": 10
+        },
+        {
+          "city": "Noida",
+          "count": 9
+        },
+        {
+          "city": "Delhi",
+          "count": 8
+        }
+      ],
+      "salary": {
+        "total_jobs": 357,
+        "jobs_with_salary_disclosed": 55,
+        "jobs_without_salary_disclosed": 302,
+        "disclosure_rate_percent": 15.4,
+        "average_salary_min": 391855.0,
+        "average_salary_max": 781291.0,
+        "note": "Based only on postings that disclosed salary - not estimated for others."
+      }
+    }
+  },
+  "skill_popularity": {
+    "Data Science": {
+      "total_count": 203,
+      "domains": {
+        "AI & Data Science": 188,
+        "Business Analytics": 7,
+        "Software Development": 4,
+        "Graphic Design": 2,
+        "Education": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Programming": {
+      "total_count": 116,
+      "domains": {
+        "Software Development": 71,
+        "AI & Data Science": 31,
+        "Education": 7,
+        "Business Analytics": 4,
+        "Graphic Design": 3
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "Teaching": {
+      "total_count": 347,
+      "domains": {
+        "Education": 319,
+        "AI & Data Science": 25,
+        "Software Development": 2,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Education",
+      "domain_count": 4
+    },
+    "Artificial Intelligence": {
+      "total_count": 487,
+      "domains": {
+        "AI & Data Science": 301,
+        "Software Development": 66,
+        "Business Analytics": 41,
+        "Digital Marketing": 38,
+        "Graphic Design": 29,
+        "Education": 12
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 6
+    },
+    "Statistics": {
+      "total_count": 38,
+      "domains": {
+        "AI & Data Science": 31,
+        "Education": 3,
+        "Business Analytics": 2,
+        "Software Development": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Machine Learning": {
+      "total_count": 286,
+      "domains": {
+        "AI & Data Science": 252,
+        "Software Development": 18,
+        "Business Analytics": 11,
+        "Education": 3,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 6
+    },
+    "Digital Marketing": {
+      "total_count": 190,
+      "domains": {
+        "Digital Marketing": 162,
+        "Graphic Design": 19,
+        "AI & Data Science": 7,
+        "Software Development": 1,
+        "Education": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 5
+    },
+    "Predictive Analytics": {
+      "total_count": 8,
+      "domains": {
+        "AI & Data Science": 8
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 1
+    },
+    "Content Strategy": {
+      "total_count": 64,
+      "domains": {
+        "Digital Marketing": 61,
+        "AI & Data Science": 2,
+        "Graphic Design": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 3
+    },
+    "Curriculum Development": {
+      "total_count": 19,
+      "domains": {
+        "Education": 16,
+        "AI & Data Science": 3
+      },
+      "primary_domain": "Education",
+      "domain_count": 2
+    },
+    "Cloud Computing": {
+      "total_count": 129,
+      "domains": {
+        "AI & Data Science": 50,
+        "Software Development": 48,
+        "Business Analytics": 21,
+        "Graphic Design": 4,
+        "Digital Marketing": 3,
+        "Education": 3
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 6
+    },
+    "Data Analysis": {
+      "total_count": 235,
+      "domains": {
+        "AI & Data Science": 177,
+        "Business Analytics": 51,
+        "Software Development": 4,
+        "Graphic Design": 2,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Leadership": {
+      "total_count": 74,
+      "domains": {
+        "AI & Data Science": 22,
+        "Business Analytics": 13,
+        "Digital Marketing": 12,
+        "Education": 11,
+        "Software Development": 10,
+        "Graphic Design": 6
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 6
+    },
+    "Deep Learning": {
+      "total_count": 29,
+      "domains": {
+        "AI & Data Science": 28,
+        "Software Development": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Database Management": {
+      "total_count": 79,
+      "domains": {
+        "Software Development": 49,
+        "AI & Data Science": 18,
+        "Business Analytics": 8,
+        "Digital Marketing": 4
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Mentoring": {
+      "total_count": 28,
+      "domains": {
+        "Education": 14,
+        "AI & Data Science": 8,
+        "Software Development": 3,
+        "Graphic Design": 2,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Education",
+      "domain_count": 5
+    },
+    "Generative AI": {
+      "total_count": 67,
+      "domains": {
+        "AI & Data Science": 63,
+        "Business Analytics": 1,
+        "Software Development": 1,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Full Stack Development": {
+      "total_count": 187,
+      "domains": {
+        "Software Development": 172,
+        "AI & Data Science": 10,
+        "Business Analytics": 2,
+        "Digital Marketing": 2,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "Software Engineering": {
+      "total_count": 137,
+      "domains": {
+        "Software Development": 103,
+        "AI & Data Science": 29,
+        "Business Analytics": 2,
+        "Graphic Design": 2,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "Power BI": {
+      "total_count": 69,
+      "domains": {
+        "Business Analytics": 51,
+        "AI & Data Science": 18
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 2
+    },
+    "Excel": {
+      "total_count": 46,
+      "domains": {
+        "AI & Data Science": 18,
+        "Business Analytics": 17,
+        "Education": 6,
+        "Graphic Design": 3,
+        "Software Development": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Automation": {
+      "total_count": 81,
+      "domains": {
+        "AI & Data Science": 41,
+        "Software Development": 19,
+        "Business Analytics": 11,
+        "Digital Marketing": 9,
+        "Graphic Design": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Feature Engineering": {
+      "total_count": 6,
+      "domains": {
+        "AI & Data Science": 5,
+        "Software Development": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Natural Language Processing": {
+      "total_count": 34,
+      "domains": {
+        "AI & Data Science": 32,
+        "Software Development": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Communication": {
+      "total_count": 155,
+      "domains": {
+        "Graphic Design": 39,
+        "Education": 33,
+        "Digital Marketing": 25,
+        "Software Development": 22,
+        "Business Analytics": 21,
+        "AI & Data Science": 15
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 6
+    },
+    "API": {
+      "total_count": 145,
+      "domains": {
+        "Software Development": 115,
+        "AI & Data Science": 24,
+        "Business Analytics": 4,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "Requirements Gathering": {
+      "total_count": 68,
+      "domains": {
+        "Business Analytics": 48,
+        "AI & Data Science": 10,
+        "Software Development": 8,
+        "Graphic Design": 2
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 4
+    },
+    "Large Language Models": {
+      "total_count": 61,
+      "domains": {
+        "AI & Data Science": 55,
+        "Software Development": 2,
+        "Digital Marketing": 2,
+        "Business Analytics": 1,
+        "Education": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Adobe Creative Suite": {
+      "total_count": 58,
+      "domains": {
+        "Graphic Design": 48,
+        "AI & Data Science": 4,
+        "Software Development": 2,
+        "Business Analytics": 2,
+        "Digital Marketing": 1,
+        "Education": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 6
+    },
+    "Model Deployment": {
+      "total_count": 14,
+      "domains": {
+        "AI & Data Science": 12,
+        "Business Analytics": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Collaboration": {
+      "total_count": 56,
+      "domains": {
+        "Graphic Design": 15,
+        "AI & Data Science": 14,
+        "Software Development": 10,
+        "Education": 10,
+        "Business Analytics": 4,
+        "Digital Marketing": 3
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 6
+    },
+    "Python": {
+      "total_count": 269,
+      "domains": {
+        "Software Development": 177,
+        "AI & Data Science": 78,
+        "Business Analytics": 11,
+        "Education": 3
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Scikit-learn": {
+      "total_count": 9,
+      "domains": {
+        "AI & Data Science": 7,
+        "Software Development": 1,
+        "Business Analytics": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 3
+    },
+    "TensorFlow": {
+      "total_count": 18,
+      "domains": {
+        "AI & Data Science": 15,
+        "Software Development": 3
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "PyTorch": {
+      "total_count": 18,
+      "domains": {
+        "AI & Data Science": 13,
+        "Software Development": 5
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Spark": {
+      "total_count": 15,
+      "domains": {
+        "AI & Data Science": 11,
+        "Software Development": 1,
+        "Business Analytics": 1,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Agentic AI": {
+      "total_count": 25,
+      "domains": {
+        "AI & Data Science": 21,
+        "Business Analytics": 3,
+        "Software Development": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 3
+    },
+    "Analytical Thinking": {
+      "total_count": 27,
+      "domains": {
+        "AI & Data Science": 9,
+        "Digital Marketing": 8,
+        "Business Analytics": 7,
+        "Software Development": 3
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 4
+    },
+    "Data Visualization": {
+      "total_count": 32,
+      "domains": {
+        "Business Analytics": 17,
+        "AI & Data Science": 15
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 2
+    },
+    "Web Development": {
+      "total_count": 9,
+      "domains": {
+        "Software Development": 5,
+        "AI & Data Science": 2,
+        "Business Analytics": 1,
+        "Graphic Design": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Graphic Design": {
+      "total_count": 194,
+      "domains": {
+        "Graphic Design": 172,
+        "Software Development": 13,
+        "Digital Marketing": 6,
+        "AI & Data Science": 1,
+        "Business Analytics": 1,
+        "Education": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 6
+    },
+    "Data Engineering": {
+      "total_count": 69,
+      "domains": {
+        "AI & Data Science": 36,
+        "Business Analytics": 30,
+        "Software Development": 3
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 3
+    },
+    "Technical Documentation": {
+      "total_count": 36,
+      "domains": {
+        "Business Analytics": 22,
+        "Software Development": 8,
+        "AI & Data Science": 4,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 5
+    },
+    "Algorithms": {
+      "total_count": 54,
+      "domains": {
+        "AI & Data Science": 33,
+        "Software Development": 13,
+        "Digital Marketing": 4,
+        "Education": 3,
+        "Business Analytics": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "SQL": {
+      "total_count": 132,
+      "domains": {
+        "AI & Data Science": 52,
+        "Software Development": 41,
+        "Business Analytics": 39
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 3
+    },
+    "Software Testing": {
+      "total_count": 83,
+      "domains": {
+        "Software Development": 39,
+        "Business Analytics": 20,
+        "Graphic Design": 14,
+        "AI & Data Science": 9,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "JavaScript": {
+      "total_count": 54,
+      "domains": {
+        "Software Development": 45,
+        "Graphic Design": 5,
+        "AI & Data Science": 3,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Git": {
+      "total_count": 28,
+      "domains": {
+        "Software Development": 22,
+        "AI & Data Science": 5,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 3
+    },
+    "Computer Vision": {
+      "total_count": 24,
+      "domains": {
+        "AI & Data Science": 15,
+        "Business Analytics": 4,
+        "Software Development": 3,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 5
+    },
+    "Prompt Engineering": {
+      "total_count": 14,
+      "domains": {
+        "AI & Data Science": 13,
+        "Business Analytics": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Business Intelligence": {
+      "total_count": 129,
+      "domains": {
+        "Business Analytics": 113,
+        "AI & Data Science": 14,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 4
+    },
+    "Docker": {
+      "total_count": 15,
+      "domains": {
+        "Software Development": 10,
+        "AI & Data Science": 5
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Java": {
+      "total_count": 148,
+      "domains": {
+        "Software Development": 141,
+        "AI & Data Science": 7
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Problem Solving": {
+      "total_count": 16,
+      "domains": {
+        "Software Development": 9,
+        "AI & Data Science": 3,
+        "Graphic Design": 3,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Tableau": {
+      "total_count": 21,
+      "domains": {
+        "Business Analytics": 12,
+        "AI & Data Science": 9
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 2
+    },
+    "Content Writing": {
+      "total_count": 48,
+      "domains": {
+        "Digital Marketing": 44,
+        "Graphic Design": 3,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 3
+    },
+    "AWS": {
+      "total_count": 69,
+      "domains": {
+        "Software Development": 50,
+        "AI & Data Science": 13,
+        "Business Analytics": 5,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Azure": {
+      "total_count": 45,
+      "domains": {
+        "AI & Data Science": 18,
+        "Software Development": 15,
+        "Business Analytics": 12
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 3
+    },
+    "Business Analysis": {
+      "total_count": 168,
+      "domains": {
+        "Business Analytics": 160,
+        "Software Development": 5,
+        "AI & Data Science": 3
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 3
+    },
+    "Data Pipelines": {
+      "total_count": 24,
+      "domains": {
+        "AI & Data Science": 12,
+        "Business Analytics": 8,
+        "Software Development": 3,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 4
+    },
+    "MongoDB": {
+      "total_count": 35,
+      "domains": {
+        "Software Development": 32,
+        "Business Analytics": 2,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 3
+    },
+    "PostgreSQL": {
+      "total_count": 21,
+      "domains": {
+        "Software Development": 20,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Critical Thinking": {
+      "total_count": 13,
+      "domains": {
+        "Education": 9,
+        "AI & Data Science": 3,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Education",
+      "domain_count": 3
+    },
+    "Django": {
+      "total_count": 49,
+      "domains": {
+        "Software Development": 48,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "React": {
+      "total_count": 67,
+      "domains": {
+        "Software Development": 59,
+        "AI & Data Science": 3,
+        "Business Analytics": 3,
+        "Graphic Design": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "Kubernetes": {
+      "total_count": 10,
+      "domains": {
+        "Software Development": 6,
+        "AI & Data Science": 4
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Backend Development": {
+      "total_count": 196,
+      "domains": {
+        "Software Development": 183,
+        "AI & Data Science": 10,
+        "Business Analytics": 1,
+        "Graphic Design": 1,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "AI Agents": {
+      "total_count": 15,
+      "domains": {
+        "AI & Data Science": 13,
+        "Business Analytics": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "C++": {
+      "total_count": 3,
+      "domains": {
+        "Software Development": 2,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Teamwork": {
+      "total_count": 20,
+      "domains": {
+        "Software Development": 11,
+        "AI & Data Science": 3,
+        "Graphic Design": 3,
+        "Digital Marketing": 2,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 5
+    },
+    "LangChain": {
+      "total_count": 10,
+      "domains": {
+        "AI & Data Science": 7,
+        "Software Development": 3
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Retrieval Augmented Generation": {
+      "total_count": 29,
+      "domains": {
+        "AI & Data Science": 28,
+        "Software Development": 1
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Photoshop": {
+      "total_count": 46,
+      "domains": {
+        "Graphic Design": 43,
+        "Digital Marketing": 2,
+        "AI & Data Science": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 3
+    },
+    "Illustrator": {
+      "total_count": 37,
+      "domains": {
+        "Graphic Design": 35,
+        "AI & Data Science": 1,
+        "Education": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 3
+    },
+    "Express.js": {
+      "total_count": 19,
+      "domains": {
+        "Software Development": 16,
+        "AI & Data Science": 1,
+        "Digital Marketing": 1,
+        "Education": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Frontend Development": {
+      "total_count": 109,
+      "domains": {
+        "Software Development": 94,
+        "AI & Data Science": 8,
+        "Graphic Design": 5,
+        "Business Analytics": 2
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 4
+    },
+    "Flask": {
+      "total_count": 35,
+      "domains": {
+        "Software Development": 33,
+        "AI & Data Science": 2
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "LangGraph": {
+      "total_count": 9,
+      "domains": {
+        "AI & Data Science": 7,
+        "Software Development": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 2
+    },
+    "Vue.js": {
+      "total_count": 4,
+      "domains": {
+        "Software Development": 4
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 1
+    },
+    "Social Media Marketing": {
+      "total_count": 307,
+      "domains": {
+        "Digital Marketing": 221,
+        "Graphic Design": 85,
+        "Software Development": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 3
+    },
+    "Microservices": {
+      "total_count": 48,
+      "domains": {
+        "Software Development": 45,
+        "AI & Data Science": 3
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Next.js": {
+      "total_count": 5,
+      "domains": {
+        "Software Development": 3,
+        "AI & Data Science": 2
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Node.js": {
+      "total_count": 57,
+      "domains": {
+        "Software Development": 55,
+        "AI & Data Science": 1,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 3
+    },
+    "UI/UX Design": {
+      "total_count": 105,
+      "domains": {
+        "Graphic Design": 100,
+        "Software Development": 2,
+        "Digital Marketing": 2,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 4
+    },
+    "Wireframing": {
+      "total_count": 39,
+      "domains": {
+        "Graphic Design": 36,
+        "Business Analytics": 3
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 2
+    },
+    "Stakeholder Management": {
+      "total_count": 8,
+      "domains": {
+        "Business Analytics": 4,
+        "Software Development": 2,
+        "AI & Data Science": 1,
+        "Education": 1
+      },
+      "primary_domain": "Business Analytics",
+      "domain_count": 4
+    },
+    "Time Series Analysis": {
+      "total_count": 2,
+      "domains": {
+        "AI & Data Science": 2
+      },
+      "primary_domain": "AI & Data Science",
+      "domain_count": 1
+    },
+    "C#": {
+      "total_count": 10,
+      "domains": {
+        "Software Development": 10
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 1
+    },
+    ".NET": {
+      "total_count": 18,
+      "domains": {
+        "Software Development": 17,
+        "Business Analytics": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "Spring Boot": {
+      "total_count": 65,
+      "domains": {
+        "Software Development": 65
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 1
+    },
+    "Google Analytics": {
+      "total_count": 20,
+      "domains": {
+        "Digital Marketing": 19,
+        "Software Development": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 2
+    },
+    "Time Management": {
+      "total_count": 2,
+      "domains": {
+        "Software Development": 1,
+        "Digital Marketing": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 2
+    },
+    "ASP.NET": {
+      "total_count": 1,
+      "domains": {
+        "Software Development": 1
+      },
+      "primary_domain": "Software Development",
+      "domain_count": 1
+    },
+    "Figma": {
+      "total_count": 30,
+      "domains": {
+        "Graphic Design": 29,
+        "Software Development": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 2
+    },
+    "Video Editing": {
+      "total_count": 68,
+      "domains": {
+        "Graphic Design": 58,
+        "Digital Marketing": 8,
+        "Education": 2
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 3
+    },
+    "Branding": {
+      "total_count": 62,
+      "domains": {
+        "Graphic Design": 40,
+        "Digital Marketing": 22
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 2
+    },
+    "Motion Graphics": {
+      "total_count": 97,
+      "domains": {
+        "Graphic Design": 96,
+        "Education": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 2
+    },
+    "Content Marketing": {
+      "total_count": 23,
+      "domains": {
+        "Digital Marketing": 21,
+        "Graphic Design": 2
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 2
+    },
+    "SEO": {
+      "total_count": 187,
+      "domains": {
+        "Digital Marketing": 185,
+        "Graphic Design": 2
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 2
+    },
+    "Animation": {
+      "total_count": 30,
+      "domains": {
+        "Graphic Design": 30
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 1
+    },
+    "After Effects": {
+      "total_count": 18,
+      "domains": {
+        "Graphic Design": 16,
+        "Digital Marketing": 1,
+        "Education": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 3
+    },
+    "Premiere Pro": {
+      "total_count": 9,
+      "domains": {
+        "Graphic Design": 9
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 1
+    },
+    "Adaptability": {
+      "total_count": 1,
+      "domains": {
+        "Graphic Design": 1
+      },
+      "primary_domain": "Graphic Design",
+      "domain_count": 1
+    },
+    "Paid Advertising": {
+      "total_count": 14,
+      "domains": {
+        "Digital Marketing": 13,
+        "Graphic Design": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 2
+    },
+    "Email Marketing": {
+      "total_count": 13,
+      "domains": {
+        "Digital Marketing": 12,
+        "Graphic Design": 1
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 2
+    },
+    "SEM": {
+      "total_count": 31,
+      "domains": {
+        "Digital Marketing": 31
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 1
+    },
+    "Keyword Research": {
+      "total_count": 33,
+      "domains": {
+        "Digital Marketing": 33
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 1
+    },
+    "Marketing Strategy": {
+      "total_count": 8,
+      "domains": {
+        "Digital Marketing": 8
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 1
+    },
+    "Campaign Management": {
+      "total_count": 5,
+      "domains": {
+        "Digital Marketing": 5
+      },
+      "primary_domain": "Digital Marketing",
+      "domain_count": 1
+    },
+    "Classroom Management": {
+      "total_count": 6,
+      "domains": {
+        "Education": 6
+      },
+      "primary_domain": "Education",
+      "domain_count": 1
+    },
+    "Academic Research": {
+      "total_count": 2,
+      "domains": {
+        "Education": 2
+      },
+      "primary_domain": "Education",
+      "domain_count": 1
+    },
+    "Lesson Planning": {
+      "total_count": 1,
+      "domains": {
+        "Education": 1
+      },
+      "primary_domain": "Education",
+      "domain_count": 1
+    }
+  },
+  "salary": {
+    "total_jobs": 2986,
+    "jobs_with_salary_disclosed": 937,
+    "jobs_without_salary_disclosed": 2049,
+    "disclosure_rate_percent": 31.4,
+    "average_salary_min": 643097.0,
+    "average_salary_max": 1255955.0,
+    "note": "Based only on postings that disclosed salary - not estimated for others."
+  }
+}
