@@ -69,6 +69,16 @@ Strict Constraints:
             try:
                 response = _call_gemini_with_model(prompt, model, client)
                 narrative = response.text.strip() if response.text else ""
+
+                if not narrative:
+                    logger.warning(
+                        "GEMINI_EMPTY_RESPONSE model=%s trying_next=%s",
+                        model,
+                        GEMINI_MODEL_CHAIN[i + 1] if i + 1 < len(GEMINI_MODEL_CHAIN) else None,
+                    )
+                    last_error = f"Empty response from model {model}"
+                    continue
+
                 warnings = check_narrative_grounding(narrative, recommendation_data)
 
                 if i > 0:
@@ -104,7 +114,7 @@ Strict Constraints:
 
         logger.error("GEMINI_ALL_MODELS_FAILED chain=%s last_error=%s",
                       GEMINI_MODEL_CHAIN, last_error, exc_info=True)
-        return {"narrative": None, "warnings": [f"All models unavailable. Last error: {str(last_error)}"]}
+        return {"narrative": None, "warnings": [f"All models unavailable. Last error: {last_error}"]}
         
     except Exception as e:
         logger.error(f"Gemini roadmap generation failed: {e}", exc_info=True)
