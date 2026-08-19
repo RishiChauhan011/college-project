@@ -48,3 +48,10 @@ class SkillScore(Base):
     demand_score = Column(Float, nullable=True)
     avg_salary_impact = Column(Float, nullable=True)
     roi_score = Column(Float, nullable=True)
+
+class Admin(Base):
+    __tablename__ = "admins"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    admin_id = Column(String, unique=True, index=True, nullable=False)
+    pin_hash = Column(String, nullable=False)

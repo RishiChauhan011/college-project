@@ -11,7 +11,7 @@ from pydantic import BaseModel, field_validator
 from dotenv import load_dotenv
 
 from db.database import get_db
-from db.models import User
+from db.models import User, Admin
 
 load_dotenv()
 
@@ -36,12 +36,17 @@ class UserCreate(BaseModel):
             raise ValueError('password cannot be longer than 72 bytes')
         return v
 
+class AdminLogin(BaseModel):
+    admin_id: str
+    pin: str
+
 class Token(BaseModel):
     access_token: str
     token_type: str
 
 class TokenData(BaseModel):
     email: Optional[str] = None
+    role: Optional[str] = "user"
 
 # Helper functions
 def verify_password(plain_password, hashed_password):
@@ -75,17 +80,27 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
+        role: str = payload.get("role", "user")
         if email is None:
             raise credentials_exception
-        token_data = TokenData(email=email)
+        token_data = TokenData(email=email, role=role)
     except JWTError:
         raise credentials_exception
     
-    # Extract the email string value if token_data.email is somehow not a string. Pydantic handles this mostly.
-    user = db.query(User).filter(User.email == token_data.email).first()
-    if user is None:
-        raise credentials_exception
-    return user
+    if token_data.role == "admin":
+        admin = db.query(Admin).filter(Admin.admin_id == token_data.email).first()
+        if admin is None:
+            raise credentials_exception
+        # Duck-type properties for compatibility with existing routes
+        admin.email = admin.admin_id
+        admin.name = "Admin"
+        admin.profile = None
+        return admin
+    else:
+        user = db.query(User).filter(User.email == token_data.email).first()
+        if user is None:
+            raise credentials_exception
+        return user
 
 @router.post("/signup", status_code=status.HTTP_201_CREATED)
 def signup(user_in: UserCreate, db: Session = Depends(get_db)):
@@ -118,5 +133,20 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
+
+@router.post("/admin-login", response_model=Token)
+def admin_login(login_data: AdminLogin, db: Session = Depends(get_db)):
+    admin = db.query(Admin).filter(Admin.admin_id == login_data.admin_id).first()
+    if not admin or not verify_password(login_data.pin, admin.pin_hash):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect Admin ID or PIN",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": admin.admin_id, "role": "admin"}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}

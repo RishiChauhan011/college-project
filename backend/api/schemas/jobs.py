@@ -19,7 +19,7 @@ class JobResponse(BaseModel):
     state: str = Field(..., description="State of the posting", example="Karnataka")
     description: str = Field(..., description="Full text description of the job", example="Job description text...")
     career_domain: str = Field(..., description="Assigned career domain", example="AI & Data Science")
-    adzuna_category: str = Field(..., description="Raw Adzuna category", example="IT Jobs")
+    adzuna_category: Optional[str] = Field(None, description="Raw Adzuna category", example="IT Jobs")
     salary_min: Optional[float] = Field(None, description="Minimum salary if disclosed", example=600000.0)
     salary_max: Optional[float] = Field(None, description="Maximum salary if disclosed", example=1200000.0)
     posted_date: str = Field(..., description="ISO 8601 formatted posted date", example="2026-07-02T17:24:24Z")

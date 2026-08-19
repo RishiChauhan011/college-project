@@ -7,8 +7,25 @@ from resume_parser.parse_resume import parse_resume
 router = APIRouter()
 
 @router.get("/profile")
-def get_profile(current_user: User = Depends(get_current_user)):
-    return {"message": "Profile route not implemented yet", "user": current_user.email}
+def get_profile(current_user = Depends(get_current_user)):
+    profile_data = {}
+    if getattr(current_user, "profile", None):
+        profile_data = {
+            "skills": current_user.profile.skills,
+            "education": current_user.profile.education,
+            "experience_years": current_user.profile.experience_years,
+            "preferred_location": current_user.profile.preferred_location,
+            "preferred_field": current_user.profile.preferred_field,
+            "source": current_user.profile.source
+        }
+    
+    return {
+        "id": current_user.id if hasattr(current_user, "id") else None,
+        "name": getattr(current_user, "name", "Admin"),
+        "email": current_user.email,
+        "role": "admin" if getattr(current_user, "name", "") == "Admin" else "user",
+        "profile": profile_data if profile_data else None
+    }
 
 @router.post("/resume-upload")
 async def upload_resume(file: UploadFile = File(...), current_user: User = Depends(get_current_user)):
