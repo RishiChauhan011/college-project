@@ -29,7 +29,12 @@ const Dashboard = () => {
         const summary = await fetchApi('/analytics');
         setAnalyticsSummary(summary);
         setAvailableDomains(summary.available_domains || []);
-        if (!domain && summary.available_domains?.length > 0) {
+        
+        // Prioritize user's preferred field
+        const userPreferredDomain = user?.profile?.preferred_field;
+        if (userPreferredDomain) {
+          setDomain(userPreferredDomain);
+        } else if (!domain && summary.available_domains?.length > 0) {
           setDomain(summary.available_domains[0]);
         }
       } catch (error) {
@@ -37,7 +42,7 @@ const Dashboard = () => {
       }
     };
     fetchInitialData();
-  }, []);
+  }, [user?.profile?.preferred_field]);
 
   // Fetch domain specific data
   useEffect(() => {
@@ -73,26 +78,39 @@ const Dashboard = () => {
     fetchJobs();
   }, [domain]);
 
-  // Fetch Role Fit
+  // Fetch Role Fit & Recommendations using user's real profile skills
   useEffect(() => {
     const fetchRoleFit = async () => {
-      const storedResumeData = localStorage.getItem('extractedResume');
-      if (storedResumeData) {
+      const userSkills =
+        user?.profile?.skills && user.profile.skills.length > 0
+          ? user.profile.skills
+          : (() => {
+              try {
+                const stored = localStorage.getItem('extractedResume');
+                return stored ? JSON.parse(stored).skills || [] : [];
+              } catch {
+                return [];
+              }
+            })();
+
+      if (userSkills && userSkills.length > 0) {
         setLoadingRoleFit(true);
         try {
-          const parsed = JSON.parse(storedResumeData);
-          // Only fetch if skills exist and no duplicates (dedupe them just in case)
-          if (parsed.skills && parsed.skills.length > 0) {
-            const uniqueSkills = [...new Set(parsed.skills.map(s => s.toLowerCase()))];
-            const fit = await fetchApi('/role-fit', {
-              method: 'POST',
-              body: JSON.stringify({ resume_skills: uniqueSkills })
-            });
-            setRoleFit(fit);
-            
+          const uniqueSkills = [...new Set(userSkills.map((s) => s.toLowerCase()))];
+          const fit = await fetchApi('/role-fit', {
+            method: 'POST',
+            body: JSON.stringify({ resume_skills: uniqueSkills }),
+          });
+          setRoleFit(fit);
+
+          const targetDom = domain || user?.profile?.preferred_field;
+          if (targetDom) {
             const rec = await fetchApi('/recommendation', {
               method: 'POST',
-              body: JSON.stringify({ resume_skills: uniqueSkills, target_domain: domain || 'AI & Data Science' })
+              body: JSON.stringify({
+                resume_skills: uniqueSkills,
+                target_domain: targetDom,
+              }),
             });
             setRoadmap(rec);
           }
@@ -101,10 +119,13 @@ const Dashboard = () => {
         } finally {
           setLoadingRoleFit(false);
         }
+      } else {
+        setRoleFit(null);
+        setRoadmap(null);
       }
     };
     fetchRoleFit();
-  }, []);
+  }, [user?.profile?.skills, domain]);
 
   return (
     <div className="font-body-md text-body-md antialiased overflow-x-hidden min-h-screen bg-surface">
@@ -193,7 +214,13 @@ const Dashboard = () => {
               </span>
             </div>
           </div>
-          <div className="bg-surface rounded-xl p-6 elevation-1 flex flex-col justify-between cursor-pointer" onClick={() => navigate('/skill-insight')}>
+          <div 
+            className="bg-surface rounded-xl p-6 elevation-1 flex flex-col justify-between cursor-pointer hover:-translate-y-1 transition-transform" 
+            onClick={() => {
+              const topSkill = domainAnalytics?.top_skills?.[0]?.skill;
+              navigate(`/skill-insight${topSkill ? `?skill=${encodeURIComponent(topSkill)}` : ''}`);
+            }}
+          >
             <div className="flex items-center justify-between mb-4">
               <span className="text-body-sm font-body-sm text-secondary">Top Demand Skill</span>
               <span className="material-symbols-outlined text-warning">local_fire_department</span>

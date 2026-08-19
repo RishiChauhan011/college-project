@@ -18,6 +18,11 @@ export const fetchApi = async (endpoint, options = {}) => {
     delete headers['Content-Type'];
   }
 
+  // If body is FormData, remove Content-Type so browser auto-sets multipart/form-data with boundary
+  if (options.body instanceof FormData) {
+    delete headers['Content-Type'];
+  }
+
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
     headers,

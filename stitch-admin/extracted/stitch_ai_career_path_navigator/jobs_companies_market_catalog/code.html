@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Career Intelligence - Jobs &amp; Companies</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#111c2d",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-low": "#f0f4f8",
+                        "on-background": "#171c1f",
+                        "secondary": "#545f73",
+                        "surface-container": "#eaeef2",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e5e9ed",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-container": "#586377",
+                        "inverse-on-surface": "#edf1f5",
+                        "surface-variant": "#dfe3e7",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "background": "#f6fafe",
+                        "secondary-container": "#d5e0f8",
+                        "status-success": "#10b981",
+                        "primary": "#4648d4",
+                        "primary-container": "#6063ee",
+                        "on-primary-fixed": "#07006c",
+                        "tertiary-container": "#00885d",
+                        "surface-container-lowest": "#ffffff",
+                        "waypoint-active": "#6366f1",
+                        "on-surface-variant": "#464554",
+                        "on-secondary": "#ffffff",
+                        "outline": "#767586",
+                        "on-surface": "#171c1f",
+                        "surface-tint": "#494bd6",
+                        "surface-dim": "#d8dadc",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c7c4d7",
+                        "on-tertiary": "#ffffff",
+                        "status-error": "#ef4444",
+                        "inverse-primary": "#c0c1ff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#000703",
+                        "inverse-surface": "#2c3134",
+                        "surface": "#f6fafe",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#fffbff",
+                        "status-warning": "#f59e0b",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-container-highest": "#dfe3e7",
+                        "tertiary": "#006c49",
+                        "secondary-fixed": "#d8e3fb",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "topbar-height": "56px",
+                        "row-height-dense": "40px",
+                        "container-padding": "24px",
+                        "metric-gap": "12px",
+                        "sidebar-width": "260px",
+                        "gutter": "20px",
+                        "row-height-standard": "56px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "data-sm": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "data-lg": ["JetBrains Mono"],
+                        "data-md": ["JetBrains Mono"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "data-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "data-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen overflow-x-hidden font-body-md text-body-md flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full py-container-padding bg-surface-container-lowest dark:bg-surface-container-low fixed left-0 top-0 w-sidebar-width shadow-md shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] dark:shadow-none z-50">
+<div class="px-container-padding mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Career Intelligence</h1>
+<p class="font-data-sm text-data-sm text-on-surface-variant uppercase tracking-widest mt-1">Control Center</p>
+</div>
+<ul class="flex flex-col gap-2 px-4 flex-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Users</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] text-primary dark:text-primary-fixed-dim font-bold bg-surface-container dark:bg-secondary-container" href="#">
+<span class="material-symbols-outlined">work</span>
+<span class="font-body-md text-body-md">Jobs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">business</span>
+<span class="font-body-md text-body-md">Companies</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-body-md text-body-md">Skills</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-body-md text-body-md">AI Insights</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-body-md text-body-md">Activity</span>
+</a>
+</li>
+</ul>
+<div class="px-4 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-outline hover:text-on-surface hover:bg-surface-bright dark:hover:bg-surface-container-high transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 md:ml-sidebar-width flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-gutter w-full z-40 bg-background/80 backdrop-blur-md dark:bg-background/80 text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md font-data-md text-data-md fixed top-0 right-0 md:w-[calc(100%-260px)] h-topbar-height border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-4">
+<div class="relative shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] rounded-full px-4 py-1.5 flex items-center bg-surface-container-lowest">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm font-body-sm text-on-surface w-48 placeholder:text-on-surface-variant/50 outline-none" placeholder="Search entity..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors duration-200"><span class="material-symbols-outlined">help_outline</span></button>
+<div class="w-8 h-8 rounded-full bg-surface-dim overflow-hidden shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] border-2 border-surface-container-lowest">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="A macro photography shot of an abstract metallic sphere with iridescent reflections. The sphere sits perfectly centered within a dark, softly lit environment, conveying a sense of high-end precision engineering and modern professionalism. The lighting is crisp, highlighting the smooth, flawless texture of the metallic surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ymaGaghp4pfFFFQ8uUawUPXsBtxOMOuP_Bn1Yfsvvy1YDXOjas6xWcZ1b8QYCFlZ--Iswe_z95jK_vnS7c2f6Crdi3UW0nQj3vFddLr_kPVTJ0-ivb_d0F8--739M2Yj5pCEyK8_2NcPhqcgdG-yMlrZYZm3GPrUJe0YMVrL2LA5FgxaA41_zaugdGG4wp3fek3NxM8LLSu8zPaS4qi6bKQthUM0fO4j34uVk-FxRgZ3F7TCtiA46w"/>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-gutter pt-[calc(56px+20px)] overflow-y-auto">
+<!-- Page Header -->
+<div class="mb-6 flex justify-between items-end">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Jobs &amp; Companies</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage listings and organizational profiles.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-lowest shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] px-4 py-2 rounded-lg font-data-md text-data-md text-primary flex items-center gap-2 hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+                    </button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-data-md text-data-md flex items-center gap-2 hover:bg-primary-container transition-colors shadow-md">
+<span class="material-symbols-outlined text-[18px]">add</span> New Record
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Primary Data Table (Jobs) -->
+<div class="col-span-12 xl:col-span-8 flex flex-col gap-gutter">
+<!-- Table Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-center border-b border-outline-variant pb-4 mb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface">Job Listings View</h3>
+<div class="flex gap-2 bg-surface-container p-1 rounded-lg shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]">
+<button class="px-3 py-1 rounded bg-surface-container-lowest text-primary font-label-caps text-label-caps shadow-sm">JOBS</button>
+<button class="px-3 py-1 rounded text-on-surface-variant font-label-caps text-label-caps hover:text-on-surface">COMPANIES</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant">
+<th class="py-3 px-4 font-normal">TITLE</th>
+<th class="py-3 px-4 font-normal">COMPANY</th>
+<th class="py-3 px-4 font-normal">CAREER FIELD</th>
+<th class="py-3 px-4 font-normal text-right">SALARY</th>
+<th class="py-3 px-4 font-normal">STATUS</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright group transition-colors relative">
+<td class="py-3 px-4 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-medium">Senior Software Engineer</span>
+</td>
+<td class="py-3 px-4">TechCorp Inc.</td>
+<td class="py-3 px-4">Engineering</td>
+<td class="py-3 px-4 text-right font-data-sm text-data-sm">$140k - $160k</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-low border border-status-success/30 text-status-success font-label-caps text-label-caps">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Active
+                                            </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright group transition-colors relative">
+<td class="py-3 px-4 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="font-medium">Product Marketing Manager</span>
+</td>
+<td class="py-3 px-4">Global Innovations</td>
+<td class="py-3 px-4">Marketing</td>
+<td class="py-3 px-4 text-right font-data-sm text-data-sm">$110k - $130k</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-low border border-status-warning/30 text-status-warning font-label-caps text-label-caps">
+<span class="w-1.5 h-1.5 rounded-full bg-status-warning"></span> Paused
+                                            </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Inspection/Details View -->
+<div class="col-span-12 xl:col-span-4 flex flex-col gap-gutter">
+<!-- Inspection Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] p-6 flex flex-col">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-primary tracking-widest mb-1">INSPECTION</p>
+<h3 class="font-headline-md text-headline-md text-on-surface">TechCorp Inc.</h3>
+</div>
+<div class="w-12 h-12 rounded bg-surface-container flex items-center justify-center shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] text-on-surface-variant">
+<span class="material-symbols-outlined">business</span>
+</div>
+</div>
+<div class="space-y-4 font-body-sm text-body-sm">
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-on-surface-variant font-label-caps text-label-caps">MAIN LOCATION</span>
+<span class="text-on-surface font-data-md text-data-md">San Francisco, CA</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-on-surface-variant font-label-caps text-label-caps">ACTIVE JOBS</span>
+<span class="text-on-surface font-data-md text-data-md">24</span>
+</div>
+<div class="flex flex-col gap-2 pt-2">
+<span class="text-on-surface-variant font-label-caps text-label-caps">TOP REQUESTED SKILLS</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container-low border border-outline-variant rounded text-on-surface font-data-sm text-data-sm">React</span>
+<span class="px-2 py-1 bg-surface-container-low border border-outline-variant rounded text-on-surface font-data-sm text-data-sm">Python</span>
+<span class="px-2 py-1 bg-surface-container-low border border-outline-variant rounded text-on-surface font-data-sm text-data-sm">AWS</span>
+</div>
+</div>
+</div>
+<div class="mt-8 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary py-2 rounded-lg font-data-md text-data-md shadow-md hover:bg-primary-container transition-colors">Edit Profile</button>
+<button class="p-2 rounded-lg bg-surface-container-lowest shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] text-error hover:bg-error-container transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

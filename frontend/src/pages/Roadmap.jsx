@@ -1,42 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import SideNavBar from '../components/SideNavBar';
 import { fetchApi } from '../api/apiClient';
 import { useDomain } from '../context/DomainContext';
+import { useAuth } from '../context/AuthContext';
 
 const Roadmap = () => {
   const navigate = useNavigate();
   const { domain } = useDomain();
+  const { user } = useAuth();
   
   const [roadmap, setRoadmap] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const targetDomain = domain || user?.profile?.preferred_field;
+
   const generateRoadmap = async () => {
     setIsLoading(true);
     setError('');
     try {
-      const storedData = localStorage.getItem('extractedResume');
-      let skills = [];
-      if (storedData) {
-        const parsed = JSON.parse(storedData);
-        if (parsed.skills) {
-          skills = [...new Set(parsed.skills.map(s => s.toLowerCase()))];
-        }
+      const userSkills =
+        user?.profile?.skills && user.profile.skills.length > 0
+          ? user.profile.skills
+          : (() => {
+              try {
+                const stored = localStorage.getItem('extractedResume');
+                return stored ? JSON.parse(stored).skills || [] : [];
+              } catch {
+                return [];
+              }
+            })();
+
+      if (!userSkills || userSkills.length === 0) {
+        setRoadmap(null);
+        setIsLoading(false);
+        return;
       }
-      
-      if (skills.length === 0) {
-        // Fallback for testing if no resume uploaded
-        skills = ['python', 'sql'];
+
+      if (!targetDomain) {
+        setRoadmap(null);
+        setIsLoading(false);
+        return;
       }
+
+      const uniqueSkills = [...new Set(userSkills.map((s) => s.toLowerCase()))];
 
       const response = await fetchApi('/recommendation', {
         method: 'POST',
         body: JSON.stringify({
-          target_domain: domain || 'AI & Data Science',
-          resume_skills: skills
-        })
+          target_domain: targetDomain,
+          resume_skills: uniqueSkills,
+        }),
       });
       setRoadmap(response);
     } catch (err) {
@@ -48,7 +64,7 @@ const Roadmap = () => {
 
   useEffect(() => {
     generateRoadmap();
-  }, [domain]);
+  }, [domain, user?.profile?.skills, user?.profile?.preferred_field]);
 
   const contourLineStyle = {
     backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 10px, #c7c4d7 10px, #c7c4d7 20px)`,
@@ -71,7 +87,9 @@ const Roadmap = () => {
         <div className="flex justify-between items-end mb-8">
           <div>
             <h1 className="font-headline-xl text-headline-xl text-on-surface mb-2">Career Trajectory</h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant">Navigating towards your target in {domain || 'AI & Data Science'}</p>
+            <p className="font-body-lg text-body-lg text-on-surface-variant">
+              Navigating towards your target in {targetDomain || 'your chosen domain'}
+            </p>
           </div>
           <button 
             onClick={generateRoadmap}
@@ -116,12 +134,12 @@ const Roadmap = () => {
                 </div>
                 <div className="absolute bottom-full mb-4 w-48 p-4 bg-surface-bright rounded-xl shadow-[4px_4px_10px_rgba(163,177,198,0.5)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Recognized Skills: {roadmap.recognized_skills.slice(0,3).join(', ')}{roadmap.recognized_skills.length > 3 ? '...' : ''}
+                    Recognized Skills: {roadmap.recognized_skills?.slice(0,3).join(', ')}{roadmap.recognized_skills?.length > 3 ? '...' : ''}
                   </p>
                 </div>
               </div>
 
-              {roadmap.missing_skills.slice(0, 3).map((skill, index) => (
+              {roadmap.missing_skills?.slice(0, 3).map((skill, index) => (
                 <div key={index} className="relative flex flex-col items-center group z-10 cursor-pointer w-48" onClick={() => navigate('/skill-insight')}>
                   <div className="w-10 h-10 rounded-full bg-surface-bright text-primary flex items-center justify-center shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)] border-2 border-primary">
                     <span className="material-symbols-outlined text-[20px]">architecture</span>
@@ -148,7 +166,18 @@ const Roadmap = () => {
                 </div>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <div className="text-center py-16 text-secondary">
+              <span className="material-symbols-outlined text-5xl text-outline-variant mb-4 block">route</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-2">No Career Roadmap Generated Yet</h3>
+              <p className="text-body-sm max-w-md mx-auto mb-6 text-on-surface-variant">
+                Complete your profile or upload your resume to generate an AI-guided skill milestone trajectory.
+              </p>
+              <Link to="/profile/edit" className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-data-sm text-data-sm hover:bg-surface-tint transition-all inline-flex items-center gap-2">
+                <span className="material-symbols-outlined text-sm">edit</span> Complete Profile
+              </Link>
+            </div>
+          )}
           
           {roadmap && roadmap.roadmap_narrative && (
              <div className="mt-8 p-6 bg-surface-bright rounded-xl elevation-2 border-l-4 border-primary">

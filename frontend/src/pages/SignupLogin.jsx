@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+import { fetchApi } from '../api/apiClient';
+import { isProfileComplete } from '../utils/profile';
+
 const SignupLogin = () => {
   const [activeTab, setActiveTab] = useState('login');
   const [showLoginPassword, setShowLoginPassword] = useState(false);
@@ -29,7 +32,16 @@ const SignupLogin = () => {
     setIsLoading(true);
     try {
       await login(email, password);
-      navigate(from, { replace: true });
+      // Determine destination based on live profile completeness
+      const prof = await fetchApi('/profile');
+      if (prof?.role === 'admin') {
+        navigate('/admin', { replace: true });
+      } else if (isProfileComplete(prof)) {
+        const dest = (from && from !== '/login' && from !== '/onboarding') ? from : '/dashboard';
+        navigate(dest, { replace: true });
+      } else {
+        navigate('/onboarding', { replace: true });
+      }
     } catch (err) {
       setError(err.message || 'Failed to login');
     } finally {
@@ -43,7 +55,9 @@ const SignupLogin = () => {
     setIsLoading(true);
     try {
       await signup(name, email, password);
-      navigate('/onboarding');
+      // Automatically log the new user in to establish authenticated session
+      await login(email, password);
+      navigate('/onboarding', { replace: true });
     } catch (err) {
       setError(err.message || 'Failed to sign up');
     } finally {
@@ -57,7 +71,8 @@ const SignupLogin = () => {
     setIsLoading(true);
     try {
       await adminLogin(adminId, adminPin);
-      navigate(from, { replace: true });
+      const destination = location.state?.from?.pathname || '/admin';
+      navigate(destination, { replace: true });
     } catch (err) {
       setError(err.message || 'Failed to authenticate admin');
     } finally {

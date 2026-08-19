@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Control Center - User Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e4e9ed",
+                    "on-secondary": "#ffffff",
+                    "background": "#f6fafe",
+                    "status-error": "#ef4444",
+                    "tertiary-fixed-dim": "#81d8ad",
+                    "outline": "#767586",
+                    "inverse-on-surface": "#edf1f5",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#4648d4",
+                    "surface-tint": "#484bd6",
+                    "on-secondary-fixed": "#111c2d",
+                    "surface-container-highest": "#dfe3e7",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "waypoint-active": "#6366f1",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "on-surface": "#171c1f",
+                    "on-primary-container": "#d1d1ff",
+                    "status-warning": "#f59e0b",
+                    "inverse-surface": "#2c3134",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-container": "#586377",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#464554",
+                    "primary": "#2c2abc",
+                    "on-primary-fixed-variant": "#2e2ebe",
+                    "surface-container-low": "#f0f4f8",
+                    "secondary-container": "#d5e0f8",
+                    "surface-variant": "#dfe3e7",
+                    "tertiary-container": "#006a48",
+                    "on-background": "#171c1f",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-container": "#eaeef2",
+                    "on-tertiary-container": "#90e7bb",
+                    "outline-variant": "#c6c5d7",
+                    "surface-dim": "#d8dadc",
+                    "secondary": "#545f73",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#9df4c8",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-fixed": "#e1e0ff",
+                    "on-primary-fixed": "#06006c",
+                    "tertiary": "#004f35",
+                    "surface": "#f6fafe",
+                    "status-success": "#10b981",
+                    "inverse-primary": "#c0c1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "metric-gap": "12px",
+                    "container-padding": "24px",
+                    "row-height-dense": "40px",
+                    "topbar-height": "56px",
+                    "sidebar-width": "260px",
+                    "gutter": "20px",
+                    "row-height-standard": "56px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "data-sm": ["JetBrains Mono"],
+                    "data-md": ["JetBrains Mono"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["26px", { "lineHeight": "32px", "fontWeight": "700" }],
+                    "data-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                    "data-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                    "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                    "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                    "data-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700" }]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface shadow-[2px_2px_6px_rgba(163,177,198,0.4)] fixed top-0 right-0 w-[calc(100%-260px)] h-topbar-height flex items-center justify-between px-container-padding z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container-highest rounded-full px-4 py-2 shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] border border-transparent focus-within:border-primary transition-colors w-64">
+<span class="material-symbols-outlined text-on-surface-variant text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none font-body-sm text-body-sm text-on-surface w-full placeholder-on-surface-variant" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors active:scale-95 duration-150" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors active:scale-95 duration-150" data-icon="help">help</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors active:scale-95 duration-150" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low shadow-[2px_2px_6px_rgba(163,177,198,0.4)] fixed left-0 top-0 h-full w-sidebar-width flex flex-col py-6 px-4 gap-y-2 z-[60]">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Control Center</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Precision Admin v2.1</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-container-highest shadow-inner text-primary font-label-caps text-label-caps transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined fill" data-icon="group">group</span> Users
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span> Jobs
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="business">business</span> Companies
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span> Skills
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span> Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span> AI Insights
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span> Activity
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+            </a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined" data-icon="account_box">account_box</span> Admin Profile
+            </a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="ml-sidebar-width pt-topbar-height p-container-padding min-h-screen">
+<!-- Header / Back Button -->
+<div class="mb-8">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-body-sm text-body-sm mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span> Back to Users
+            </button>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-6">
+<img class="w-20 h-20 rounded-full object-cover shadow-[2px_2px_6px_rgba(163,177,198,0.4)] border-2 border-surface" data-alt="A highly detailed professional headshot of a young male AI engineer named Alex Chen, wearing a smart casual dark navy shirt. The lighting is crisp, white, and modern studio style, suitable for a light-mode high-tech administrative dashboard. The background is a clean, neutral gray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeucAgYRJTQNjDePsAGo6Ow2XtdgJ57HpTV7vvVMi60_q7VahMc3_HLwZUQVD64yqYj4ptZCTFxhxRDNWXON4GkTztbgbrhiGpXksaI02VA5paBaHoULHrWnA9qnnddpVJXrSBPVfofTa9LiAsyxtOAtAeV6QUTlwTzRirAnxNL4WFlVXExfqi7v0sO1MTVLWo_y6kXD9AlfwxQmJJmw4mFE9mSC9lfpgIWpoGTTmVGAnZDp_7Mgd00A"/>
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Alex Chen</h2>
+<p class="font-data-md text-data-md text-on-surface-variant flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span> alex.chen@example.com
+                            <span class="mx-2 text-outline-variant">|</span>
+                            Joined: Jan 2023
+                        </p>
+</div>
+</div>
+<div class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-label-caps text-label-caps flex items-center gap-1 shadow-sm border border-tertiary-fixed-dim">
+<span class="w-2 h-2 rounded-full bg-status-success inline-block"></span> Active
+                </div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Career Profile (Left Column) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface rounded-xl p-6 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] border border-surface-container-high">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4 border-b border-outline-variant pb-2">CAREER PROFILE</h3>
+<div class="mb-6">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Field</p>
+<p class="font-data-lg text-data-lg text-on-surface">Artificial Intelligence</p>
+</div>
+<div class="mb-6">
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Experience</p>
+<p class="font-data-lg text-data-lg text-on-surface">6 Years</p>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Technical Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container-high text-on-surface font-data-sm text-data-sm rounded border border-outline-variant">Python</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface font-data-sm text-data-sm rounded border border-outline-variant">PyTorch</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface font-data-sm text-data-sm rounded border border-outline-variant">AWS</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface font-data-sm text-data-sm rounded border border-outline-variant">SQL</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface font-data-sm text-data-sm rounded border border-outline-variant">Docker</span>
+</div>
+</div>
+</div>
+<div class="bg-surface rounded-xl p-6 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] border border-surface-container-high">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4 border-b border-outline-variant pb-2">ROADMAP STATUS</h3>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface">Generated</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last updated 2 days ago</p>
+</div>
+</div>
+<button class="mt-4 w-full py-2 bg-primary text-on-primary font-label-caps text-label-caps rounded shadow-sm hover:bg-on-primary-fixed-variant transition-colors">VIEW ROADMAP</button>
+</div>
+</div>
+<!-- Career Intelligence (Right Column) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter">
+<div class="bg-surface rounded-xl p-6 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] border border-surface-container-high flex-1">
+<div class="flex items-center justify-between mb-6 border-b border-outline-variant pb-2">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">CAREER INTELLIGENCE</h3>
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="bg-surface-container-highest p-4 rounded-lg shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">MATCH SCORE</p>
+<div class="flex items-end gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">92%</span>
+<span class="font-data-sm text-data-sm text-status-success mb-1 flex items-center"><span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span> +4%</span>
+</div>
+</div>
+<div class="bg-surface-container-highest p-4 rounded-lg shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">BEST-FIT ROLE</p>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-1">Senior AI Architect</p>
+</div>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-3">MISSING SKILLS FOR TARGET ROLE</h4>
+<div class="bg-surface-container-low rounded-lg border border-outline-variant overflow-hidden">
+<div class="flex items-center justify-between p-3 border-b border-outline-variant bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-status-warning text-sm" data-icon="warning">warning</span>
+<span class="font-data-md text-data-md text-on-surface">Kubernetes</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">HIGH PRIORITY</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-status-warning text-sm" data-icon="warning">warning</span>
+<span class="font-data-md text-data-md text-on-surface">Terraform</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">MEDIUM PRIORITY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

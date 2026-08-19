@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Company Detail - Control Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e4e9ed",
+                        "on-secondary": "#ffffff",
+                        "background": "#f6fafe",
+                        "status-error": "#ef4444",
+                        "tertiary-fixed-dim": "#81d8ad",
+                        "outline": "#767586",
+                        "inverse-on-surface": "#edf1f5",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-container": "#4648d4",
+                        "surface-tint": "#484bd6",
+                        "on-secondary-fixed": "#111c2d",
+                        "surface-container-highest": "#dfe3e7",
+                        "on-tertiary-fixed": "#002113",
+                        "surface-container-lowest": "#ffffff",
+                        "waypoint-active": "#6366f1",
+                        "secondary-fixed-dim": "#bcc7de",
+                        "on-secondary-fixed-variant": "#3c475a",
+                        "on-surface": "#171c1f",
+                        "on-primary-container": "#d1d1ff",
+                        "status-warning": "#f59e0b",
+                        "inverse-surface": "#2c3134",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-container": "#586377",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#464554",
+                        "primary": "#2c2abc",
+                        "on-primary-fixed-variant": "#2e2ebe",
+                        "surface-container-low": "#f0f4f8",
+                        "secondary-container": "#d5e0f8",
+                        "surface-variant": "#dfe3e7",
+                        "tertiary-container": "#006a48",
+                        "on-background": "#171c1f",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-container": "#eaeef2",
+                        "on-tertiary-container": "#90e7bb",
+                        "outline-variant": "#c6c5d7",
+                        "surface-dim": "#d8dadc",
+                        "secondary": "#545f73",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#9df4c8",
+                        "secondary-fixed": "#d8e3fb",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "primary-fixed": "#e1e0ff",
+                        "on-primary-fixed": "#06006c",
+                        "tertiary": "#004f35",
+                        "surface": "#f6fafe",
+                        "status-success": "#10b981",
+                        "inverse-primary": "#c0c1ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    spacing: {
+                        "metric-gap": "12px",
+                        "container-padding": "24px",
+                        "row-height-dense": "40px",
+                        "topbar-height": "56px",
+                        "sidebar-width": "260px",
+                        "gutter": "20px",
+                        "row-height-standard": "56px"
+                    },
+                    fontFamily: {
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "data-sm": ["JetBrains Mono"],
+                        "data-md": ["JetBrains Mono"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "data-lg": ["JetBrains Mono"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    fontSize: {
+                        "headline-lg-mobile": ["26px", { lineHeight: "32px", fontWeight: "700" }],
+                        "data-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "500" }],
+                        "data-md": ["14px", { lineHeight: "20px", fontWeight: "500" }],
+                        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+                        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "data-lg": ["18px", { lineHeight: "24px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-caps": ["11px", { lineHeight: "16px", letterSpacing: "0.08em", fontWeight: "700" }]
+                    },
+                    boxShadow: {
+                        'level-1': '2px 2px 6px rgba(163, 177, 198, 0.4), -2px -2px 6px rgba(255, 255, 255, 0.9)',
+                        'level-2': '6px 6px 12px rgba(163, 177, 198, 0.3), -6px -6px 12px rgba(255, 255, 255, 1)',
+                        'inset-valley': 'inset 2px 2px 5px rgba(163, 177, 198, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f6fafe;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface shadow-[2px_2px_6px_rgba(163,177,198,0.4)] fixed top-0 right-0 w-full md:w-[calc(100%-260px)] h-topbar-height flex items-center justify-between px-container-padding z-50">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-on-surface-variant hover:bg-surface-bright p-2 rounded-full transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<div class="font-headline-sm text-headline-sm font-body-sm text-body-sm hidden md:block">
+<div class="flex items-center gap-2 bg-surface-container-low rounded-full px-4 py-1.5 shadow-inset-valley border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-body-sm text-on-surface-variant outline-none" placeholder="Search..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<button aria-label="notifications" class="p-2 rounded-full hover:bg-surface-bright transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button aria-label="help" class="p-2 rounded-full hover:bg-surface-bright transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+</button>
+<button aria-label="account_circle" class="p-2 rounded-full hover:bg-surface-bright transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Hidden on Sub-pages like Detial view, but kept for context if needed, mostly suppressed based on rules, actually rule says 'suppress if task focused'. Since it's a detail page with a back button, we might suppress it or keep it as a master-detail. Let's suppress standard nav and use a back action, or keep nav and show detail in canvas. The rule says "Automatic Suppression: Any sub-page featuring a 'Close' or 'Back' action that implies a temporary departure from the main navigation flow." So we suppress the SideNavBar.) -->
+<!-- Main Content Canvas (No Nav Shell) -->
+<main class="pt-topbar-height p-container-padding max-w-7xl mx-auto mt-8">
+<!-- Header Actions -->
+<div class="mb-6 flex items-center justify-between">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-body-sm bg-surface-container-low px-4 py-2 rounded shadow-level-1 active:scale-95 duration-150">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Back to Companies
+            </button>
+<div class="flex gap-2">
+<button class="font-body-sm bg-primary text-on-primary px-4 py-2 rounded shadow-level-1 hover:bg-primary-fixed-variant transition-colors active:scale-95 duration-150">
+                    Edit Company
+                </button>
+</div>
+</div>
+<!-- Detail Header -->
+<div class="bg-surface rounded-xl shadow-level-1 p-8 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex items-center gap-6">
+<div class="w-20 h-20 bg-surface-container-low rounded-lg shadow-inset-valley flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">business</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">TechCorp Inc.</h1>
+<div class="flex items-center gap-4 font-body-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                            San Francisco
+                        </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">language</span>
+                            techcorp.com
+                        </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="px-3 py-1 rounded-full bg-status-success/10 border border-status-success/20 flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-status-success"></div>
+<span class="font-label-caps text-label-caps text-status-success">Active</span>
+</div>
+</div>
+</div>
+<!-- Hiring Overview Metrics (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-8">
+<!-- Metric 1 -->
+<div class="bg-surface rounded-xl shadow-level-1 p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-metric-gap">Total Jobs</h3>
+<div class="font-data-lg text-data-lg text-on-surface mb-2">24</div>
+<div class="w-full h-8 bg-surface-container-low shadow-inset-valley rounded relative mt-4">
+<!-- Sparkline fake -->
+<svg class="w-full h-full text-primary opacity-50" preserveaspectratio="none" viewbox="0 0 100 20">
+<path d="M0,15 L20,10 L40,12 L60,5 L80,8 L100,2" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface rounded-xl shadow-level-1 p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-metric-gap">Top Field</h3>
+<div class="font-data-lg text-data-lg text-on-surface mb-2">Engineering</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-status-success">trending_up</span>
+<span>12 active roles</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface rounded-xl shadow-level-1 p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-metric-gap">Primary Skill</h3>
+<div class="font-data-lg text-data-lg text-on-surface mb-2">React</div>
+<div class="mt-4 flex gap-2">
+<span class="bg-surface-container-high px-2 py-1 rounded font-data-sm text-data-sm text-on-surface-variant">TypeScript</span>
+<span class="bg-surface-container-high px-2 py-1 rounded font-data-sm text-data-sm text-on-surface-variant">Node.js</span>
+</div>
+</div>
+</div>
+<!-- Recent Openings Table Area -->
+<div class="bg-surface rounded-xl shadow-level-1 overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Openings</h2>
+<button class="text-primary font-body-sm hover:underline">View All Jobs</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface">
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant w-1/4">Job Title</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant w-1/5">Location</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant w-1/6">Salary</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant w-1/6">Posted Date</th>
+<th class="py-3 px-6 font-label-caps text-label-caps text-on-surface-variant w-1/6">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors relative group">
+<td class="py-row-height-standard px-6 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-medium">Senior React Developer</div>
+</td>
+<td class="py-row-height-standard px-6 text-on-surface-variant">San Francisco</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md">$140k - $180k</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md text-on-surface-variant">Oct 12, 2023</td>
+<td class="py-row-height-standard px-6">
+<span class="px-2 py-1 rounded bg-status-success/10 text-status-success font-label-caps text-[10px]">Open</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors relative group">
+<td class="py-row-height-standard px-6 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-medium">Backend Engineer (Node)</div>
+</td>
+<td class="py-row-height-standard px-6 text-on-surface-variant">Remote</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md">$130k - $160k</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md text-on-surface-variant">Oct 10, 2023</td>
+<td class="py-row-height-standard px-6">
+<span class="px-2 py-1 rounded bg-status-success/10 text-status-success font-label-caps text-[10px]">Open</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant hover:bg-surface-bright transition-colors relative group">
+<td class="py-row-height-standard px-6 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-medium">Product Designer</div>
+</td>
+<td class="py-row-height-standard px-6 text-on-surface-variant">New York</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md">$110k - $140k</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md text-on-surface-variant">Sep 28, 2023</td>
+<td class="py-row-height-standard px-6">
+<span class="px-2 py-1 rounded bg-status-warning/10 text-status-warning font-label-caps text-[10px]">Interviewing</span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors relative group">
+<td class="py-row-height-standard px-6 relative">
+<div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="font-medium">DevOps Specialist</div>
+</td>
+<td class="py-row-height-standard px-6 text-on-surface-variant">San Francisco</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md">$150k - $190k</td>
+<td class="py-row-height-standard px-6 font-data-md text-data-md text-on-surface-variant">Sep 15, 2023</td>
+<td class="py-row-height-standard px-6">
+<span class="px-2 py-1 rounded bg-surface-container-high text-on-surface-variant font-label-caps text-[10px]">Closed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

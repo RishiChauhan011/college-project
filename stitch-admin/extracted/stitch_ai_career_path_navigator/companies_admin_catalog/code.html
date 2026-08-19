@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Companies - Control Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&amp;family=JetBrains+Mono:wght@400..700&amp;family=Plus+Jakarta+Sans:wght@400..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e4e9ed",
+                    "on-secondary": "#ffffff",
+                    "background": "#f6fafe",
+                    "status-error": "#ef4444",
+                    "tertiary-fixed-dim": "#81d8ad",
+                    "outline": "#767586",
+                    "inverse-on-surface": "#edf1f5",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#4648d4",
+                    "surface-tint": "#484bd6",
+                    "on-secondary-fixed": "#111c2d",
+                    "surface-container-highest": "#dfe3e7",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "waypoint-active": "#6366f1",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "on-surface": "#171c1f",
+                    "on-primary-container": "#d1d1ff",
+                    "status-warning": "#f59e0b",
+                    "inverse-surface": "#2c3134",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-container": "#586377",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-surface-variant": "#464554",
+                    "primary": "#2c2abc",
+                    "on-primary-fixed-variant": "#2e2ebe",
+                    "surface-container-low": "#f0f4f8",
+                    "secondary-container": "#d5e0f8",
+                    "surface-variant": "#dfe3e7",
+                    "tertiary-container": "#006a48",
+                    "on-background": "#171c1f",
+                    "primary-fixed-dim": "#c0c1ff",
+                    "surface-container": "#eaeef2",
+                    "on-tertiary-container": "#90e7bb",
+                    "outline-variant": "#c6c5d7",
+                    "surface-dim": "#d8dadc",
+                    "secondary": "#545f73",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#9df4c8",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "primary-fixed": "#e1e0ff",
+                    "on-primary-fixed": "#06006c",
+                    "tertiary": "#004f35",
+                    "surface": "#f6fafe",
+                    "status-success": "#10b981",
+                    "inverse-primary": "#c0c1ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "metric-gap": "12px",
+                    "container-padding": "24px",
+                    "row-height-dense": "40px",
+                    "topbar-height": "56px",
+                    "sidebar-width": "260px",
+                    "gutter": "20px",
+                    "row-height-standard": "56px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "data-sm": ["JetBrains Mono"],
+                    "data-md": ["JetBrains Mono"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "data-lg": ["JetBrains Mono"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["26px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "data-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "data-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "data-lg": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+          font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Neumorphic Topographic Styles */
+        .neo-raised {
+            box-shadow: 2px 2px 6px rgba(163, 177, 198, 0.4), -2px -2px 6px rgba(255, 255, 255, 0.9);
+        }
+        .neo-inset {
+            box-shadow: inset 2px 2px 5px rgba(163, 177, 198, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+        }
+        .neo-raised-level-2 {
+            box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.3), -6px -6px 12px rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen selection:bg-primary/20 selection:text-primary">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low shadow-[2px_2px_6px_rgba(163,177,198,0.4)] flex flex-col py-6 px-4 gap-y-2 z-[60]">
+<!-- Header -->
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-10 h-10 rounded-lg bg-surface neo-raised flex items-center justify-center text-primary">
+<span class="material-symbols-outlined fill text-[24px]">dataset</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Control Center</h1>
+<p class="font-data-sm text-data-sm text-on-surface-variant opacity-70">Precision Admin v2.1</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex flex-col gap-1 flex-1 overflow-y-auto pr-2">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">group</span>
+                Users
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">work</span>
+                Jobs
+            </a>
+<!-- ACTIVE TAB -->
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-surface-container-highest shadow-inner text-primary transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px] fill">business</span>
+                Companies
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+                Skills
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+                AI Insights
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">history</span>
+                Activity
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer -->
+<div class="mt-auto pt-4 border-t border-outline-variant/30">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out font-label-caps text-label-caps" href="#">
+<span class="material-symbols-outlined text-[20px]">account_box</span>
+                Admin Profile
+            </a>
+</div>
+</nav>
+<!-- TopAppBar Component -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-topbar-height bg-surface shadow-sm flex items-center justify-between px-container-padding z-50">
+<!-- Search Bar (on_left) -->
+<div class="flex items-center flex-1 max-w-md">
+<div class="relative w-full h-8 flex items-center bg-surface neo-inset rounded px-3 border border-transparent focus-within:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px] mr-2">search</span>
+<input class="w-full bg-transparent outline-none font-data-sm text-data-sm text-on-surface placeholder:text-on-surface-variant/60" placeholder="Search Career Intelligence..." type="text"/>
+</div>
+</div>
+<!-- Brand / Empty Center Space -->
+<div class="flex-shrink-0 mx-4 hidden lg:block">
+<!-- Empty space to balance layout if needed, brand is in sidebar -->
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-bright hover:text-primary rounded cursor-pointer active:scale-95 duration-150 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-bright hover:text-primary rounded cursor-pointer active:scale-95 duration-150 transition-colors">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed cursor-pointer active:scale-95 duration-150 border border-outline-variant/20 ml-2">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] mt-[56px] min-h-[calc(100vh-56px)] p-container-padding flex flex-col gap-6">
+<!-- Page Header & Controls -->
+<section class="flex flex-col gap-4 sm:flex-row sm:items-end justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Companies</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Monitor and manage career-market organizational data.</p>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<!-- Filters -->
+<div class="flex items-center gap-2 bg-surface neo-raised rounded h-9 px-3 text-on-surface-variant hover:text-on-surface cursor-pointer border border-transparent hover:border-outline-variant/30 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span class="font-data-sm text-data-sm">Status: All</span>
+<span class="material-symbols-outlined text-[16px] ml-1">expand_more</span>
+</div>
+<div class="flex items-center gap-2 bg-surface neo-raised rounded h-9 px-3 text-on-surface-variant hover:text-on-surface cursor-pointer border border-transparent hover:border-outline-variant/30 transition-colors">
+<span class="material-symbols-outlined text-[18px]">domain</span>
+<span class="font-data-sm text-data-sm">Field: All</span>
+<span class="material-symbols-outlined text-[16px] ml-1">expand_more</span>
+</div>
+<div class="h-6 w-px bg-outline-variant/40 mx-1 hidden sm:block"></div>
+<!-- Action Button -->
+<button class="flex items-center gap-2 bg-primary text-on-primary h-9 px-4 rounded font-label-caps text-label-caps shadow-sm hover:bg-primary/90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add Company
+                </button>
+</div>
+</section>
+<!-- High-Density Data Table Container -->
+<section class="bg-surface neo-raised rounded-xl overflow-hidden flex-1 border border-outline-variant/20 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse whitespace-nowrap">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="font-label-caps text-label-caps text-on-surface-variant px-5 py-3 font-semibold sticky left-0 bg-surface-container-low z-10 w-[280px]">Company</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold text-right">Jobs</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold">Career Fields</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold">Main Location</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold min-w-[200px]">Requested Skills</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold text-center">Status</th>
+<th class="font-label-caps text-label-caps text-on-surface-variant px-4 py-3 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-data-md text-data-md text-on-surface bg-surface">
+<!-- Row 1 -->
+<tr class="h-row-height-standard border-b border-outline-variant/50 hover:bg-surface-bright transition-colors group relative">
+<!-- Hover Accent Line -->
+<td class="p-0 w-0 h-full absolute left-0"><div class="w-[2px] h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div></td>
+<td class="px-5 py-2 sticky left-0 group-hover:bg-surface-bright bg-surface transition-colors z-10">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded bg-surface-container-high object-cover border border-outline-variant/30 neo-inset" data-alt="A minimalist, abstract geometric corporate logo mark designed for a high-tech data dashboard. Crisp lines, subtle gradients, clean light background, professional color palette emphasizing precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkzQLQ0O5zvnP0tFiwePTWL58hNznPF_62GviXX2YHLmaUHZBpzTlPG-GTsdTP43q_A5TFNq_b1Ee3GYqURACee-7WQMIDG187YhSXGAzXqr8iBBhYNuUuM-OmoXhnJFv02evYdfNOXskK1XLCkTq46z-rsMtWCiNbQS10EyS6HTXTMcUD5bg6FICUxQ7XmA-0hJ1Bqd21mfdcJFtrrxeqB82a7XVho-WCDUYFzZR4CNNFqTTvfplqXg"/>
+<div>
+<div class="font-semibold text-on-surface">Nexus Technologies</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant opacity-80 mt-0.5">ID: CMP-8921</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2 text-right tabular-nums">1,245</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Software, Cloud AI</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">San Francisco, CA</td>
+<td class="px-4 py-2">
+<div class="flex gap-1.5 overflow-hidden max-w-[240px]">
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">React</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">Python</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">AWS</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded bg-status-success/10 text-status-success font-label-caps text-label-caps gap-1 border border-status-success/20">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Active
+                                </span>
+</td>
+<td class="px-4 py-2 text-right">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="h-row-height-standard border-b border-outline-variant/50 hover:bg-surface-bright transition-colors group relative">
+<td class="p-0 w-0 h-full absolute left-0"><div class="w-[2px] h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div></td>
+<td class="px-5 py-2 sticky left-0 group-hover:bg-surface-bright bg-surface transition-colors z-10">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded bg-surface-container-high object-cover border border-outline-variant/30 neo-inset" data-alt="A minimalist, abstract geometric corporate logo mark designed for a high-tech data dashboard. Crisp lines, subtle gradients, clean light background, professional color palette emphasizing precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYRswX2P-vxvqRo2KZVw4DRles5pfTGvm0I2h-mwfNVcIcUrESH218g2ajq9FQAZOFUKgfhQM5E2ACfuswDUr4u6UfJOSWhC7aPaJS2eqn5wQVnxH2bgDa6BlTM1GFZnpBNxYnCx1_CxICUgspchndAntXQzsymaD7PEKfGNnMXqO7GIzAEsrPXzm9uiH1KkZPBq6JXVxSoXRs00BkCYy12BBBE3FBnLKxcsxluiZbmJGW6ENIptFWUw"/>
+<div>
+<div class="font-semibold text-on-surface">Aether Logistics</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant opacity-80 mt-0.5">ID: CMP-4432</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2 text-right tabular-nums">842</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Supply Chain, Data</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Chicago, IL</td>
+<td class="px-4 py-2">
+<div class="flex gap-1.5 overflow-hidden max-w-[240px]">
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">SQL</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">Tableau</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded bg-status-success/10 text-status-success font-label-caps text-label-caps gap-1 border border-status-success/20">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Active
+                                </span>
+</td>
+<td class="px-4 py-2 text-right">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="h-row-height-standard border-b border-outline-variant/50 hover:bg-surface-bright transition-colors group relative">
+<td class="p-0 w-0 h-full absolute left-0"><div class="w-[2px] h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div></td>
+<td class="px-5 py-2 sticky left-0 group-hover:bg-surface-bright bg-surface transition-colors z-10">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded bg-surface-container-high object-cover border border-outline-variant/30 neo-inset opacity-60 grayscale" data-alt="A minimalist, abstract geometric corporate logo mark designed for a high-tech data dashboard. Crisp lines, subtle gradients, clean light background, professional color palette emphasizing precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANHoq8CIJBK5WVX1LW0_ZoKLXiii62IzUWgcInWDMlalg0kLRG8P9kZUA39tjTU3199DRJYRvEHQyERlLTanSvjtBuxT8HEgUBo1hrfQhzpkR-G9ChPe1ikgEwaFHNFbzW11_DsoBZ0iQBSC_fr9q0ii5PG4DlsZklsnE5yJFoovsQOSCeeM-M330xJ8Tr8RiNd3iV8njj80e6uMary6HnMhl0AWzagjxxfljfMF7Eepgbv-WDBKt5WQ"/>
+<div>
+<div class="font-semibold text-on-surface-variant">Vanguard Health</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant opacity-80 mt-0.5">ID: CMP-1109</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2 text-right tabular-nums text-on-surface-variant">12</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Healthcare IT</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Boston, MA</td>
+<td class="px-4 py-2">
+<div class="flex gap-1.5 overflow-hidden max-w-[240px] opacity-70">
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">HL7</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">Java</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded bg-on-surface-variant/10 text-on-surface-variant font-label-caps text-label-caps gap-1 border border-on-surface-variant/20">
+<span class="w-1.5 h-1.5 rounded-full bg-on-surface-variant/50"></span> Inactive
+                                </span>
+</td>
+<td class="px-4 py-2 text-right">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="h-row-height-standard border-b border-outline-variant/50 hover:bg-surface-bright transition-colors group relative">
+<td class="p-0 w-0 h-full absolute left-0"><div class="w-[2px] h-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div></td>
+<td class="px-5 py-2 sticky left-0 group-hover:bg-surface-bright bg-surface transition-colors z-10">
+<div class="flex items-center gap-3">
+<img class="w-8 h-8 rounded bg-surface-container-high object-cover border border-outline-variant/30 neo-inset" data-alt="A minimalist, abstract geometric corporate logo mark designed for a high-tech data dashboard. Crisp lines, subtle gradients, clean light background, professional color palette emphasizing precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD35w-3FlDPXNxuC7H7Xs05fZnY2lFBO5qDufRdsmWZheSkMxSp3kLDDJlgm35a6hkKNZHa-Gr96OvDogIZEOBdpr2XEAj1_UEClyM0az8QsDA3CPNlNVJDoMgAcE6QmGC8AiQFHDj90thiDTW3qmJPmRhxbzUJmFgQcygHl7c_K8BpYQp5vThnEYbsjqzfrp4Lr208VXIyBYSDn2UbEXrIJjju3k2hbWFTgb3pqmuBvLa0RpOkK6BL9w"/>
+<div>
+<div class="font-semibold text-on-surface">Synapse FinTech</div>
+<div class="font-data-sm text-data-sm text-on-surface-variant opacity-80 mt-0.5">ID: CMP-7740</div>
+</div>
+</div>
+</td>
+<td class="px-4 py-2 text-right tabular-nums">3,105</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">Finance, Security</td>
+<td class="px-4 py-2 font-body-sm text-body-sm text-on-surface-variant">New York, NY</td>
+<td class="px-4 py-2">
+<div class="flex gap-1.5 overflow-hidden max-w-[240px]">
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">Go</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">Rust</span>
+<span class="bg-surface neo-inset border border-outline-variant/20 rounded px-2 py-0.5 font-data-sm text-data-sm text-on-secondary-fixed-variant">C++</span>
+</div>
+</td>
+<td class="px-4 py-2 text-center">
+<span class="inline-flex items-center justify-center px-2 py-1 rounded bg-status-success/10 text-status-success font-label-caps text-label-caps gap-1 border border-status-success/20">
+<span class="w-1.5 h-1.5 rounded-full bg-status-success"></span> Active
+                                </span>
+</td>
+<td class="px-4 py-2 text-right">
+<button class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination Placeholder -->
+<div class="mt-auto px-5 py-3 border-t border-outline-variant/40 bg-surface-container-low flex items-center justify-between">
+<div class="font-data-sm text-data-sm text-on-surface-variant">Showing 1-4 of 1,284 records</div>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded neo-raised bg-surface flex items-center justify-center text-on-surface-variant hover:text-primary disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded neo-raised bg-surface flex items-center justify-center text-on-surface-variant hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

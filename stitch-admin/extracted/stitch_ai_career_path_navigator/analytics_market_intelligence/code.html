@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics - Control Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-high": "#e4e9ed",
+                            "on-secondary": "#ffffff",
+                            "background": "#f6fafe",
+                            "status-error": "#ef4444",
+                            "tertiary-fixed-dim": "#81d8ad",
+                            "outline": "#767586",
+                            "inverse-on-surface": "#edf1f5",
+                            "on-primary": "#ffffff",
+                            "on-error": "#ffffff",
+                            "primary-container": "#4648d4",
+                            "surface-tint": "#484bd6",
+                            "on-secondary-fixed": "#111c2d",
+                            "surface-container-highest": "#dfe3e7",
+                            "on-tertiary-fixed": "#002113",
+                            "surface-container-lowest": "#ffffff",
+                            "waypoint-active": "#6366f1",
+                            "secondary-fixed-dim": "#bcc7de",
+                            "on-secondary-fixed-variant": "#3c475a",
+                            "on-surface": "#171c1f",
+                            "on-primary-container": "#d1d1ff",
+                            "status-warning": "#f59e0b",
+                            "inverse-surface": "#2c3134",
+                            "surface-bright": "#f7f9fb",
+                            "on-secondary-container": "#586377",
+                            "error-container": "#ffdad6",
+                            "error": "#ba1a1a",
+                            "on-surface-variant": "#464554",
+                            "primary": "#2c2abc",
+                            "on-primary-fixed-variant": "#2e2ebe",
+                            "surface-container-low": "#f0f4f8",
+                            "secondary-container": "#d5e0f8",
+                            "surface-variant": "#dfe3e7",
+                            "tertiary-container": "#006a48",
+                            "on-background": "#171c1f",
+                            "primary-fixed-dim": "#c0c1ff",
+                            "surface-container": "#eaeef2",
+                            "on-tertiary-container": "#90e7bb",
+                            "outline-variant": "#c6c5d7",
+                            "surface-dim": "#d8dadc",
+                            "secondary": "#545f73",
+                            "on-error-container": "#93000a",
+                            "on-tertiary": "#ffffff",
+                            "tertiary-fixed": "#9df4c8",
+                            "secondary-fixed": "#d8e3fb",
+                            "on-tertiary-fixed-variant": "#005236",
+                            "primary-fixed": "#e1e0ff",
+                            "on-primary-fixed": "#06006c",
+                            "tertiary": "#004f35",
+                            "surface": "#f6fafe",
+                            "status-success": "#10b981",
+                            "inverse-primary": "#c0c1ff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "metric-gap": "12px",
+                            "container-padding": "24px",
+                            "row-height-dense": "40px",
+                            "topbar-height": "56px",
+                            "sidebar-width": "260px",
+                            "gutter": "20px",
+                            "row-height-standard": "56px"
+                    },
+                    "fontFamily": {
+                            "headline-lg-mobile": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "data-sm": [
+                                    "JetBrains Mono"
+                            ],
+                            "data-md": [
+                                    "JetBrains Mono"
+                            ],
+                            "headline-sm": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-sm": [
+                                    "Inter"
+                            ],
+                            "data-lg": [
+                                    "JetBrains Mono"
+                            ],
+                            "headline-md": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "headline-lg": [
+                                    "Plus Jakarta Sans"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "label-caps": [
+                                    "JetBrains Mono"
+                            ]
+                    },
+                    "fontSize": {
+                            "headline-lg-mobile": [
+                                    "26px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "data-sm": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.05em",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "data-md": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "500"
+                                    }
+                            ],
+                            "headline-sm": [
+                                    "20px",
+                                    {
+                                            "lineHeight": "28px",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "body-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "20px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "data-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "32px",
+                                            "letterSpacing": "-0.01em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "headline-lg": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "40px",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "24px",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "11px",
+                                    {
+                                            "lineHeight": "16px",
+                                            "letterSpacing": "0.08em",
+                                            "fontWeight": "700"
+                                    }
+                            ]
+                    }
+            },
+                },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f6fafe; /* Level 0 Base */
+            color: #171c1f;
+        }
+        
+        .level-1-raised {
+            box-shadow: 2px 2px 6px rgba(163, 177, 198, 0.4), -2px -2px 6px rgba(255, 255, 255, 0.9);
+        }
+
+        .level-2-focus {
+            box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.3), -6px -6px 12px rgba(255, 255, 255, 1);
+        }
+
+        .inset-valley {
+            box-shadow: inset 2px 2px 5px rgba(163, 177, 198, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.7);
+        }
+        
+        .chart-grid-line {
+            stroke: #c6c5d7;
+            stroke-width: 0.5px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface bg-background min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col py-6 px-4 gap-y-2 z-[60] bg-surface-container-low shadow-[2px_2px_6px_rgba(163,177,198,0.4)] fixed left-0 top-0 h-full w-sidebar-width font-label-caps text-label-caps font-body-sm text-body-sm">
+<div class="mb-8 px-2">
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">Control Center</h1>
+<p class="text-on-surface-variant font-data-sm text-data-sm mt-1">Precision Admin v2.1</p>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group</span>
+<span>Users</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">work</span>
+<span>Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">business</span>
+<span>Companies</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">psychology</span>
+<span>Skills</span>
+</a>
+<!-- Active -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-surface-container-highest shadow-inner text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span>Analytics</span>
+</a>
+<!-- Inactive -->
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">auto_awesome</span>
+<span>AI Insights</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+<span>Activity</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_box</span>
+<span>Admin Profile</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 md:ml-[260px] flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-container-padding z-50 bg-surface shadow-[2px_2px_6px_rgba(163,177,198,0.4)] fixed top-0 right-0 w-[calc(100%-260px)] h-topbar-height font-headline-sm text-headline-sm font-body-sm text-body-sm">
+<div class="flex items-center gap-4">
+<div class="relative text-on-surface-variant focus-within:text-primary">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="inset-valley bg-surface-bright border-none rounded-full py-1.5 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:outline-none w-64 transition-shadow" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant hover:bg-surface-bright rounded-full transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-bright rounded-full transition-colors cursor-pointer active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-bright rounded-full transition-colors cursor-pointer active:scale-95 duration-150 ml-2 border-l border-outline-variant pl-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 mt-[56px] p-container-padding">
+<!-- Page Header & Filters -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface m-0">Analytics</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Platform-wide career intelligence and market trends.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center inset-valley bg-surface-bright rounded-lg p-1">
+<button class="px-4 py-1.5 rounded text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">7D</button>
+<button class="px-4 py-1.5 rounded bg-primary text-on-primary font-label-caps text-label-caps shadow-sm">30D</button>
+<button class="px-4 py-1.5 rounded text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">90D</button>
+<button class="px-4 py-1.5 rounded text-on-surface-variant font-label-caps text-label-caps hover:bg-surface-container-high transition-colors">1Y</button>
+</div>
+<button class="level-1-raised bg-surface flex items-center gap-2 px-4 py-2 rounded-lg font-label-caps text-label-caps text-on-surface hover:bg-surface-bright transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0;">filter_list</span>
+                        Filters
+                    </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- KPI Readouts Row -->
+<div class="col-span-12 grid grid-cols-4 gap-gutter mb-2">
+<!-- Metric 1 -->
+<div class="level-1-raised bg-surface p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Active Job Postings</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-lg text-data-lg text-on-surface">14,285</span>
+<span class="font-data-sm text-data-sm text-status-success flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 12.4%</span>
+</div>
+<div class="mt-4 h-[24px] w-full inset-valley bg-surface-bright rounded overflow-hidden relative">
+<!-- Sparkline mock -->
+<svg class="absolute inset-0 w-full h-full preserve-aspect-ratio=" none""="" viewbox="0 0 100 24">
+<polyline fill="none" points="0,20 20,15 40,18 60,10 80,12 100,5" stroke="#2c2abc" stroke-width="1.5"></polyline>
+</svg>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="level-1-raised bg-surface p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Candidate Placements</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-lg text-data-lg text-on-surface">3,492</span>
+<span class="font-data-sm text-data-sm text-status-success flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 8.1%</span>
+</div>
+<div class="mt-4 h-[24px] w-full inset-valley bg-surface-bright rounded overflow-hidden relative">
+<svg class="absolute inset-0 w-full h-full preserve-aspect-ratio=" none""="" viewbox="0 0 100 24">
+<polyline fill="none" points="0,15 20,18 40,12 60,14 80,8 100,6" stroke="#2c2abc" stroke-width="1.5"></polyline>
+</svg>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="level-1-raised bg-surface p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Avg Time-to-Hire (Days)</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-lg text-data-lg text-on-surface">24.5</span>
+<span class="font-data-sm text-data-sm text-status-error flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 2.1%</span>
+</div>
+<div class="mt-4 h-[24px] w-full inset-valley bg-surface-bright rounded overflow-hidden relative">
+<svg class="absolute inset-0 w-full h-full preserve-aspect-ratio=" none""="" viewbox="0 0 100 24">
+<polyline fill="none" points="0,5 20,8 40,6 60,12 80,10 100,18" stroke="#ef4444" stroke-width="1.5"></polyline>
+</svg>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="level-1-raised bg-surface p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-2">Active Users</span>
+<div class="flex items-baseline gap-2">
+<span class="font-data-lg text-data-lg text-on-surface">89,104</span>
+<span class="font-data-sm text-data-sm text-status-success flex items-center"><span class="material-symbols-outlined text-[14px]">arrow_upward</span> 5.7%</span>
+</div>
+<div class="mt-4 h-[24px] w-full inset-valley bg-surface-bright rounded overflow-hidden relative">
+<svg class="absolute inset-0 w-full h-full preserve-aspect-ratio=" none""="" viewbox="0 0 100 24">
+<polyline fill="none" points="0,22 20,18 40,19 60,10 80,5 100,2" stroke="#2c2abc" stroke-width="1.5"></polyline>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
