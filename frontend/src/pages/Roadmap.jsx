@@ -39,7 +39,15 @@ const Roadmap = () => {
         return;
       }
 
+      if (!userSkills || userSkills.length === 0) {
+        setError('No skills found in your profile. Please upload a resume or complete your profile to generate a roadmap.');
+        setRoadmap(null);
+        setIsLoading(false);
+        return;
+      }
+
       if (!targetDomain) {
+        setError('No career domain specified. Please select a preferred field in your profile.');
         setRoadmap(null);
         setIsLoading(false);
         return;
@@ -102,8 +110,22 @@ const Roadmap = () => {
         </div>
 
         {error && (
-          <div className="bg-error-container text-on-error-container p-4 rounded-lg mb-8">
-            {error}
+          <div className="bg-error-container text-on-error-container p-6 rounded-2xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border border-error/20 elevation-1">
+            <div className="flex items-center gap-3">
+              <span className="material-symbols-outlined text-3xl text-error">warning</span>
+              <div>
+                <h3 className="font-headline-sm text-headline-sm font-bold">Domain Unrecognized</h3>
+                <p className="font-body-md text-body-md mt-1">
+                  We couldn't generate a roadmap for this domain. Please check your profile's preferred field.
+                </p>
+              </div>
+            </div>
+            <Link
+              to="/profile/edit"
+              className="bg-error text-on-error px-5 py-2.5 rounded-lg font-data-sm text-data-sm hover:brightness-110 transition-all flex items-center gap-2 shrink-0"
+            >
+              <span className="material-symbols-outlined text-[18px]">edit</span> Edit Profile Domain
+            </Link>
           </div>
         )}
 
@@ -181,12 +203,40 @@ const Roadmap = () => {
           
           {roadmap && roadmap.roadmap_narrative && (
              <div className="mt-8 p-6 bg-surface-bright rounded-xl elevation-2 border-l-4 border-primary">
-               <h3 className="font-headline-md text-headline-md mb-2 flex items-center gap-2">
+               <h3 className="font-headline-md text-headline-md mb-4 flex items-center gap-2 text-on-surface">
                  <span className="material-symbols-outlined text-primary">psychology</span> AI Strategy Narrative
                </h3>
-               <p className="font-body-md text-body-md text-on-surface-variant whitespace-pre-wrap">
-                 {roadmap.roadmap_narrative}
-               </p>
+               {(() => {
+                 const text = roadmap.roadmap_narrative;
+                 const paragraphs = text.split(/\n\s*\n/).filter((p) => p.trim());
+                 return (
+                   <div className="space-y-4">
+                     {paragraphs.map((para, pIdx) => {
+                       const parts = para.split(/(\*\*.*?\*\*|<b>.*?<\/b>)/g);
+                       return (
+                         <p key={pIdx} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                           {parts.map((part, partIdx) => {
+                             if (part.startsWith('**') && part.endsWith('**')) {
+                               return (
+                                 <strong key={partIdx} className="font-bold text-on-surface">
+                                   {part.slice(2, -2)}
+                                 </strong>
+                               );
+                             } else if (part.startsWith('<b>') && part.endsWith('</b>')) {
+                               return (
+                                 <strong key={partIdx} className="font-bold text-on-surface">
+                                   {part.slice(3, -4)}
+                                 </strong>
+                               );
+                             }
+                             return part;
+                           })}
+                         </p>
+                       );
+                     })}
+                   </div>
+                 );
+               })()}
              </div>
           )}
         </div>

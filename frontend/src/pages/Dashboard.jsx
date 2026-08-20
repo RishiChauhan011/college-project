@@ -30,12 +30,19 @@ const Dashboard = () => {
         setAnalyticsSummary(summary);
         setAvailableDomains(summary.available_domains || []);
         
-        // Prioritize user's preferred field
-        const userPreferredDomain = user?.profile?.preferred_field;
-        if (userPreferredDomain) {
-          setDomain(userPreferredDomain);
-        } else if (!domain && summary.available_domains?.length > 0) {
-          setDomain(summary.available_domains[0]);
+        // Set initial domain only if domain is not already set to a valid option
+        const validDomains = summary.available_domains || [];
+        const currentDomainValid = domain && validDomains.some(d => d.toLowerCase() === domain.trim().toLowerCase());
+
+        if (!currentDomainValid) {
+          const userPreferredDomain = user?.profile?.preferred_field;
+          const isUserDomainValid = userPreferredDomain && validDomains.some(d => d.toLowerCase() === userPreferredDomain.trim().toLowerCase());
+
+          if (isUserDomainValid) {
+            setDomain(userPreferredDomain);
+          } else if (validDomains.length > 0) {
+            setDomain(validDomains[0]);
+          }
         }
       } catch (error) {
         console.error("Failed to load analytics summary:", error);
@@ -202,7 +209,7 @@ const Dashboard = () => {
               <span className="text-headline-lg font-headline-lg text-on-surface font-data-lg">
                 {loadingStats ? '...' : (
                   domainAnalytics?.salary_statistics?.average_salary_max 
-                  ? `$${Math.round(domainAnalytics.salary_statistics.average_salary_max / 1000)}k` 
+                  ? `₹${Math.round(domainAnalytics.salary_statistics.average_salary_max / 1000)}k` 
                   : 'N/A'
                 )}
               </span>
@@ -354,7 +361,9 @@ const Dashboard = () => {
                           <div className="text-secondary text-data-sm font-data-sm">{job.location} • {job.company}</div>
                         </td>
                         <td className="py-3 font-data-lg text-on-surface-variant">
-                          ${Math.round(job.salary_min / 1000)}k - ${Math.round(job.salary_max / 1000)}k
+                          {job.salary_min && job.salary_max
+                            ? `₹${Math.round(job.salary_min / 1000)}k - ₹${Math.round(job.salary_max / 1000)}k`
+                            : 'Not Disclosed'}
                         </td>
                         <td className="py-3 text-right">
                           <button className="text-primary hover:bg-primary-fixed p-2 rounded-full transition-colors inline-flex" onClick={() => navigate('/dashboard')}><span className="material-symbols-outlined text-[20px]">bookmark_add</span></button>

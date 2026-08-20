@@ -153,14 +153,16 @@ const Profile = () => {
                     <h3 className="font-label-caps text-label-caps text-on-surface-variant mb-4">Profile Source</h3>
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-container-low shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)]">
-                        <span className="material-symbols-outlined text-primary">description</span>
+                        <span className="material-symbols-outlined text-primary">
+                          {profile.profile.source === 'resume' ? 'description' : 'edit_note'}
+                        </span>
                       </div>
                       <div>
-                        <div className="font-data-md text-data-md text-on-surface capitalize">
-                          {profile.profile.source}
+                        <div className="font-data-md text-data-md text-on-surface">
+                          {profile.profile.source === 'resume' ? 'Resume Upload' : 'Manual Entry'}
                         </div>
                         <div className="font-body-sm text-body-sm text-on-surface-variant text-xs">
-                          Parsed & stored
+                          {profile.profile.source === 'resume' ? 'Parsed & stored from document' : 'Self-reported profile'}
                         </div>
                       </div>
                     </div>
@@ -220,10 +222,12 @@ const Profile = () => {
                     Experience &amp; Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {experience && (
+                    {experience !== '' && experience !== null && experience !== undefined && (
                       <div className="space-y-1">
                         <span className="font-label-caps text-label-caps text-on-surface-variant">Total Experience</span>
-                        <div className="font-body-md text-body-md text-on-surface font-medium">{experience} Years</div>
+                        <div className="font-body-md text-body-md text-on-surface font-medium">
+                          {experience} {Number(experience) === 1 ? 'Year' : 'Years'}
+                        </div>
                       </div>
                     )}
                     {education && (

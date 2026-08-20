@@ -25,20 +25,40 @@ const SkillDetail = () => {
       setError(null);
       try {
         let selectedDomain = domain;
-        if (!selectedDomain) {
-          const summary = await fetchApi("/analytics");
-          selectedDomain = summary?.available_domains?.[0] || "";
+        const summary = await fetchApi("/analytics").catch(() => null);
+        const validList = summary?.available_domains || [];
+
+        if (selectedDomain && validList.length > 0) {
+          const isValid = validList.some((d) => d.toLowerCase() === selectedDomain.trim().toLowerCase());
+          if (!isValid) {
+            selectedDomain = validList[0];
+          }
+        } else if (!selectedDomain && validList.length > 0) {
+          selectedDomain = validList[0];
         }
-        setCurrentDomain(selectedDomain);
+
+        setCurrentDomain(selectedDomain || "");
+
         if (selectedDomain) {
-          const data = await fetchApi(`/analytics/domain/${encodeURIComponent(selectedDomain)}`);
-          setDomainData(data);
+          try {
+            const data = await fetchApi(`/analytics/domain/${encodeURIComponent(selectedDomain)}`);
+            setDomainData(data);
+          } catch (domainErr) {
+            // Try default fallback domain if initial domain request fails
+            if (validList[0] && validList[0] !== selectedDomain) {
+              const fallbackData = await fetchApi(`/analytics/domain/${encodeURIComponent(validList[0])}`);
+              setCurrentDomain(validList[0]);
+              setDomainData(fallbackData);
+            } else {
+              throw domainErr;
+            }
+          }
         } else {
           setDomainData(null);
         }
       } catch (err) {
         console.error("Failed to load skill data", err);
-        setError("Failed to load market data.");
+        setError("We couldn't load market data for this domain. Please check your profile's preferred field.");
       } finally {
         setLoading(false);
       }
@@ -84,16 +104,30 @@ const SkillDetail = () => {
             onClick={() => navigate("/dashboard")}
           >
             <span className="material-symbols-outlined text-sm">arrow_back</span>
-            <span className="text-data-sm font-data-sm font-bold">Back to Analysis</span>
+            <span className="text-data-sm font-data-sm font-bold">Back to Dashboard</span>
           </div>
-          <div className="bg-surface-bright rounded-xl p-12 text-center shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-            <span className="material-symbols-outlined text-6xl text-outline mb-4 block">search_off</span>
-            <h2 className="text-headline-md font-headline-md text-on-surface mb-2">
+          <div className="bg-surface-bright rounded-2xl p-12 text-center shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] border border-outline-variant/30 flex flex-col items-center gap-4">
+            <span className="material-symbols-outlined text-6xl text-error">error</span>
+            <h2 className="text-headline-md font-headline-md text-on-surface max-w-lg">
               {error || "Select a skill to view its market insight"}
             </h2>
-            <p className="text-body-md text-on-surface-variant">
-              Navigate from the Dashboard or select a skill below.
+            <p className="text-body-md text-on-surface-variant max-w-md">
+              Navigate from the Dashboard or choose a valid career domain in your profile.
             </p>
+            <div className="flex gap-4 mt-2">
+              <button
+                onClick={() => navigate("/profile/edit")}
+                className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-data-sm text-data-sm hover:bg-surface-tint transition-all flex items-center gap-2"
+              >
+                <span className="material-symbols-outlined text-[18px]">edit</span> Edit Profile Domain
+              </button>
+              <button
+                onClick={() => navigate("/dashboard")}
+                className="bg-surface text-on-surface px-6 py-2.5 rounded-lg font-data-sm text-data-sm border border-outline-variant hover:bg-surface-container-low transition-all"
+              >
+                Back to Dashboard
+              </button>
+            </div>
           </div>
         </main>
       </div>

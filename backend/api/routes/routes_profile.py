@@ -116,9 +116,33 @@ async def upload_resume(file: UploadFile = File(...), current_user: User = Depen
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid PDF file content")
     elif ext == "docx" and mime_type not in [
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "application/zip"
+        "application/zip",
+        "application/x-zip-compressed",
+        "application/octet-stream"
     ]:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid DOCX file content")
         
     result = parse_resume(file_bytes, ext)
+
+    # Persist extracted skills to DB if parsing was successful and user is authenticated
+    if result.get("readable") and isinstance(current_user, User) and hasattr(current_user, "id"):
+        db = next(get_db())
+        try:
+            profile = db.query(UserProfile).filter(UserProfile.user_id == current_user.id).first()
+            if profile is None:
+                profile = UserProfile(user_id=current_user.id, source="resume")
+                db.add(profile)
+            else:
+                profile.source = "resume"
+
+            if result.get("skills"):
+                profile.skills = result["skills"]
+
+            db.commit()
+            db.refresh(profile)
+        except Exception as err:
+            logger.error(f"Failed to auto-persist resume skills to user profile: {err}")
+        finally:
+            db.close()
+
     return result

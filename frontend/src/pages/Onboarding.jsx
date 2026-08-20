@@ -5,15 +5,13 @@ import { useAuth } from '../context/AuthContext';
 import { useDomain } from '../context/DomainContext';
 import { isProfileComplete } from '../utils/profile';
 
-const FIELD_OPTIONS = [
-  'Artificial Intelligence / MLOps',
-  'Data Science',
-  'Data Engineering',
-  'Software Engineering',
-  'Cloud Architecture',
-  'Cybersecurity',
-  'Product Management',
-  'Business Intelligence',
+const DEFAULT_DOMAINS = [
+  'AI & Data Science',
+  'Software Development',
+  'Business Analytics',
+  'Graphic Design',
+  'Digital Marketing',
+  'Education',
 ];
 
 const Onboarding = () => {
@@ -25,7 +23,19 @@ const Onboarding = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [domainOptions, setDomainOptions] = useState(DEFAULT_DOMAINS);
   const fileInputRef = useRef(null);
+
+  // Load live domains on mount
+  useEffect(() => {
+    fetchApi('/domains')
+      .then((domains) => {
+        if (Array.isArray(domains) && domains.length > 0) {
+          setDomainOptions(domains);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Review form state for Option A (Resume extraction review)
   const [reviewForm, setReviewForm] = useState({
@@ -410,7 +420,7 @@ const Onboarding = () => {
                     }
                   >
                     <option value="">Select your target domain...</option>
-                    {FIELD_OPTIONS.map((f) => (
+                    {domainOptions.map((f) => (
                       <option key={f} value={f}>
                         {f}
                       </option>

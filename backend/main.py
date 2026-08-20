@@ -15,8 +15,11 @@ logger = logging.getLogger("main")
 async def lifespan(app: FastAPI):
     """Modern lifespan event handler that loads and caches data on startup."""
     from utils.data_loader import preload_data
+    from db.init_db import init_db
     logger.info("Initializing application startup sequence...")
     try:
+        init_db()
+        logger.info("Database tables initialized successfully.")
         preload_data()
         logger.info("Startup sequence complete. Cache preloaded successfully.")
     except Exception as e:

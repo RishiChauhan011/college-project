@@ -6,15 +6,13 @@ import { fetchApi } from '../api/apiClient';
 import SideNavBar from '../components/SideNavBar';
 
 
-const FIELD_OPTIONS = [
-  'Artificial Intelligence / MLOps',
-  'Data Science',
-  'Data Engineering',
-  'Software Engineering',
-  'Cloud Architecture',
-  'Cybersecurity',
-  'Product Management',
-  'Business Intelligence',
+const DEFAULT_DOMAINS = [
+  'AI & Data Science',
+  'Software Development',
+  'Business Analytics',
+  'Graphic Design',
+  'Digital Marketing',
+  'Education',
 ];
 
 const EditProfile = () => {
@@ -36,17 +34,26 @@ const EditProfile = () => {
     skills: [],
   });
   const [originalForm, setOriginalForm] = useState(null);
+  const [domainOptions, setDomainOptions] = useState(DEFAULT_DOMAINS);
   const [newSkill, setNewSkill] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [dirty, setDirty] = useState(false);
 
-  // Load real profile data on mount
+  // Load real profile data and live domains on mount
   useEffect(() => {
     const load = async () => {
       try {
-        const data = await fetchApi('/profile');
+        const [data, domains] = await Promise.all([
+          fetchApi('/profile'),
+          fetchApi('/domains').catch(() => DEFAULT_DOMAINS),
+        ]);
+
+        if (Array.isArray(domains) && domains.length > 0) {
+          setDomainOptions(domains);
+        }
+
         const initial = {
           name: data?.name || '',
           education: data?.profile?.education || '',
@@ -376,7 +383,7 @@ const EditProfile = () => {
                         className="bg-surface text-on-surface font-body-sm shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),-2px_-2px_5px_rgba(255,255,255,0.7)] border-none focus:ring-1 focus:ring-primary outline-none rounded-lg px-4 py-3 pr-10 w-full appearance-none"
                       >
                         <option value="">Select a field…</option>
-                        {FIELD_OPTIONS.map((f) => (
+                        {domainOptions.map((f) => (
                           <option key={f} value={f}>{f}</option>
                         ))}
                       </select>

@@ -348,22 +348,23 @@ def predict_role_cached(skills_list, model, feature_columns):
     startup (see utils/data_loader.py) and passed in here on every
     request, avoiding repeated disk I/O that predict_role() would cause
     if called directly per-request."""
-    skill_index = {name: i for i, name in enumerate(feature_columns)}
+    skill_index = {name.strip().lower(): i for i, name in enumerate(feature_columns)}
 
     vector = np.zeros(len(feature_columns), dtype=int)
     for skill in skills_list:
-        if skill in skill_index:
-            vector[skill_index[skill]] = 1
+        clean_skill = str(skill).strip().lower()
+        if clean_skill in skill_index:
+            vector[skill_index[clean_skill]] = 1
 
-    prediction = model.predict([vector])[0]
+    raw_prediction = str(model.predict([vector])[0])
     probabilities = model.predict_proba([vector])[0]
-    classes = model.classes_
+    classes = [str(cls) for cls in model.classes_]
 
     prob_by_class = {cls: round(float(prob), 3) for cls, prob in zip(classes, probabilities)}
 
     return {
-        "predicted_role": prediction,
-        "confidence": prob_by_class[prediction],
+        "predicted_role": raw_prediction,
+        "confidence": prob_by_class[raw_prediction],
         "all_probabilities": prob_by_class,
     }
 

@@ -18,6 +18,7 @@ def get_role_fit(skills: list[str]) -> dict:
         raise HTTPException(status_code=422, detail="Skills list cannot be empty.")
 
     try:
+        from ml.role_classifier import predict_role_cached
         model, feature_columns = get_role_classifier()
         result = predict_role_cached(skills, model, feature_columns)
 
