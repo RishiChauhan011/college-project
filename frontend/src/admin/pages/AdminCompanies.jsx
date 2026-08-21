@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AdminLayout from '../AdminLayout';
 import { fetchApi } from '../../api/apiClient';
@@ -6,34 +6,73 @@ import { fetchApi } from '../../api/apiClient';
 const AdminCompanies = () => {
   const navigate = useNavigate();
   const [companies, setCompanies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [topCompanies, setTopCompanies] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
+  const observer = useRef();
+  const lastCompanyElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        loadCompanies(false);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
+
+  // Load analytics once for top companies
   useEffect(() => {
-    const loadCompanies = async () => {
-      setLoading(true);
+    const loadAnalytics = async () => {
       try {
-        const [compList, analytics] = await Promise.all([
-          fetchApi('/companies'),
-          fetchApi('/analytics')
-        ]);
-        setCompanies(compList || []);
+        const analytics = await fetchApi('/analytics');
         if (analytics?.top_companies) {
           setTopCompanies(analytics.top_companies);
         }
       } catch (err) {
-        console.error('Failed to load companies:', err);
-      } finally {
-        setLoading(false);
+        console.error('Failed to load analytics for companies:', err);
       }
     };
-    loadCompanies();
+    loadAnalytics();
   }, []);
 
-  const filteredCompanies = companies.filter((c) =>
-    c.toLowerCase().includes(search.toLowerCase())
-  );
+  const loadCompanies = async (reset = false) => {
+    setLoading(true);
+    try {
+      const currentOffset = reset ? 0 : companies.length;
+      const queryParams = new URLSearchParams();
+      if (search) queryParams.append('search', search);
+      queryParams.append('limit', '50');
+      queryParams.append('offset', currentOffset.toString());
+
+      const data = await fetchApi(`/admin/companies?${queryParams.toString()}`);
+      
+      if (reset) {
+        setCompanies(data?.items || []);
+      } else {
+        setCompanies(prev => {
+          const existing = new Set(prev);
+          const newItems = (data?.items || []).filter(c => !existing.has(c));
+          return [...prev, ...newItems];
+        });
+      }
+      setHasMore(data?.has_more || false);
+    } catch (err) {
+      console.error('Failed to load companies:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loadCompanies(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [search]);
+
 
   return (
     <AdminLayout searchTerm={search} setSearchTerm={setSearch} searchPlaceholder="Search companies catalog...">
@@ -97,18 +136,15 @@ const AdminCompanies = () => {
 
       {/* Companies Catalog Grid */}
       <div className="bg-surface-container-lowest rounded-xl p-6 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
-        {loading ? (
-          <div className="py-12 text-center text-secondary">
-            <span className="material-symbols-outlined animate-spin align-middle mr-2">progress_activity</span>
-            Loading companies catalog...
-          </div>
-        ) : filteredCompanies.length > 0 ? (
+        {companies.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredCompanies.slice(0, 60).map((company, idx) => {
+            {companies.map((company, idx) => {
               const initial = company.charAt(0).toUpperCase();
+              const isLastItem = idx === companies.length - 1;
               return (
                 <div
                   key={idx}
+                  ref={isLastItem ? lastCompanyElementRef : null}
                   onClick={() => navigate(`/admin/companies/${encodeURIComponent(company)}`)}
                   className="p-4 bg-surface rounded-xl border border-outline-variant/30 hover:border-primary/50 cursor-pointer transition-all hover:bg-surface-bright flex items-center justify-between group shadow-[inset_2px_2px_5px_rgba(163,177,198,0.2)]"
                 >
@@ -131,8 +167,17 @@ const AdminCompanies = () => {
             })}
           </div>
         ) : (
+          !loading && (
           <div className="py-8 text-center text-secondary">
             No companies matching the search criteria.
+          </div>
+          )
+        )}
+        
+        {loading && (
+          <div className="py-12 text-center text-secondary w-full">
+            <span className="material-symbols-outlined animate-spin align-middle mr-2">progress_activity</span>
+            Loading companies catalog...
           </div>
         )}
       </div>

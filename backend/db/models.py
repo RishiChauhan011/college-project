@@ -55,3 +55,15 @@ class Admin(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     admin_id = Column(String, unique=True, index=True, nullable=False)
     pin_hash = Column(String, nullable=False)
+    role = Column(String, nullable=True, default="System Operator")
+    last_login = Column(DateTime, nullable=True)
+
+class AuditLog(Base):
+    __tablename__ = "audit_logs"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    actor = Column(String, nullable=False)
+    action = Column(String, nullable=False)
+    entity = Column(String, nullable=True)
+    description = Column(String, nullable=True)

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../AdminLayout';
 import { fetchApi } from '../../api/apiClient';
 
@@ -47,12 +47,6 @@ const AdminUsers = () => {
           <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">Users Management</h2>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">Total operational awareness of registered personnel ({total} registered).</p>
         </div>
-        <Link
-          to="/signup"
-          className="bg-primary text-white font-data-md text-data-md px-4 py-2 rounded-lg flex items-center hover:bg-surface-tint transition-colors shadow-[2px_2px_6px_rgba(163,177,198,0.4)]"
-        >
-          <span className="material-symbols-outlined mr-2 text-sm">person_add</span> Register New User
-        </Link>
       </div>
 
       {/* Table Controls */}

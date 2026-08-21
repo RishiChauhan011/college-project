@@ -28,13 +28,8 @@ import AdminJobs from './admin/pages/AdminJobs';
 import AdminJobDetail from './admin/pages/AdminJobDetail';
 import AdminCompanies from './admin/pages/AdminCompanies';
 import AdminCompanyDetail from './admin/pages/AdminCompanyDetail';
-import AdminSkills from './admin/pages/AdminSkills';
-import AdminSkillDetail from './admin/pages/AdminSkillDetail';
-import AdminAnalytics from './admin/pages/AdminAnalytics';
-import AdminAiInsights from './admin/pages/AdminAiInsights';
-import AdminActivity from './admin/pages/AdminActivity';
-import AdminSettings from './admin/pages/AdminSettings';
 import AdminProfile from './admin/pages/AdminProfile';
+import AdminEditProfile from './admin/pages/AdminEditProfile';
 
 function App() {
   return (
@@ -146,39 +141,14 @@ function App() {
                 <AdminCompanyDetail />
               </AdminProtectedRoute>
             } />
-            <Route path="/admin/skills" element={
-              <AdminProtectedRoute>
-                <AdminSkills />
-              </AdminProtectedRoute>
-            } />
-            <Route path="/admin/skills/:id" element={
-              <AdminProtectedRoute>
-                <AdminSkillDetail />
-              </AdminProtectedRoute>
-            } />
-            <Route path="/admin/analytics" element={
-              <AdminProtectedRoute>
-                <AdminAnalytics />
-              </AdminProtectedRoute>
-            } />
-            <Route path="/admin/ai-insights" element={
-              <AdminProtectedRoute>
-                <AdminAiInsights />
-              </AdminProtectedRoute>
-            } />
-            <Route path="/admin/activity" element={
-              <AdminProtectedRoute>
-                <AdminActivity />
-              </AdminProtectedRoute>
-            } />
-            <Route path="/admin/settings" element={
-              <AdminProtectedRoute>
-                <AdminSettings />
-              </AdminProtectedRoute>
-            } />
             <Route path="/admin/profile" element={
               <AdminProtectedRoute>
                 <AdminProfile />
+              </AdminProtectedRoute>
+            } />
+            <Route path="/admin/profile/edit" element={
+              <AdminProtectedRoute>
+                <AdminEditProfile />
               </AdminProtectedRoute>
             } />
           </Routes>

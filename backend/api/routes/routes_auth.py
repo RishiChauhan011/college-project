@@ -12,6 +12,7 @@ from dotenv import load_dotenv
 
 from db.database import get_db
 from db.models import User, Admin
+from services.audit_service import log_audit
 
 load_dotenv()
 
@@ -95,6 +96,9 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         admin.email = admin.admin_id
         admin.name = "Admin"
         admin.profile = None
+        # Add the new properties so they serialize in the frontend
+        admin.role = admin.role or "System Operator"
+        # DO NOT mutate last_login to a string, let FastAPI serialize it or handle it in the route
         return admin
     else:
         user = db.query(User).filter(User.email == token_data.email).first()
@@ -140,11 +144,17 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 def admin_login(login_data: AdminLogin, db: Session = Depends(get_db)):
     admin = db.query(Admin).filter(Admin.admin_id == login_data.admin_id).first()
     if not admin or not verify_password(login_data.pin, admin.pin_hash):
+        log_audit(db, actor=login_data.admin_id, action="FAILED_LOGIN", description="Failed admin login attempt (invalid credentials)")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect Admin ID or PIN",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    log_audit(db, actor=login_data.admin_id, action="LOGIN", description="Admin logged in successfully")
+    
+    admin.last_login = datetime.now(timezone.utc)
+    db.commit()
+    
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": admin.admin_id, "role": "admin"}, expires_delta=access_token_expires

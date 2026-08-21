@@ -1,5 +1,5 @@
 from db.database import Base, engine, SessionLocal
-from db.models import User, UserProfile, Job, SkillScore, Admin
+from db.models import User, UserProfile, Job, SkillScore, Admin, AuditLog
 import bcrypt
 
 def init_db():
@@ -11,7 +11,7 @@ def init_db():
         if not db.query(Admin).first():
             salt = bcrypt.gensalt()
             hashed_pin = bcrypt.hashpw("1234".encode('utf-8'), salt).decode('utf-8')
-            default_admin = Admin(admin_id="admin", pin_hash=hashed_pin)
+            default_admin = Admin(admin_id="admin", pin_hash=hashed_pin, role="System Operator")
             db.add(default_admin)
             db.commit()
             print("Default admin created (admin / 1234)")

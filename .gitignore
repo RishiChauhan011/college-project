@@ -56,4 +56,4 @@ pnpm-debug.log*
 # Frontend cache
 .cache/
 # Local development database
-backend/career_dashboard.db
+*.db

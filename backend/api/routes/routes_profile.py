@@ -37,7 +37,9 @@ def get_profile(current_user = Depends(get_current_user)):
         "name": getattr(current_user, "name", "Admin"),
         "email": current_user.email,
         "role": "admin" if getattr(current_user, "name", "") == "Admin" else "user",
-        "profile": profile_data if profile_data else None
+        "profile": profile_data if profile_data else None,
+        "admin_role": getattr(current_user, "role", None),
+        "last_login": getattr(current_user, "last_login", None)
     }
 
 
@@ -48,6 +50,7 @@ def update_profile(
     db: Session = Depends(get_db)
 ):
     """Update the authenticated user's name and/or profile fields."""
+    
     # Only regular users can update via this endpoint
     if not hasattr(current_user, "password_hash"):
         raise HTTPException(

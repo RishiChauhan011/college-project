@@ -12,10 +12,6 @@ const AdminSidebar = () => {
     { label: 'Users', path: '/admin/users', icon: 'group' },
     { label: 'Jobs', path: '/admin/jobs', icon: 'work' },
     { label: 'Companies', path: '/admin/companies', icon: 'business' },
-    { label: 'Skills', path: '/admin/skills', icon: 'psychology' },
-    { label: 'Analytics', path: '/admin/analytics', icon: 'analytics' },
-    { label: 'AI Insights', path: '/admin/ai-insights', icon: 'auto_awesome' },
-    { label: 'Activity', path: '/admin/activity', icon: 'history' },
   ];
 
   const isItemActive = (item) => {
@@ -64,19 +60,8 @@ const AdminSidebar = () => {
         })}
       </div>
 
-      {/* Settings & Logout */}
+      {/* Logout */}
       <div className="px-4 mt-auto pt-4 border-t border-outline-variant/30 space-y-1">
-        <Link
-          to="/admin/settings"
-          className={`flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-150 ${
-            currentPath.startsWith('/admin/settings')
-              ? 'shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] text-primary font-bold bg-surface-container'
-              : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-bright'
-          }`}
-        >
-          <span className="material-symbols-outlined text-[20px]">settings</span>
-          <span className="font-body-md text-body-sm font-medium">Settings</span>
-        </Link>
         <button
           onClick={logout}
           className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-error hover:bg-error-container/20 transition-colors text-body-sm"

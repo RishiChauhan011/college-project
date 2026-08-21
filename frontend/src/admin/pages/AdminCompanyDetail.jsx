@@ -58,8 +58,8 @@ const AdminCompanyDetail = () => {
               </div>
             </div>
           </div>
-          <div className="px-3 py-1 rounded-full bg-status-success/10 border border-status-success/30 flex items-center gap-1.5 font-data-sm text-xs font-bold text-status-success">
-            <span className="w-2 h-2 rounded-full bg-status-success"></span> Verified Organization
+          <div className="px-3 py-1 rounded-full bg-success/10 border border-success/30 flex items-center gap-1.5 font-data-sm text-xs font-bold text-success">
+            <span className="w-2 h-2 rounded-full bg-success"></span> Verified Organization
           </div>
         </div>
 
@@ -113,7 +113,10 @@ const AdminCompanyDetail = () => {
                   jobs.map((job, idx) => (
                     <tr
                       key={idx}
-                      onClick={() => navigate(`/admin/jobs/${idx}`)}
+                      onClick={() => {
+                        const jobId = encodeURIComponent(`${job.title}::${job.company}::${job.city || ''}`);
+                        navigate(`/admin/jobs/${jobId}`, { state: { job } });
+                      }}
                       className="border-b border-outline-variant/20 hover:bg-surface-bright cursor-pointer transition-colors"
                     >
                       <td className="py-3 px-4 font-semibold text-primary">{job.title}</td>

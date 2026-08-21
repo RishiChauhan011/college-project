@@ -86,3 +86,66 @@ def get_jobs(domain: str = None, company: str = None, skills: list[str] = None, 
     
     logger.info(f"Jobs query returned {len(paginated_jobs)} out of {total_matches} total matching jobs.")
     return paginated_jobs
+
+def get_admin_jobs(search: str = None, domain: str = None, limit: int = 20, offset: int = 0) -> dict:
+    jobs = get_jobs_data()
+    
+    search_lower = search.strip().lower() if search else None
+    canonical_domain = normalize_domain(domain) if domain else None
+    
+    filtered_jobs = []
+    for job in jobs:
+        if canonical_domain and job.get("career_domain") != canonical_domain:
+            continue
+            
+        if search_lower:
+            title = job.get("title", "").lower()
+            company = job.get("company", "").lower()
+            skills_str = ""
+            for cat in ("technical", "domain", "soft"):
+                for skill_dict in job.get("skills", {}).get(cat, []):
+                    skills_str += skill_dict.get("name", "").lower() + " "
+                    
+            if search_lower not in title and search_lower not in company and search_lower not in skills_str:
+                continue
+                
+        filtered_jobs.append(job)
+        
+    total = len(filtered_jobs)
+    items = filtered_jobs[offset : offset + limit]
+    
+    return {
+        "items": items,
+        "total": total,
+        "has_more": offset + limit < total
+    }
+
+def get_admin_companies(search: str = None, limit: int = 20, offset: int = 0) -> dict:
+    jobs = get_jobs_data()
+    
+    search_lower = search.strip().lower() if search else None
+    
+    unique_companies = set()
+    for job in jobs:
+        comp = job.get("company")
+        if not comp:
+            continue
+        comp_clean = comp.strip()
+        if not comp_clean or comp_clean.lower() == "unknown":
+            continue
+            
+        if search_lower and search_lower not in comp_clean.lower():
+            continue
+            
+        unique_companies.add(comp_clean)
+        
+    sorted_companies = sorted(list(unique_companies))
+    
+    total = len(sorted_companies)
+    items = sorted_companies[offset : offset + limit]
+    
+    return {
+        "items": items,
+        "total": total,
+        "has_more": offset + limit < total
+    }

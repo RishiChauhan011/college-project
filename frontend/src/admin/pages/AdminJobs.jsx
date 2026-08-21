@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AdminLayout from '../AdminLayout';
 import { fetchApi } from '../../api/apiClient';
@@ -6,10 +6,23 @@ import { fetchApi } from '../../api/apiClient';
 const AdminJobs = () => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [domain, setDomain] = useState('All');
   const [search, setSearch] = useState('');
   const [availableDomains, setAvailableDomains] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  
+  const observer = useRef();
+  const lastJobElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        loadJobs(false);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore]);
 
   useEffect(() => {
     const loadDomains = async () => {
@@ -23,16 +36,29 @@ const AdminJobs = () => {
     loadDomains();
   }, []);
 
-  const loadJobs = async () => {
+  const loadJobs = async (reset = false) => {
     setLoading(true);
     try {
+      // Use jobs.length directly for offset, but if reset, we use 0
+      const currentOffset = reset ? 0 : jobs.length;
       const queryParams = new URLSearchParams();
       if (domain !== 'All') queryParams.append('domain', domain);
-      if (search) queryParams.append('company', search);
+      if (search) queryParams.append('search', search);
       queryParams.append('limit', '50');
+      queryParams.append('offset', currentOffset.toString());
 
-      const data = await fetchApi(`/jobs?${queryParams.toString()}`);
-      setJobs(data || []);
+      const data = await fetchApi(`/admin/jobs?${queryParams.toString()}`);
+      if (reset) {
+        setJobs(data?.items || []);
+      } else {
+        setJobs(prev => {
+          // Avoid appending duplicates if double triggered
+          const existingIds = new Set(prev.map(j => j.id || j.title+j.company));
+          const newItems = (data?.items || []).filter(j => !existingIds.has(j.id || j.title+j.company));
+          return [...prev, ...newItems];
+        });
+      }
+      setHasMore(data?.has_more || false);
     } catch (err) {
       console.error('Failed to load jobs:', err);
     } finally {
@@ -42,20 +68,11 @@ const AdminJobs = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      loadJobs();
-    }, 250);
+      loadJobs(true);
+    }, 300);
     return () => clearTimeout(timer);
   }, [domain, search]);
 
-  const filteredJobs = jobs.filter((j) => {
-    if (!search) return true;
-    const s = search.toLowerCase();
-    return (
-      (j.title || '').toLowerCase().includes(s) ||
-      (j.company || '').toLowerCase().includes(s) ||
-      (j.city || '').toLowerCase().includes(s)
-    );
-  });
 
   return (
     <AdminLayout searchTerm={search} setSearchTerm={setSearch} searchPlaceholder="Search jobs by title or company...">
@@ -64,7 +81,7 @@ const AdminJobs = () => {
         <div>
           <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">Jobs &amp; Market Catalog</h2>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-            Live market postings with skill taxonomy indexing ({filteredJobs.length} active listings).
+            Live market postings with skill taxonomy indexing (Viewing {jobs.length} listings).
           </p>
         </div>
         <div className="flex gap-2">
@@ -120,18 +137,17 @@ const AdminJobs = () => {
               </tr>
             </thead>
             <tbody className="font-body-sm text-body-sm text-on-surface">
-              {loading ? (
-                <tr>
-                  <td colSpan="5" className="py-12 text-center text-secondary">
-                    <span className="material-symbols-outlined animate-spin align-middle mr-2">progress_activity</span>
-                    Loading live job catalog...
-                  </td>
-                </tr>
-              ) : filteredJobs.length > 0 ? (
-                filteredJobs.map((j, idx) => (
+              {jobs.length > 0 ? (
+                jobs.map((j, idx) => {
+                  const isLastItem = idx === jobs.length - 1;
+                  return (
                   <tr
                     key={idx}
-                    onClick={() => navigate(`/admin/jobs/${idx}`)}
+                    ref={isLastItem ? lastJobElementRef : null}
+                    onClick={() => {
+                      const jobId = encodeURIComponent(`${j.title}::${j.company}::${j.city || ''}`);
+                      navigate(`/admin/jobs/${jobId}`, { state: { job: j } });
+                    }}
                     className="border-b border-outline-variant/30 hover:bg-surface-bright cursor-pointer transition-colors"
                   >
                     <td className="py-3.5 px-4 font-medium text-on-surface">
@@ -156,7 +172,8 @@ const AdminJobs = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          navigate(`/admin/jobs/${idx}`);
+                          const jobId = encodeURIComponent(`${j.title}::${j.company}::${j.city || ''}`);
+                          navigate(`/admin/jobs/${jobId}`, { state: { job: j } });
                         }}
                         className="text-primary hover:bg-primary/10 p-1.5 rounded-lg transition-colors"
                         title="View Job Details"
@@ -165,11 +182,22 @@ const AdminJobs = () => {
                       </button>
                     </td>
                   </tr>
-                ))
+                  );
+                })
               ) : (
+                !loading && (
                 <tr>
                   <td colSpan="5" className="py-8 text-center text-secondary">
                     No jobs matching your filter criteria.
+                  </td>
+                </tr>
+                )
+              )}
+              {loading && (
+                <tr>
+                  <td colSpan="5" className="py-12 text-center text-secondary">
+                    <span className="material-symbols-outlined animate-spin align-middle mr-2">progress_activity</span>
+                    Loading live job catalog...
                   </td>
                 </tr>
               )}

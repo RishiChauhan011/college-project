@@ -153,7 +153,7 @@ const Profile = () => {
                     </div>
                   )}
                   {uploadSuccess && (
-                    <div className="mb-4 text-success text-data-sm font-data-sm bg-status-success/10 px-3 py-2 rounded flex items-center gap-2">
+                    <div className="mb-4 text-success text-data-sm font-data-sm bg-success/10 px-3 py-2 rounded flex items-center gap-2">
                       <span className="material-symbols-outlined text-[16px]">check_circle</span>
                       Resume processed successfully!
                     </div>

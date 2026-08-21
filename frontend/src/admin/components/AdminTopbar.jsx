@@ -14,21 +14,7 @@ const AdminTopbar = () => {
           <span className="text-[11px] font-bold text-success uppercase tracking-wider">SYSTEM ONLINE</span>
         </div>
 
-        <Link
-          to="/admin/activity"
-          className="text-on-surface-variant hover:text-primary transition-colors duration-200 relative p-1"
-          title="System Logs"
-        >
-          <span className="material-symbols-outlined text-[20px]">notifications</span>
-          <span className="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
-        </Link>
-        <Link
-          to="/admin/settings"
-          className="text-on-surface-variant hover:text-primary transition-colors duration-200 p-1"
-          title="System Settings"
-        >
-          <span className="material-symbols-outlined text-[20px]">help_outline</span>
-        </Link>
+
 
         {/* Profile Badge */}
         <Link

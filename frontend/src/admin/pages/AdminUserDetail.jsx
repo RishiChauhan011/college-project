@@ -63,7 +63,7 @@ const AdminUserDetail = () => {
                 </div>
               </div>
               <div className="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full font-data-sm text-xs font-bold flex items-center gap-1.5 border border-tertiary-fixed-dim">
-                <span className="w-2 h-2 rounded-full bg-status-success inline-block"></span> Active Record
+                <span className="w-2 h-2 rounded-full bg-success inline-block"></span> Active Record
               </div>
             </div>
 
@@ -145,12 +145,7 @@ const AdminUserDetail = () => {
                     >
                       Back to User List
                     </button>
-                    <button
-                      onClick={() => navigate('/admin/ai-insights')}
-                      className="px-4 py-2 bg-primary text-white hover:bg-surface-tint rounded-lg text-body-sm font-medium transition-colors shadow-[2px_2px_6px_rgba(163,177,198,0.4)]"
-                    >
-                      View AI Recommendations
-                    </button>
+
                   </div>
                 </div>
               </div>
