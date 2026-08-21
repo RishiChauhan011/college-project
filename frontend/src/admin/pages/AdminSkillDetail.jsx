@@ -106,7 +106,6 @@ const AdminSkillDetail = () => {
                       <th className="py-3 px-4">Role Title</th>
                       <th className="py-3 px-4">Company</th>
                       <th className="py-3 px-4">Domain</th>
-                      <th className="py-3 px-4 text-right">Compensation</th>
                     </tr>
                   </thead>
                   <tbody className="font-body-sm text-body-sm text-on-surface">
@@ -120,14 +119,11 @@ const AdminSkillDetail = () => {
                           <td className="py-3 px-4 font-semibold text-primary">{j.title}</td>
                           <td className="py-3 px-4 text-on-surface">{j.company}</td>
                           <td className="py-3 px-4 font-data-sm text-xs text-secondary">{j.career_domain}</td>
-                          <td className="py-3 px-4 text-right font-data-md font-semibold">
-                            {j.salary_max ? `$${Math.round(j.salary_min / 1000)}k - $${Math.round(j.salary_max / 1000)}k` : 'Undisclosed'}
-                          </td>
                         </tr>
                       ))
                     ) : (
                       <tr>
-                        <td colSpan="4" className="py-6 text-center text-secondary">
+                        <td colSpan="3" className="py-6 text-center text-secondary">
                           No direct job sample matches for this skill in the current query batch.
                         </td>
                       </tr>

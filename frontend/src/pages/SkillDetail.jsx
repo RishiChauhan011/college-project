@@ -135,7 +135,6 @@ const SkillDetail = () => {
   }
 
   const demandScore = skillData.demand_score;
-  const salaryImpact = skillData.avg_salary_impact;
   const roiScore = skillData.roi_score;
 
   return (
@@ -186,7 +185,7 @@ const SkillDetail = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
           {/* Metric Cards */}
-          <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-gutter">
             {/* Demand Score */}
             <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
               <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
@@ -208,27 +207,6 @@ const SkillDetail = () => {
                   className="h-full bg-primary rounded-full transition-all"
                   style={{ width: demandScore !== undefined && demandScore !== null ? `${demandScore}%` : "0%" }}
                 ></div>
-              </div>
-            </div>
-
-            {/* Salary Impact */}
-            <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-              <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
-                <span className="material-symbols-outlined" style={{ fontSize: "120px" }}>payments</span>
-              </div>
-              <div className="z-10">
-                <div className="text-data-sm font-data-sm text-outline mb-2 uppercase tracking-wider">Salary Impact</div>
-                <div className="flex items-center gap-2">
-                  <span className="text-headline-xl font-headline-xl text-success">
-                    {salaryImpact !== undefined && salaryImpact !== null ? `+$${salaryImpact}` : "N/A"}
-                  </span>
-                  {salaryImpact !== undefined && salaryImpact !== null && (
-                    <span className="material-symbols-outlined text-success">trending_up</span>
-                  )}
-                </div>
-              </div>
-              <div className="z-10 mt-4 text-data-sm font-data-sm text-on-surface-variant bg-surface px-3 py-2 rounded-lg w-fit shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]">
-                {salaryImpact !== undefined && salaryImpact !== null ? "Avg. base increase" : "Data not available"}
               </div>
             </div>
 

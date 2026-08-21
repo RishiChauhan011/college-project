@@ -72,15 +72,11 @@ const AdminJobDetail = () => {
                 </div>
               </div>
               <div className="bg-surface shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)] px-6 py-4 rounded-xl min-w-[220px]">
-                <div className="font-data-sm text-xs text-secondary font-bold uppercase mb-1">Target Compensation</div>
+                <div className="font-data-sm text-xs text-secondary font-bold uppercase mb-1">Extracted Skills</div>
                 <div className="font-data-lg text-[22px] font-bold text-primary">
-                  {job.salary_max
-                    ? `$${Math.round(job.salary_min / 1000)}k - $${Math.round(job.salary_max / 1000)}k`
-                    : job.salary_min
-                    ? `From $${Math.round(job.salary_min / 1000)}k`
-                    : 'Undisclosed Market Standard'}
+                  {skills.length} Skills
                 </div>
-                <div className="font-data-sm text-xs text-on-surface-variant opacity-75 mt-0.5">Annual CTC Base</div>
+                <div className="font-data-sm text-xs text-on-surface-variant opacity-75 mt-0.5">Required Competencies</div>
               </div>
             </div>
 

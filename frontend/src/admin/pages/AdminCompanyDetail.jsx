@@ -99,14 +99,13 @@ const AdminCompanyDetail = () => {
                   <th className="py-3 px-4">Role Title</th>
                   <th className="py-3 px-4">Location</th>
                   <th className="py-3 px-4">Domain</th>
-                  <th className="py-3 px-4 text-right">Compensation</th>
                   <th className="py-3 px-4 text-center">Skills</th>
                 </tr>
               </thead>
               <tbody className="font-body-sm text-body-sm text-on-surface">
                 {loading ? (
                   <tr>
-                    <td colSpan="5" className="py-8 text-center text-secondary">
+                    <td colSpan="4" className="py-8 text-center text-secondary">
                       Loading openings for {companyName}...
                     </td>
                   </tr>
@@ -120,9 +119,6 @@ const AdminCompanyDetail = () => {
                       <td className="py-3 px-4 font-semibold text-primary">{job.title}</td>
                       <td className="py-3 px-4 text-secondary">{job.city || 'Remote'}</td>
                       <td className="py-3 px-4 font-data-sm text-xs text-on-surface-variant">{job.career_domain}</td>
-                      <td className="py-3 px-4 text-right font-data-md font-semibold">
-                        {job.salary_max ? `$${Math.round(job.salary_min / 1000)}k - $${Math.round(job.salary_max / 1000)}k` : 'Undisclosed'}
-                      </td>
                       <td className="py-3 px-4 text-center">
                         <span className="px-2 py-0.5 bg-surface rounded text-xs font-data-sm font-bold text-secondary">
                           {job.skill_count || 0}
@@ -132,7 +128,7 @@ const AdminCompanyDetail = () => {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="5" className="py-6 text-center text-secondary">
+                    <td colSpan="4" className="py-6 text-center text-secondary">
                       No active listings found for this company.
                     </td>
                   </tr>

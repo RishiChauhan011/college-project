@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { DomainProvider } from './context/DomainContext';
+import { DashboardDataProvider } from './context/DashboardDataContext';
 
 // Pages
 import Landing from './pages/Landing';
@@ -37,7 +38,8 @@ function App() {
   return (
     <AuthProvider>
       <DomainProvider>
-        <Router>
+        <DashboardDataProvider>
+          <Router>
           <Routes>
             {/* Student & Public Routes */}
             <Route path="/" element={<Landing />} />
@@ -153,7 +155,8 @@ function App() {
             } />
           </Routes>
         </Router>
-      </DomainProvider>
+      </DashboardDataProvider>
+    </DomainProvider>
     </AuthProvider>
   );
 }

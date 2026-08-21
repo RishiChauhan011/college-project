@@ -69,7 +69,7 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Metrics Row */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
         <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
           <h3 className="font-data-sm text-xs font-bold text-secondary uppercase tracking-wider mb-2">Total Indexed Jobs</h3>
           <div className="font-data-lg text-[26px] font-bold text-on-surface">
@@ -79,29 +79,19 @@ const AdminAnalytics = () => {
         </div>
 
         <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
+          <h3 className="font-data-sm text-xs font-bold text-secondary uppercase tracking-wider mb-2">Active Domains</h3>
+          <div className="font-data-lg text-[26px] font-bold text-tertiary">
+            {summary?.available_domains?.length || domains.length || 6}
+          </div>
+          <p className="font-data-sm text-xs text-secondary mt-1">Monitored fields</p>
+        </div>
+
+        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
           <h3 className="font-data-sm text-xs font-bold text-secondary uppercase tracking-wider mb-2">Domain Sample Count</h3>
           <div className="font-data-lg text-[26px] font-bold text-primary">
             {domainData?.jobs || '...'}
           </div>
           <p className="font-data-sm text-xs text-secondary mt-1">in {selectedDomain}</p>
-        </div>
-
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
-          <h3 className="font-data-sm text-xs font-bold text-secondary uppercase tracking-wider mb-2">Avg Domain Salary</h3>
-          <div className="font-data-lg text-[26px] font-bold text-tertiary">
-            {domainData?.salary_statistics?.average_salary_max
-              ? `$${Math.round(domainData.salary_statistics.average_salary_max / 1000)}k`
-              : 'Market Std'}
-          </div>
-          <p className="font-data-sm text-xs text-secondary mt-1">Disclosed listings average</p>
-        </div>
-
-        <div className="bg-surface-container-lowest rounded-xl p-5 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
-          <h3 className="font-data-sm text-xs font-bold text-secondary uppercase tracking-wider mb-2">Salary Disclosure Rate</h3>
-          <div className="font-data-lg text-[26px] font-bold text-success">
-            {domainData?.salary_statistics?.disclosure_rate_percent || 0}%
-          </div>
-          <p className="font-data-sm text-xs text-secondary mt-1">Transparency index</p>
         </div>
       </div>
 

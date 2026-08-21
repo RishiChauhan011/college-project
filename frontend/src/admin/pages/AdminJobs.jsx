@@ -115,7 +115,6 @@ const AdminJobs = () => {
                 <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider">Job Title</th>
                 <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider">Company &amp; Location</th>
                 <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider">Career Domain</th>
-                <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider text-right">Est. Salary</th>
                 <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider text-center">Skills Matched</th>
                 <th className="py-3.5 px-4 font-data-sm text-[11px] font-bold uppercase text-on-surface-variant tracking-wider text-center">Action</th>
               </tr>
@@ -123,7 +122,7 @@ const AdminJobs = () => {
             <tbody className="font-body-sm text-body-sm text-on-surface">
               {loading ? (
                 <tr>
-                  <td colSpan="6" className="py-12 text-center text-secondary">
+                  <td colSpan="5" className="py-12 text-center text-secondary">
                     <span className="material-symbols-outlined animate-spin align-middle mr-2">progress_activity</span>
                     Loading live job catalog...
                   </td>
@@ -148,13 +147,6 @@ const AdminJobs = () => {
                         {j.career_domain}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right font-data-md font-semibold text-on-surface">
-                      {j.salary_max
-                        ? `$${Math.round(j.salary_min / 1000)}k - $${Math.round(j.salary_max / 1000)}k`
-                        : j.salary_min
-                        ? `From $${Math.round(j.salary_min / 1000)}k`
-                        : <span className="text-secondary text-xs font-normal">Undisclosed</span>}
-                    </td>
                     <td className="py-3.5 px-4 text-center">
                       <span className="px-2 py-0.5 bg-primary/10 text-primary font-data-sm text-xs font-bold rounded-full">
                         {j.skill_count || 0} skills
@@ -176,7 +168,7 @@ const AdminJobs = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="py-8 text-center text-secondary">
+                  <td colSpan="5" className="py-8 text-center text-secondary">
                     No jobs matching your filter criteria.
                   </td>
                 </tr>
