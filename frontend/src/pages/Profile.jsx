@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { fetchApi } from '../api/apiClient';
+import Navbar from '../components/Navbar';
 import SideNavBar from '../components/SideNavBar';
 
 const Profile = () => {
@@ -30,29 +31,23 @@ const Profile = () => {
   }, []);
 
   const handleResumeUpload = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (!file) return;
-
     setUploading(true);
     setUploadError('');
     setUploadSuccess(false);
 
-    const formData = new FormData();
-    formData.append('file', file);
-
     try {
-      const result = await fetchApi('/resume-upload', {
+      const formData = new FormData();
+      formData.append('file', file);
+      await fetchApi('/resume/upload', {
         method: 'POST',
         body: formData,
       });
-      // Update local profile with the new parsed skills and update source
-      await load();
       setUploadSuccess(true);
-      // Optional: Store in localStorage if Dashboard relies on it
-      localStorage.setItem('extractedResume', JSON.stringify(result));
+      await load();
     } catch (err) {
-      console.error('Upload failed:', err);
-      setUploadError(err.message || 'Failed to upload resume.');
+      setUploadError(err.message || 'Failed to upload resume');
     } finally {
       setUploading(false);
     }
@@ -72,32 +67,12 @@ const Profile = () => {
   const preferredLocation = profile?.profile?.preferred_location || '';
 
   return (
-    <div className="bg-background text-on-surface font-body-md antialiased h-screen overflow-hidden flex">
-      {/* Sidebar */}
+    <div className="font-body-md text-body-md antialiased overflow-x-hidden min-h-screen bg-surface">
+      <Navbar showNavLinks={false} />
       <SideNavBar />
 
-      {/* Top Navbar */}
-      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center h-topbar-height bg-surface-bright shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] lg:ml-[260px] lg:w-[calc(100%-260px)] px-[24px]">
-        <div className="flex items-center gap-4 lg:hidden">
-          <span className="material-symbols-outlined text-on-surface-variant cursor-pointer">menu</span>
-          <span className="font-headline-md text-headline-md font-bold text-primary">PathFinder AI</span>
-        </div>
-        <div className="hidden lg:flex items-center gap-2">
-          <span className="font-headline-sm text-headline-sm text-on-surface font-medium">Profile</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <button
-            onClick={handleLogout}
-            className="text-secondary hover:text-error text-data-sm font-data-sm flex items-center gap-1 transition-colors"
-          >
-            <span className="material-symbols-outlined text-[18px]">logout</span>
-            Logout
-          </button>
-        </div>
-      </header>
-
       {/* Main Content */}
-      <main className="flex-1 lg:ml-[260px] pt-[calc(56px+24px)] px-[24px] pb-12 overflow-y-auto w-full h-full">
+      <main className="lg:ml-64 pt-24 md:pt-28 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
         {loading ? (
           <div className="flex items-center justify-center h-64 text-secondary">
             <span className="material-symbols-outlined animate-spin mr-2">progress_activity</span>

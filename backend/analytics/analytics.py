@@ -136,8 +136,12 @@ def compute_domain_stats(jobs):
 
         for job in domain_jobs:
             skill_counts_per_job.append(job["skill_count"])
-            company_counter[job.get("company", "Unknown")] += 1
-            city_counter[job.get("city", "Unknown")] += 1
+            company = job.get("company", "").strip()
+            if company and company.lower() != "unknown":
+                company_counter[company] += 1
+            city = job.get("city", "").strip()
+            if city and city.lower() != "unknown":
+                city_counter[city] += 1
             for category in category_totals:
                 for skill in job["skills"][category]:
                     skill_counter[skill["name"]] += 1
@@ -198,8 +202,16 @@ def compute_salary_stats(jobs):
 
 def compute_overall_stats(jobs):
     skill_counter = compute_skill_frequency(jobs)
-    company_counter = Counter(job.get("company", "Unknown") for job in jobs)
-    city_counter = Counter(job.get("city", "Unknown") for job in jobs)
+    company_counter = Counter(
+        job.get("company", "").strip()
+        for job in jobs
+        if job.get("company", "").strip() and job.get("company", "").strip().lower() != "unknown"
+    )
+    city_counter = Counter(
+        job.get("city", "").strip()
+        for job in jobs
+        if job.get("city", "").strip() and job.get("city", "").strip().lower() != "unknown"
+    )
 
     return {
         "total_jobs": len(jobs),

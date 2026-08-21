@@ -88,7 +88,7 @@ const Roadmap = () => {
 
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar showNavLinks={false} />
       <SideNavBar />
 
       <main className="flex-1 lg:ml-64 pt-24 px-margin-mobile md:px-margin-desktop pb-24 max-w-container-max mx-auto w-full relative z-10">
@@ -138,53 +138,64 @@ const Roadmap = () => {
                Analyzing market topology and skill gaps...
             </div>
           ) : roadmap ? (
-            <div className="relative z-10 hidden md:flex items-center justify-between h-64 mt-12 mb-8 min-w-max px-8">
-              <div className="absolute left-10 right-10 top-1/2 -translate-y-1/2 h-[2px] z-0" style={contourLineStyle}></div>
-              <div className="absolute left-10 w-[20%] top-1/2 -translate-y-1/2 h-[2px] z-0" style={contourLineActiveStyle}></div>
-              
-              <div className="relative flex flex-col items-center group z-10 w-48">
-                <div className="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.4)] border-4 border-surface-bright relative">
-                  <span className="material-symbols-outlined">flag</span>
-                  <div className="absolute inset-[-8px] rounded-full border border-primary opacity-30 animate-pulse"></div>
-                </div>
-                <div className="mt-4 text-center">
-                  <div className="font-data-sm text-data-sm text-primary mb-1">Basecamp</div>
-                  <div className="font-headline-md text-headline-md text-on-surface text-lg">Current Profile</div>
-                  <div className="font-body-sm text-body-sm text-success mt-1 flex items-center justify-center gap-1">
-                    <span className="material-symbols-outlined text-[16px]">check_circle</span> Match: {Math.round(roadmap.match_score)}%
-                  </div>
-                </div>
-                <div className="absolute bottom-full mb-4 w-48 p-4 bg-surface-bright rounded-xl shadow-[4px_4px_10px_rgba(163,177,198,0.5)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    Recognized Skills: {roadmap.recognized_skills?.slice(0,3).join(', ')}{roadmap.recognized_skills?.length > 3 ? '...' : ''}
-                  </p>
-                </div>
+            <div className="relative z-10 py-6 px-4 sm:px-8">
+              {/* Connecting Progress Bar */}
+              <div className="relative w-full mb-8">
+                <div className="w-full bg-surface-container-highest h-2 rounded-full"></div>
+                <div 
+                  className="bg-gradient-to-r from-primary via-waypoint to-tertiary h-2 rounded-full absolute top-0 left-0 transition-all duration-700 ease-out" 
+                  style={{ width: `${Math.min(100, Math.max(10, Math.round(roadmap.match_score)))}%` }}
+                ></div>
               </div>
 
-              {roadmap.missing_skills?.slice(0, 3).map((skill, index) => (
-                <div key={index} className="relative flex flex-col items-center group z-10 cursor-pointer w-48" onClick={() => navigate('/skill-insight')}>
-                  <div className="w-10 h-10 rounded-full bg-surface-bright text-primary flex items-center justify-center shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)] border-2 border-primary">
-                    <span className="material-symbols-outlined text-[20px]">architecture</span>
+              {/* 4 Node Stepper Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                {/* Node 1: Basecamp */}
+                <div className="flex flex-col items-center text-center group cursor-pointer" onClick={() => navigate('/profile')}>
+                  <div className="w-10 h-10 rounded-full bg-surface border-4 border-primary elevation-1 flex items-center justify-center mb-2 shadow-sm">
+                    <div className="w-3 h-3 rounded-full bg-primary"></div>
                   </div>
-                  <div className="mt-4 text-center">
-                    <div className="font-data-sm text-data-sm text-outline mb-1">Milestone {index + 1}</div>
-                    <div className="font-headline-md text-headline-md text-on-surface text-lg">{skill.skill}</div>
-                    <div className="font-data-sm text-data-sm text-success mt-1">ROI Score: {Math.round(skill.roi_score)}</div>
-                  </div>
-                  <div className="absolute bottom-full mb-4 w-48 p-4 bg-surface-bright rounded-xl shadow-[4px_4px_10px_rgba(163,177,198,0.5)] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">Est. time: {skill.estimated_learning_weeks} weeks.</p>
-                  </div>
+                  <span className="font-bold text-on-surface text-body-md">Basecamp</span>
+                  <span className="text-data-sm font-bold text-primary mt-0.5">
+                    {roadmap.recognized_skills?.length || 0} active skills
+                  </span>
+                  <span className="text-xs text-success font-bold mt-0.5">
+                    Match: {Math.round(roadmap.match_score)}%
+                  </span>
                 </div>
-              ))}
 
-              <div className="relative flex flex-col items-center group z-10 w-48">
-                <div className="w-14 h-14 rounded-xl bg-surface-bright text-tertiary flex items-center justify-center shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] border-2 border-surface-bright rotate-45">
-                  <span className="material-symbols-outlined -rotate-45 text-[24px]">workspace_premium</span>
-                </div>
-                <div className="mt-6 text-center">
-                  <div className="font-data-sm text-data-sm text-tertiary mb-1">Destination</div>
-                  <div className="font-headline-md text-headline-md text-on-surface text-xl">Domain Expert</div>
-                  <div className="font-data-sm text-data-sm text-on-surface-variant mt-1">{roadmap.estimated_learning_weeks} Weeks Total</div>
+                {/* Node 2 & 3: Milestones */}
+                {roadmap.missing_skills?.slice(0, 2).map((skill, index) => (
+                  <div 
+                    key={index} 
+                    className="flex flex-col items-center text-center group cursor-pointer" 
+                    onClick={() => navigate(`/skill-insight?skill=${encodeURIComponent(skill.skill)}`)}
+                  >
+                    <div className="w-10 h-10 rounded-full bg-surface border-4 border-waypoint elevation-1 flex items-center justify-center mb-2 shadow-sm">
+                      <div className="w-3 h-3 rounded-full bg-waypoint"></div>
+                    </div>
+                    <span className="font-bold text-on-surface text-body-md truncate max-w-full">
+                      {skill.skill}
+                    </span>
+                    <span className="text-data-sm font-semibold text-secondary mt-0.5">
+                      ROI: {Math.round(skill.roi_score)}
+                    </span>
+                    <span className="text-xs text-secondary mt-0.5">Est. {skill.estimated_learning_weeks} wks</span>
+                  </div>
+                ))}
+
+                {/* Node 4: Destination */}
+                <div className="flex flex-col items-center text-center group cursor-pointer">
+                  <div className="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center mb-2 shadow-md">
+                    <span className="material-symbols-outlined text-[20px]">flag</span>
+                  </div>
+                  <span className="font-bold text-on-surface text-body-md truncate max-w-full">
+                    Target Destination
+                  </span>
+                  <span className="text-data-sm font-bold text-tertiary mt-0.5">
+                    Domain Expert
+                  </span>
+                  <span className="text-xs text-secondary mt-0.5">{roadmap.estimated_learning_weeks} Wks Total</span>
                 </div>
               </div>
             </div>
@@ -203,37 +214,59 @@ const Roadmap = () => {
           
           {roadmap && roadmap.roadmap_narrative && (
              <div className="mt-8 p-6 bg-surface-bright rounded-xl elevation-2 border-l-4 border-primary">
-               <h3 className="font-headline-md text-headline-md mb-4 flex items-center gap-2 text-on-surface">
+               <h3 className="font-headline-md text-headline-md mb-4 flex items-center gap-2 text-on-surface font-bold">
                  <span className="material-symbols-outlined text-primary">psychology</span> AI Strategy Narrative
                </h3>
                {(() => {
                  const text = roadmap.roadmap_narrative;
-                 const paragraphs = text.split(/\n\s*\n/).filter((p) => p.trim());
-                 return (
-                   <div className="space-y-4">
-                     {paragraphs.map((para, pIdx) => {
-                       const parts = para.split(/(\*\*.*?\*\*|<b>.*?<\/b>)/g);
+                 const lines = text.split('\n').filter((l) => l.trim());
+                 
+                 const renderFormattedText = (rawStr) => {
+                   const parts = rawStr.split(/(\*\*.*?\*\*|<b>.*?<\/b>)/g);
+                   return parts.map((part, partIdx) => {
+                     if (part.startsWith('**') && part.endsWith('**')) {
                        return (
-                         <p key={pIdx} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                           {parts.map((part, partIdx) => {
-                             if (part.startsWith('**') && part.endsWith('**')) {
-                               return (
-                                 <strong key={partIdx} className="font-bold text-on-surface">
-                                   {part.slice(2, -2)}
-                                 </strong>
-                               );
-                             } else if (part.startsWith('<b>') && part.endsWith('</b>')) {
-                               return (
-                                 <strong key={partIdx} className="font-bold text-on-surface">
-                                   {part.slice(3, -4)}
-                                 </strong>
-                               );
-                             }
-                             return part;
-                           })}
-                         </p>
+                         <strong key={partIdx} className="font-bold text-on-surface">
+                           {part.slice(2, -2)}
+                         </strong>
                        );
-                     })}
+                     } else if (part.startsWith('<b>') && part.endsWith('</b>')) {
+                       return (
+                         <strong key={partIdx} className="font-bold text-on-surface">
+                           {part.slice(3, -4)}
+                         </strong>
+                       );
+                     }
+                     return part;
+                   });
+                 };
+
+                 const bulletLines = lines.filter((l) => l.trim().startsWith('- ') || l.trim().startsWith('* '));
+                 const nonBulletLines = lines.filter((l) => !l.trim().startsWith('- ') && !l.trim().startsWith('* '));
+
+                 return (
+                   <div className="space-y-3">
+                     {nonBulletLines.slice(0, 1).map((para, idx) => (
+                       <p key={`head-${idx}`} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                         {renderFormattedText(para)}
+                       </p>
+                     ))}
+
+                     {bulletLines.length > 0 && (
+                       <ul className="list-disc pl-6 space-y-2 my-3 text-body-md text-on-surface-variant">
+                         {bulletLines.map((bLine, bIdx) => (
+                           <li key={bIdx} className="leading-relaxed">
+                             {renderFormattedText(bLine.trim().replace(/^[-*]\s+/, ''))}
+                           </li>
+                         ))}
+                       </ul>
+                     )}
+
+                     {nonBulletLines.slice(1).map((para, idx) => (
+                       <p key={`tail-${idx}`} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                         {renderFormattedText(para)}
+                       </p>
+                     ))}
                    </div>
                  );
                })()}
@@ -241,12 +274,6 @@ const Roadmap = () => {
           )}
         </div>
       </main>
-
-      <div className="fixed bottom-8 right-8 z-50">
-        <button className="w-14 h-14 rounded-full bg-primary text-on-primary shadow-[0_4px_14px_rgba(70,72,212,0.4)] flex items-center justify-center hover:bg-surface-tint transition-colors hover:scale-110">
-          <span className="material-symbols-outlined text-2xl">chat</span>
-        </button>
-      </div>
     </div>
   );
 };

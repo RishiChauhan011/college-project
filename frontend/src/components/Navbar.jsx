@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const Navbar = () => {
+const Navbar = ({ showNavLinks = true }) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const navigate = useNavigate();
@@ -50,15 +50,17 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-20 bg-surface-bright dark:bg-surface-dim shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] shadow-md hidden md:flex">
       {/* Left: Brand + Links */}
-      <div className="flex items-center gap-8">
-        <Link className="text-headline-md font-headline-md font-bold text-waypoint dark:text-tertiary-fixed-dim tracking-tight" to="/">
+      <div className="flex items-center gap-16">
+        <Link className="text-headline-lg font-headline-lg font-bold text-waypoint dark:text-tertiary-fixed-dim tracking-tight" to="/">
           PathFinder AI
         </Link>
-        <div className="flex items-center gap-6">
-          <Link className={navLinkClass('/dashboard')} to="/dashboard">Dashboard</Link>
-          <Link className={navLinkClass('/roadmap')} to="/roadmap">Roadmap</Link>
-          <Link className={navLinkClass('/about')} to="/about">About</Link>
-        </div>
+        {showNavLinks && (
+          <div className="flex items-center gap-6">
+            <Link className={navLinkClass('/dashboard')} to="/dashboard">Dashboard</Link>
+            <Link className={navLinkClass('/roadmap')} to="/roadmap">Roadmap</Link>
+            <Link className={navLinkClass('/about')} to="/about">About</Link>
+          </div>
+        )}
       </div>
 
       {/* Right: Actions */}

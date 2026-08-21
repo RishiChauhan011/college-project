@@ -15,6 +15,8 @@ import SkillDetail from './pages/SkillDetail';
 import About from './pages/About';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
+import Companies from './pages/Companies';
+import CompanyDetail from './pages/CompanyDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Admin Pages & Guard
@@ -38,28 +40,18 @@ function App() {
   return (
     <AuthProvider>
       <DomainProvider>
-        <DashboardDataProvider>
-          <Router>
+        <Router>
           <Routes>
             {/* Student & Public Routes */}
             <Route path="/" element={<Landing />} />
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
             <Route path="/login" element={<SignupLogin />} />
-            <Route path="/roadmap" element={
-              <ProtectedRoute>
-                <Roadmap />
-              </ProtectedRoute>
-            } />
+            <Route path="/about" element={<About />} />
+
             <Route path="/onboarding" element={
               <ProtectedRoute requireCompleteProfile={false}>
                 <Onboarding />
               </ProtectedRoute>
             } />
-            <Route path="/pathfinder" element={<Pathfinder />} />
             <Route path="/profile" element={
               <ProtectedRoute>
                 <Profile />
@@ -70,12 +62,48 @@ function App() {
                 <EditProfile />
               </ProtectedRoute>
             } />
-            <Route path="/skill-insight" element={
+
+            {/* Dashboard Data-Driven Routes */}
+            <Route path="/dashboard" element={
               <ProtectedRoute>
-                <SkillDetail />
+                <DashboardDataProvider>
+                  <Dashboard />
+                </DashboardDataProvider>
               </ProtectedRoute>
             } />
-            <Route path="/about" element={<About />} />
+            <Route path="/roadmap" element={
+              <ProtectedRoute>
+                <DashboardDataProvider>
+                  <Roadmap />
+                </DashboardDataProvider>
+              </ProtectedRoute>
+            } />
+            <Route path="/pathfinder" element={
+              <DashboardDataProvider>
+                <Pathfinder />
+              </DashboardDataProvider>
+            } />
+            <Route path="/skill-insight" element={
+              <ProtectedRoute>
+                <DashboardDataProvider>
+                  <SkillDetail />
+                </DashboardDataProvider>
+              </ProtectedRoute>
+            } />
+            <Route path="/companies" element={
+              <ProtectedRoute>
+                <DashboardDataProvider>
+                  <Companies />
+                </DashboardDataProvider>
+              </ProtectedRoute>
+            } />
+            <Route path="/companies/:id" element={
+              <ProtectedRoute>
+                <DashboardDataProvider>
+                  <CompanyDetail />
+                </DashboardDataProvider>
+              </ProtectedRoute>
+            } />
 
             {/* Admin Control Center Routes */}
             <Route path="/admin" element={
@@ -155,8 +183,7 @@ function App() {
             } />
           </Routes>
         </Router>
-      </DashboardDataProvider>
-    </DomainProvider>
+      </DomainProvider>
     </AuthProvider>
   );
 }

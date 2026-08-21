@@ -34,11 +34,11 @@ def _call_gemini_with_model(prompt: str, model: str, client):
 def check_narrative_grounding(narrative: str, recommendation_data: dict) -> list[str]:
     warnings = []
     word_count = len(narrative.split())
-    if not (100 <= word_count <= 300):
-        warnings.append(f"Word count {word_count} outside expected 150-250 range (soft check).")
-    paragraph_count = len([p for p in narrative.split("\n\n") if p.strip()])
-    if paragraph_count != 3:
-        warnings.append(f"Paragraph count {paragraph_count}, expected 3.")
+    if not (100 <= word_count <= 220):
+        warnings.append(f"Word count {word_count} outside expected 100-220 range.")
+    bullet_count = len([line for line in narrative.split("\n") if line.strip().startswith("- ")])
+    if bullet_count < 3:
+        warnings.append(f"Bullet count {bullet_count}, expected at least 3 lines starting with '- '.")
     return warnings
 
 def generate_roadmap_narrative(recommendation_data: dict) -> dict:
@@ -58,8 +58,8 @@ Recommendation Data:
 
 Strict Constraints:
 1. Grounding rule: You may only reference skills, companies, and numbers explicitly present in the input data. Do not invent additional companies, do not estimate salary, and do not suggest skills outside the provided list.
-2. Length: 150-250 words, exactly 3 short paragraphs.
-3. Formatting: Use **bold** for skill and role names. No markdown headers allowed. No bullet lists longer than 5 items.
+2. Length: 150-200 words total.
+3. Format: Start with a 2-3 sentence opening paragraph naming the match % and their existing strengths. Then a bulleted list ("- ") of the top 3 priority skills, each with a full sentence of concrete reasoning (why it matters, not just a label). End with a 2-3 sentence closing paragraph naming 2-3 real qualifying companies and encouraging next steps.
 4. Tone: Encouraging and practical, not generic motivational filler.
 """
         

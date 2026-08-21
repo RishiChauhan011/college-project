@@ -43,7 +43,7 @@ const Onboarding = () => {
     education: '',
     experience_years: '',
     preferred_field: '',
-    preferred_location: '',
+    preferred_location: 'Remote',
     skills: [],
   });
   const [newSkillInput, setNewSkillInput] = useState('');
@@ -521,15 +521,16 @@ const Onboarding = () => {
                   <label className="block font-data-sm text-data-sm text-secondary uppercase tracking-widest mb-2">
                     Preferred Work Location <span className="text-error">*</span>
                   </label>
-                  <input
-                    type="text"
-                    className="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-lg py-3 px-4 font-body-sm text-body-sm text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-waypoint focus:outline-none"
-                    placeholder="e.g. Remote, San Francisco, New York"
-                    value={reviewForm.preferred_location}
+                  <select
+                    className="w-full bg-surface-container-lowest border border-outline-variant/50 rounded-lg py-3 px-4 font-body-sm text-body-sm text-on-surface focus:ring-2 focus:ring-waypoint focus:outline-none cursor-pointer"
+                    value={reviewForm.preferred_location || 'Remote'}
                     onChange={(e) =>
                       setReviewForm({ ...reviewForm, preferred_location: e.target.value })
                     }
-                  />
+                  >
+                    <option value="Remote">Remote</option>
+                    <option value="On-site">On-site</option>
+                  </select>
                 </div>
               </div>
 

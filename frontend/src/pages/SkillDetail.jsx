@@ -2,69 +2,33 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import SideNavBar from "../components/SideNavBar";
-import { fetchApi } from "../api/apiClient";
 import { useDomain } from "../context/DomainContext";
+import { useDashboardData } from "../context/DashboardDataContext";
 
 const SkillDetail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { domain } = useDomain();
+  const { roadmap, domainAnalytics } = useDashboardData();
 
   const searchParams = new URLSearchParams(location.search);
   const skillParam = searchParams.get("skill");
 
   const [loading, setLoading] = useState(true);
-  const [domainData, setDomainData] = useState(null);
+  const [domainData, setDomainData] = useState(domainAnalytics || null);
   const [skillData, setSkillData] = useState(null);
   const [currentDomain, setCurrentDomain] = useState(domain || "");
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      try {
-        let selectedDomain = domain;
-        const summary = await fetchApi("/analytics").catch(() => null);
-        const validList = summary?.available_domains || [];
-
-        if (selectedDomain && validList.length > 0) {
-          const isValid = validList.some((d) => d.toLowerCase() === selectedDomain.trim().toLowerCase());
-          if (!isValid) {
-            selectedDomain = validList[0];
-          }
-        } else if (!selectedDomain && validList.length > 0) {
-          selectedDomain = validList[0];
-        }
-
-        setCurrentDomain(selectedDomain || "");
-
-        if (selectedDomain) {
-          try {
-            const data = await fetchApi(`/analytics/domain/${encodeURIComponent(selectedDomain)}`);
-            setDomainData(data);
-          } catch (domainErr) {
-            // Try default fallback domain if initial domain request fails
-            if (validList[0] && validList[0] !== selectedDomain) {
-              const fallbackData = await fetchApi(`/analytics/domain/${encodeURIComponent(validList[0])}`);
-              setCurrentDomain(validList[0]);
-              setDomainData(fallbackData);
-            } else {
-              throw domainErr;
-            }
-          }
-        } else {
-          setDomainData(null);
-        }
-      } catch (err) {
-        console.error("Failed to load skill data", err);
-        setError("We couldn't load market data for this domain. Please check your profile's preferred field.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [domain]);
+    if (domainAnalytics) {
+      setDomainData(domainAnalytics);
+      setCurrentDomain(domain || "");
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
+  }, [domainAnalytics, domain]);
 
   useEffect(() => {
     if (domainData) {
@@ -78,6 +42,8 @@ const SkillDetail = () => {
       } else {
         setSkillData(null);
       }
+    } else if (skillParam) {
+      setSkillData({ skill: skillParam, count: 0 });
     }
   }, [domainData, skillParam]);
 
@@ -134,12 +100,16 @@ const SkillDetail = () => {
     );
   }
 
-  const demandScore = skillData.demand_score;
-  const roiScore = skillData.roi_score;
+  const missingItem = roadmap?.missing_skills?.find(
+    (item) => item.skill.toLowerCase() === (skillData?.skill || "").toLowerCase()
+  );
+  const isRecognized = roadmap?.recognized_skills?.some(
+    (s) => s.toLowerCase() === (skillData?.skill || "").toLowerCase()
+  );
 
   return (
     <div className="bg-surface text-on-surface font-body-md antialiased pt-20 lg:pl-64 min-h-screen">
-      <Navbar />
+      <Navbar showNavLinks={false} />
       <SideNavBar />
 
       <main className="max-w-[container-max] mx-auto p-margin-mobile md:p-gutter pb-32">
@@ -172,66 +142,78 @@ const SkillDetail = () => {
               </div>
             </div>
           </div>
-
-          <div className="rounded-xl p-4 flex items-center justify-center bg-surface-bright w-full md:w-64 h-24 relative overflow-hidden shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-            <div className="z-10 flex flex-col items-center">
-              <div className="text-waypoint font-headline-lg text-2xl font-bold">{skillData.count || 0}</div>
-              <span className="text-data-sm font-data-sm text-waypoint mt-1 font-bold bg-surface/80 px-2 rounded">
-                Job Mentions
-              </span>
-            </div>
-          </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
           {/* Metric Cards */}
-          <div className="md:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-gutter">
-            {/* Demand Score */}
-            <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-              <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
-                <span className="material-symbols-outlined" style={{ fontSize: "120px" }}>bar_chart</span>
-              </div>
-              <div className="z-10">
-                <div className="text-data-sm font-data-sm text-outline mb-2 uppercase tracking-wider">Demand Score</div>
-                <div className="flex items-end gap-2">
-                  <span className="text-headline-xl font-headline-xl text-on-surface">
-                    {demandScore !== undefined && demandScore !== null ? demandScore : "N/A"}
-                  </span>
-                  {demandScore !== undefined && demandScore !== null && (
-                    <span className="text-data-lg font-data-lg text-outline mb-1">/100</span>
-                  )}
+          <div className="md:col-span-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              {/* Demand Card (Always Available) */}
+              <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] border border-outline-variant/20">
+                <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
+                  <span className="material-symbols-outlined" style={{ fontSize: "120px" }}>bar_chart</span>
+                </div>
+                <div className="z-10">
+                  <div className="text-data-sm font-data-sm text-outline mb-2 uppercase tracking-wider font-bold">Demand</div>
+                  <div className="flex items-end gap-2">
+                    <span className="text-headline-xl font-headline-xl text-on-surface font-extrabold">
+                      {skillData?.count || 0}
+                    </span>
+                    <span className="text-data-sm font-bold text-secondary mb-1">job openings</span>
+                  </div>
+                  <p className="text-data-sm font-semibold text-secondary mt-1">Appears in {skillData?.count || 0} job listings</p>
+                </div>
+                <div className="z-10 mt-4 h-2 bg-surface-container rounded-full overflow-hidden">
+                  <div className="h-full bg-primary rounded-full w-full"></div>
                 </div>
               </div>
-              <div className="z-10 mt-4 h-2 bg-surface-container rounded-full overflow-hidden shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]">
-                <div
-                  className="h-full bg-primary rounded-full transition-all"
-                  style={{ width: demandScore !== undefined && demandScore !== null ? `${demandScore}%` : "0%" }}
-                ></div>
-              </div>
-            </div>
 
-            {/* ROI Score */}
-            <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group border-l-4 border-waypoint shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-              <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
-                <span className="material-symbols-outlined" style={{ fontSize: "120px" }}>rocket_launch</span>
-              </div>
-              <div className="z-10">
-                <div className="text-data-sm font-data-sm text-outline mb-2 uppercase tracking-wider">ROI Score</div>
-                <div className="text-headline-xl font-headline-xl text-waypoint">
-                  {roiScore !== undefined && roiScore !== null ? roiScore : "N/A"}
+              {/* ROI Card / CTA Banner */}
+              {missingItem ? (
+                <div className="rounded-xl p-6 bg-surface-bright flex flex-col justify-between relative overflow-hidden group border-l-4 border-waypoint shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
+                  <div className="absolute -right-4 -top-4 text-surface-container opacity-50 transform group-hover:scale-110 transition-transform duration-500">
+                    <span className="material-symbols-outlined" style={{ fontSize: "120px" }}>rocket_launch</span>
+                  </div>
+                  <div className="z-10">
+                    <div className="text-data-sm font-data-sm text-outline mb-2 uppercase tracking-wider font-bold">ROI Score</div>
+                    <div className="text-headline-xl font-headline-xl text-waypoint font-extrabold">
+                      {Math.round(missingItem.roi_score || 0)}
+                    </div>
+                    <p className="text-data-sm font-semibold text-secondary mt-1">Priority skill-gap item</p>
+                  </div>
+                  <div className="z-10 mt-4 h-2 bg-surface-container rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-waypoint rounded-full"
+                      style={{ width: `${Math.min(100, Math.round(missingItem.roi_score || 0))}%` }}
+                    ></div>
+                  </div>
                 </div>
-              </div>
-              <div className="z-10 mt-4 h-2 bg-surface-container rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-waypoint rounded-full"
-                  style={{ width: roiScore !== undefined && roiScore !== null ? `${Math.min(roiScore, 100)}%` : "0%" }}
-                ></div>
-              </div>
+              ) : (
+                <div 
+                  onClick={() => navigate('/roadmap')}
+                  className="rounded-xl p-6 bg-gradient-to-r from-success/10 via-surface-bright to-surface flex items-center justify-between border border-success/20 shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)] cursor-pointer hover:border-success/40 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="material-symbols-outlined text-success text-2xl">check_circle</span>
+                    <div>
+                      <h4 className="font-bold text-on-surface text-body-md group-hover:text-primary transition-colors">
+                        Already strong here
+                      </h4>
+                      <p className="text-body-sm text-secondary">
+                        See what's next on your roadmap →
+                      </p>
+                    </div>
+                  </div>
+                  <span className="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">
+                    arrow_forward
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
           {/* Market Analysis */}
-          <div className="md:col-span-8 flex flex-col gap-gutter">
+          <div className="md:col-span-12 flex flex-col gap-gutter">
             <section className="rounded-xl p-8 bg-surface-bright shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
               <div className="flex items-center gap-3 mb-6 border-b pb-4" style={{ borderBottom: "1px solid #c7c4d7" }}>
                 <span className="material-symbols-outlined text-tertiary">smart_toy</span>
@@ -283,41 +265,6 @@ const SkillDetail = () => {
                 </div>
               </section>
             )}
-          </div>
-
-          {/* Top Employers */}
-          <div className="md:col-span-4 flex flex-col gap-gutter">
-            <section className="rounded-xl p-6 bg-surface-bright shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-              <div className="flex items-center justify-between mb-6 border-b pb-4" style={{ borderBottom: "1px solid #c7c4d7" }}>
-                <div className="flex items-center gap-3">
-                  <span className="material-symbols-outlined text-secondary">domain</span>
-                  <h2 className="text-data-lg font-data-lg text-on-surface font-bold">Top Employers</h2>
-                </div>
-              </div>
-              <div className="space-y-4">
-                {domainData?.top_companies && domainData.top_companies.length > 0 ? (
-                  domainData.top_companies.slice(0, 5).map((comp, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center justify-between p-3 rounded-lg bg-surface hover:bg-surface-bright transition-colors cursor-pointer border border-transparent hover:border-outline-variant shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)]"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded bg-white flex items-center justify-center font-data-lg text-primary font-bold shadow-[4px_4px_10px_rgba(163,177,198,0.5),-4px_-4px_10px_rgba(255,255,255,0.8)]">
-                          {comp.company.substring(0, 2).toUpperCase()}
-                        </div>
-                        <div>
-                          <div className="text-body-sm font-body-sm font-bold text-on-surface">{comp.company}</div>
-                          <div className="text-data-sm font-data-sm text-on-surface-variant">{comp.count} Open Roles</div>
-                        </div>
-                      </div>
-                      <span className="material-symbols-outlined text-outline">chevron_right</span>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-body-sm text-on-surface-variant">No company data available.</p>
-                )}
-              </div>
-            </section>
           </div>
         </div>
       </main>

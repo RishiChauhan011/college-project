@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T05:35:33.127510+00:00",
+  "generated_at": "2026-08-21T07:26:29.013755+00:00",
   "overall": {
     "total_jobs": 2986,
     "total_unique_skills_matched": 112,
@@ -103,10 +103,6 @@
         "count": 31
       },
       {
-        "company": "Unknown",
-        "count": 29
-      },
-      {
         "company": "AKS University",
         "count": 22
       },
@@ -124,6 +120,10 @@
       },
       {
         "company": "Qrata",
+        "count": 15
+      },
+      {
+        "company": "Deutsche Bank",
         "count": 15
       }
     ],
@@ -815,10 +815,6 @@
       },
       "top_companies": [
         {
-          "company": "Unknown",
-          "count": 6
-        },
-        {
           "company": "Talent Pro",
           "count": 4
         },
@@ -852,6 +848,10 @@
         },
         {
           "company": "Digital Refresh Networks",
+          "count": 2
+        },
+        {
+          "company": "Pepper",
           "count": 2
         }
       ],
@@ -1187,10 +1187,6 @@
           "count": 22
         },
         {
-          "company": "Unknown",
-          "count": 15
-        },
-        {
           "company": "iSchools Inc.",
           "count": 10
         },
@@ -1220,6 +1216,10 @@
         },
         {
           "company": "Adhyaapan",
+          "count": 4
+        },
+        {
+          "company": "Apeejay Education",
           "count": 4
         }
       ],
