@@ -17,4 +17,4 @@ router = APIRouter()
     ),
 )
 async def role_fit(request: RoleFitRequest):
-    return get_role_fit(request.resume_skills)
+    return get_role_fit(request.resume_skills, target_domain=request.target_domain)

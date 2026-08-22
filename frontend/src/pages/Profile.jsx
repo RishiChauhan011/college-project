@@ -88,12 +88,20 @@ const Profile = () => {
                   Manage your professional identity and career preferences.
                 </p>
               </div>
-              <Link
-                to="/profile/edit"
-                className="bg-surface text-primary px-4 py-2 rounded-lg font-data-sm text-data-sm hover:bg-surface-container-low transition-all flex items-center gap-2 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)] w-fit"
-              >
-                <span className="material-symbols-outlined text-[18px]">edit</span> Edit Profile
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link
+                  to="/profile/edit"
+                  className="bg-surface text-primary px-4 py-2 rounded-lg font-data-sm text-data-sm hover:bg-surface-container-low transition-all flex items-center gap-2 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]"
+                >
+                  <span className="material-symbols-outlined text-[18px]">edit</span> Edit Profile
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="bg-surface text-error border border-error/20 px-4 py-2 rounded-lg font-data-sm text-data-sm hover:bg-error/10 transition-all flex items-center gap-2 shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]"
+                >
+                  <span className="material-symbols-outlined text-[18px]">logout</span> Logout
+                </button>
+              </div>
             </div>
 
             {/* Bento Grid */}

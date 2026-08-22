@@ -120,9 +120,10 @@ def get_domain_names() -> list:
     return list(analytics.get("by_domain", {}).keys())
 
 def get_role_classifier():
-    """Return the cached (model, feature_columns) tuple for the role
+    """Return the cached (model, feature_columns, role_to_domain) tuple for the role
     classifier. Loaded once at startup - never re-read from disk here."""
     global _role_classifier_model, _role_classifier_features
     if _role_classifier_model is None:
         preload_data()
-    return _role_classifier_model, _role_classifier_features["feature_columns"]
+    role_to_domain = _role_classifier_features.get("role_to_domain", {})
+    return _role_classifier_model, _role_classifier_features["feature_columns"], role_to_domain

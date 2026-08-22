@@ -156,10 +156,7 @@ const SignupLogin = () => {
                 </div>
               </div>
               <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="block font-data-sm text-data-sm text-secondary uppercase tracking-widest" htmlFor="login-password">Password</label>
-                  <Link className="font-data-sm text-data-sm text-waypoint hover:text-primary transition-colors cursor-pointer" to="#">Forgot?</Link>
-                </div>
+                <label className="block font-data-sm text-data-sm text-secondary mb-2 uppercase tracking-widest" htmlFor="login-password">Password</label>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
                   <input className="w-full bg-surface-container-lowest border-none rounded-lg py-3 pl-10 pr-10 font-body-sm text-body-sm text-on-surface placeholder:text-outline-variant shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4),inset_-2px_-2px_5px_rgba(255,255,255,0.7)] focus:ring-2 focus:ring-waypoint focus:outline-none transition-shadow" id="login-password" placeholder="••••••••" required type={showLoginPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -169,7 +166,7 @@ const SignupLogin = () => {
                 </div>
               </div>
               <button disabled={isLoading} type="submit" className="w-full bg-primary-container text-on-primary-container font-data-lg text-data-lg py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-primary transition-colors elevation-1 active:scale-[0.98] disabled:opacity-50">
-                <span>{isLoading ? 'Processing...' : 'Initialize Session'}</span><span className="material-symbols-outlined">arrow_forward</span>
+                <span>{isLoading ? 'Processing...' : 'Log In'}</span><span className="material-symbols-outlined">arrow_forward</span>
               </button>
 
             </form>

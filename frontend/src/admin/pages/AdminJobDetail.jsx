@@ -141,7 +141,7 @@ const AdminJobDetail = () => {
                     <span className="material-symbols-outlined text-[18px] text-primary">domain</span> {job.company}
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[18px] text-secondary">location_on</span> {job.city || 'Remote'}, {job.state || 'India'}
+                    <span className="material-symbols-outlined text-[18px] text-secondary">location_on</span> {[job.city, job.state].map(p => (p || '').trim()).filter(p => p && p.toLowerCase() !== 'unknown').join(', ') || 'Remote'}
                   </span>
                 </div>
               </div>

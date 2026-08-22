@@ -6,7 +6,7 @@ const SideNavBar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   const getRoleText = () => {
     if (!user) return 'Guest User';
@@ -14,11 +14,6 @@ const SideNavBar = () => {
     if (user.profile?.preferred_field) return user.profile.preferred_field;
     if (user.profile?.skills?.length > 0) return user.profile.skills[0];
     return 'User';
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
   };
 
   return (
@@ -62,17 +57,6 @@ const SideNavBar = () => {
           <span className="text-body-sm font-body-sm">About</span>
         </Link>
       </nav>
-      {user && (
-        <div className="mt-auto flex flex-col gap-2 pt-4 border-t border-outline-variant/30">
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-all px-4 py-3 rounded-xl w-full text-left font-semibold"
-          >
-            <span className="material-symbols-outlined text-[20px]">logout</span>
-            <span className="text-body-sm font-body-sm">Logout</span>
-          </button>
-        </div>
-      )}
     </aside>
   );
 };

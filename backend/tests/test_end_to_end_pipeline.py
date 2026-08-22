@@ -98,7 +98,7 @@ def pipeline_result():
 
     skills = resume_result["skills"]
 
-    role_fit_result = get_role_fit(skills)
+    role_fit_result = get_role_fit(skills, TARGET_DOMAIN)
     recommendation_result = get_recommendation(skills, TARGET_DOMAIN)
 
     return {
@@ -191,7 +191,7 @@ def _run_manual_summary():
     resume_result = parse_resume(pdf_bytes, "pdf")
     skills = resume_result["skills"]
 
-    role_fit_result = get_role_fit(skills)
+    role_fit_result = get_role_fit(skills, TARGET_DOMAIN)
     recommendation_result = get_recommendation(skills, TARGET_DOMAIN)
 
     print("=" * 60)

@@ -26,9 +26,16 @@ const CompanyDetail = () => {
     loadCompanyJobs();
   }, [companyName]);
 
+  const formatLocation = (city, state, fallback = 'Multiple Locations') => {
+    const parts = [city, state]
+      .map((p) => (p || '').trim())
+      .filter((p) => p && p.toLowerCase() !== 'unknown');
+    return parts.length > 0 ? parts.join(', ') : fallback;
+  };
+
   const totalPositions = jobs.length;
   const primaryDomain = jobs[0]?.career_domain || 'Technology & Engineering';
-  const sampleLocation = jobs[0]?.city ? `${jobs[0].city}, ${jobs[0].state || ''}` : 'Multiple Locations';
+  const sampleLocation = formatLocation(jobs[0]?.city, jobs[0]?.state, 'Multiple Locations');
 
   return (
     <div className="font-body-md text-body-md antialiased overflow-x-hidden min-h-screen bg-surface">
@@ -68,7 +75,7 @@ const CompanyDetail = () => {
         </div>
 
         {/* Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-surface rounded-xl p-5 elevation-1 border border-outline-variant/20">
             <h3 className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">Total Openings</h3>
             <div className="text-headline-lg font-bold text-primary">{totalPositions}</div>
@@ -78,11 +85,6 @@ const CompanyDetail = () => {
             <h3 className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">Primary Domain</h3>
             <div className="text-headline-lg text-[18px] font-bold text-on-surface truncate">{primaryDomain}</div>
             <p className="text-xs text-secondary mt-1">Core specialization</p>
-          </div>
-          <div className="bg-surface rounded-xl p-5 elevation-1 border border-outline-variant/20">
-            <h3 className="text-xs font-bold text-secondary uppercase tracking-wider mb-2">Taxonomy Coverage</h3>
-            <div className="text-headline-lg font-bold text-success">100%</div>
-            <p className="text-xs text-secondary mt-1">Skills mapped to database</p>
           </div>
         </div>
 
@@ -121,7 +123,7 @@ const CompanyDetail = () => {
                       className="border-b border-outline-variant/10 hover:bg-surface-bright transition-colors"
                     >
                       <td className="py-3.5 px-6 font-bold text-primary">{job.title}</td>
-                      <td className="py-3.5 px-6 text-secondary">{job.city || 'Remote'}</td>
+                      <td className="py-3.5 px-6 text-secondary">{formatLocation(job.city, job.state, 'Remote')}</td>
                       <td className="py-3.5 px-6 text-xs text-on-surface-variant font-medium">{job.career_domain}</td>
                       <td className="py-3.5 px-6 text-center">
                         <span className="px-2.5 py-1 bg-surface-container-highest rounded text-xs font-bold text-secondary">

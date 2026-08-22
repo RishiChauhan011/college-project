@@ -222,54 +222,65 @@ const Roadmap = () => {
                  const lines = text.split('\n').filter((l) => l.trim());
                  
                  const renderFormattedText = (rawStr) => {
-                   const parts = rawStr.split(/(\*\*.*?\*\*|<b>.*?<\/b>)/g);
-                   return parts.map((part, partIdx) => {
-                     if (part.startsWith('**') && part.endsWith('**')) {
-                       return (
-                         <strong key={partIdx} className="font-bold text-on-surface">
-                           {part.slice(2, -2)}
-                         </strong>
-                       );
-                     } else if (part.startsWith('<b>') && part.endsWith('</b>')) {
-                       return (
-                         <strong key={partIdx} className="font-bold text-on-surface">
-                           {part.slice(3, -4)}
-                         </strong>
-                       );
-                     }
-                     return part;
-                   });
-                 };
+                    const parts = rawStr.split(/(\*\*.*?\*\*|<b>.*?<\/b>|^[A-Za-z0-9\s/&+-]+:)/g);
+                    return parts.map((part, partIdx) => {
+                      if (!part) return null;
+                      if (part.startsWith('**') && part.endsWith('**')) {
+                        return (
+                          <strong key={partIdx} className="font-semibold text-[#1E293B]">
+                            {part.slice(2, -2)}
+                          </strong>
+                        );
+                      } else if (part.startsWith('<b>') && part.endsWith('</b>')) {
+                        return (
+                          <strong key={partIdx} className="font-semibold text-[#1E293B]">
+                            {part.slice(3, -4)}
+                          </strong>
+                        );
+                      } else if (partIdx === 1 && part.endsWith(':') && !part.includes('http')) {
+                        return (
+                          <strong key={partIdx} className="font-semibold text-[#1E293B] mr-1">
+                            {part}
+                          </strong>
+                        );
+                      }
+                      return (
+                        <span key={partIdx} className="text-[#1E293B]">
+                          {part}
+                        </span>
+                      );
+                    });
+                  };
 
-                 const bulletLines = lines.filter((l) => l.trim().startsWith('- ') || l.trim().startsWith('* '));
-                 const nonBulletLines = lines.filter((l) => !l.trim().startsWith('- ') && !l.trim().startsWith('* '));
+                  const bulletLines = lines.filter((l) => l.trim().startsWith('- ') || l.trim().startsWith('* '));
+                  const nonBulletLines = lines.filter((l) => !l.trim().startsWith('- ') && !l.trim().startsWith('* '));
 
-                 return (
-                   <div className="space-y-3">
-                     {nonBulletLines.slice(0, 1).map((para, idx) => (
-                       <p key={`head-${idx}`} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                         {renderFormattedText(para)}
-                       </p>
-                     ))}
+                  return (
+                    <div className="space-y-3 text-[#1E293B]">
+                      {nonBulletLines.slice(0, 1).map((para, idx) => (
+                        <p key={`head-${idx}`} className="font-body-md text-body-md text-[#1E293B] leading-[1.65]">
+                          {renderFormattedText(para)}
+                        </p>
+                      ))}
 
-                     {bulletLines.length > 0 && (
-                       <ul className="list-disc pl-6 space-y-2 my-3 text-body-md text-on-surface-variant">
-                         {bulletLines.map((bLine, bIdx) => (
-                           <li key={bIdx} className="leading-relaxed">
-                             {renderFormattedText(bLine.trim().replace(/^[-*]\s+/, ''))}
-                           </li>
-                         ))}
-                       </ul>
-                     )}
+                      {bulletLines.length > 0 && (
+                        <ul className="list-disc pl-6 space-y-2.5 my-3 text-[#1E293B]">
+                          {bulletLines.map((bLine, bIdx) => (
+                            <li key={bIdx} className="text-[#1E293B] leading-[1.65]">
+                              {renderFormattedText(bLine.trim().replace(/^[-*]\s+/, ''))}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
 
-                     {nonBulletLines.slice(1).map((para, idx) => (
-                       <p key={`tail-${idx}`} className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                         {renderFormattedText(para)}
-                       </p>
-                     ))}
-                   </div>
-                 );
-               })()}
+                      {nonBulletLines.slice(1).map((para, idx) => (
+                        <p key={`tail-${idx}`} className="font-body-md text-body-md text-[#1E293B] leading-[1.65]">
+                          {renderFormattedText(para)}
+                        </p>
+                      ))}
+                    </div>
+                  );
+                })()}
              </div>
           )}
         </div>

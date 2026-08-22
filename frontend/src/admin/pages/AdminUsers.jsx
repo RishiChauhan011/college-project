@@ -7,17 +7,13 @@ const AdminUsers = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
-  const [search, setSearch] = useState('');
-  const [fieldFilter, setFieldFilter] = useState('All');
   const [loading, setLoading] = useState(true);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams();
-      if (search) queryParams.append('search', search);
-      const res = await fetchApi(`/admin/users?${queryParams.toString()}`);
+      const res = await fetchApi('/admin/users');
       setUsers(res.users || []);
       setTotal(res.total || 0);
     } catch (err) {
@@ -28,59 +24,20 @@ const AdminUsers = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchUsers();
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [search]);
-
-  const filteredUsers = users.filter((u) => {
-    if (fieldFilter === 'All') return true;
-    return (u.preferred_field || '').toLowerCase().includes(fieldFilter.toLowerCase());
-  });
+    fetchUsers();
+  }, []);
 
   return (
-    <AdminLayout searchTerm={search} setSearchTerm={setSearch} searchPlaceholder="Search users by name or email...">
+    <AdminLayout>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 gap-4">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <div>
           <h2 className="font-headline-lg text-headline-lg text-on-surface font-bold">Users Management</h2>
           <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">Total operational awareness of registered personnel ({total} registered).</p>
         </div>
-      </div>
-
-      {/* Table Controls */}
-      <div className="bg-surface-container-lowest rounded-xl p-4 mb-6 flex flex-wrap gap-4 items-center justify-between shadow-[2px_2px_6px_rgba(163,177,198,0.4),-2px_-2px_6px_rgba(255,255,255,0.9)]">
-        <div className="flex flex-wrap gap-4 items-center flex-1">
-          <div className="bg-surface px-3 py-1.5 rounded-lg flex items-center w-64 border border-outline-variant/40 shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)]">
-            <span className="material-symbols-outlined text-on-surface-variant text-sm mr-2">search</span>
-            <input
-              className="bg-transparent border-none outline-none font-data-sm text-data-sm w-full text-on-surface placeholder-on-surface-variant/70 focus:ring-0 p-0"
-              placeholder="Filter by name or email..."
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
-          <div className="flex items-center space-x-2">
-            <span className="font-data-sm text-[11px] font-bold text-on-surface-variant uppercase">Field:</span>
-            <select
-              value={fieldFilter}
-              onChange={(e) => setFieldFilter(e.target.value)}
-              className="bg-surface border-outline-variant/40 rounded-lg font-data-sm text-data-sm text-on-surface py-1.5 pl-3 pr-8 focus:ring-primary focus:border-primary shadow-[inset_2px_2px_5px_rgba(163,177,198,0.4)]"
-            >
-              <option value="All">All Fields</option>
-              <option value="AI & Data Science">AI &amp; Data Science</option>
-              <option value="Software Engineering">Software Engineering</option>
-              <option value="Cloud">Cloud &amp; DevOps</option>
-            </select>
-          </div>
-        </div>
-        <div className="flex items-center space-x-2 text-on-surface-variant">
-          <button onClick={fetchUsers} className="p-2 hover:text-primary transition-colors rounded-lg hover:bg-surface-bright" title="Refresh">
-            <span className="material-symbols-outlined text-[18px]">refresh</span>
-          </button>
-        </div>
+        <button onClick={fetchUsers} className="p-2.5 hover:text-primary transition-colors rounded-lg bg-surface-container-lowest border border-outline-variant/30 text-on-surface-variant flex items-center gap-1.5 font-data-sm text-data-sm" title="Refresh Users">
+          <span className="material-symbols-outlined text-[18px]">refresh</span> Refresh
+        </button>
       </div>
 
       {/* Data Table */}
@@ -105,8 +62,8 @@ const AdminUsers = () => {
                     Loading user catalog...
                   </td>
                 </tr>
-              ) : filteredUsers.length > 0 ? (
-                filteredUsers.map((u) => {
+              ) : users.length > 0 ? (
+                users.map((u) => {
                   const initials = u.name ? u.name.split(' ').map((n) => n[0]).join('').toUpperCase().slice(0, 2) : 'US';
                   return (
                     <tr
@@ -163,7 +120,7 @@ const AdminUsers = () => {
               ) : (
                 <tr>
                   <td colSpan="6" className="py-8 text-center text-secondary">
-                    No users matching criteria found in the database.
+                    No users found in the database.
                   </td>
                 </tr>
               )}

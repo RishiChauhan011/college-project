@@ -113,7 +113,10 @@ export const DashboardDataProvider = ({ children }) => {
           const uniqueSkills = [...new Set(userSkills.map((s) => s.toLowerCase()))];
           const fit = await fetchApi('/role-fit', {
             method: 'POST',
-            body: JSON.stringify({ resume_skills: uniqueSkills }),
+            body: JSON.stringify({
+              resume_skills: uniqueSkills,
+              target_domain: domain,
+            }),
           });
           setRoleFit(fit);
 

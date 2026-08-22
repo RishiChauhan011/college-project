@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 SUPPORTED_DOMAIN = "AI & Data Science"
 
 
-def get_role_fit(skills: list[str]) -> dict:
+def get_role_fit(skills: list[str], target_domain: str | None = None) -> dict:
     """Predict the best-fit role for a given skill list, using the
     pre-trained, startup-cached role classifier model (no per-request
     disk I/O - see utils/data_loader.py)."""
@@ -19,14 +19,14 @@ def get_role_fit(skills: list[str]) -> dict:
 
     try:
         from ml.role_classifier import predict_role_cached
-        model, feature_columns = get_role_classifier()
-        result = predict_role_cached(skills, model, feature_columns)
+        model, feature_columns, role_to_domain = get_role_classifier()
+        result = predict_role_cached(skills, model, feature_columns, role_to_domain, target_domain)
 
         return {
             "predicted_role": result["predicted_role"],
             "confidence": result["confidence"],
             "all_probabilities": result["all_probabilities"],
-            "domain": SUPPORTED_DOMAIN,
+            "domain": target_domain or "All Domains",
         }
     except Exception as e:
         logger.error(f"Error executing role classifier: {e}", exc_info=True)

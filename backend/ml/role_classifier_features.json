@@ -116,6 +116,27 @@
     "Wireframing"
   ],
   "model_type": "Logistic Regression",
-  "domain": "AI & Data Science",
-  "accuracy": 0.8551724137931035
+  "role_to_domain": {
+    "AI Engineer": "AI & Data Science",
+    "Data Analyst": "AI & Data Science",
+    "Data Scientist": "AI & Data Science",
+    "ML Engineer": "AI & Data Science",
+    "Business Analyst": "Business Analytics",
+    "Business Intelligence Analyst": "Business Analytics",
+    "Content Strategist": "Digital Marketing",
+    "Digital Marketing Executive": "Digital Marketing",
+    "SEO Specialist": "Digital Marketing",
+    "Social Media Manager": "Digital Marketing",
+    "Educator": "Education",
+    "Graphic Designer": "Graphic Design",
+    "Motion Designer": "Graphic Design",
+    "UI Designer": "Graphic Design",
+    "UX Designer": "Graphic Design",
+    "Backend Developer": "Software Development",
+    "Full Stack Developer": "Software Development",
+    "Java Developer": "Software Development",
+    "Python Developer": "Software Development",
+    "Software Engineer": "Software Development"
+  },
+  "accuracy": 0.7859531772575251
 }

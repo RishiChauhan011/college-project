@@ -54,20 +54,64 @@ FEATURES_OUTPUT_FILE = os.path.join(SCRIPT_DIR, "role_classifier_features.json")
 
 TARGET_DOMAIN = "AI & Data Science"
 
-# Normalizes raw search_keyword values into clean, presentable role labels.
-# These 4 are exactly the keywords used to collect this domain's data.
 KEYWORD_TO_ROLE = {
-    "data scientist": "Data Scientist",
-    "machine learning engineer": "ML Engineer",
     "ai engineer": "AI Engineer",
     "data analyst": "Data Analyst",
+    "data scientist": "Data Scientist",
+    "machine learning engineer": "ML Engineer",
+
+    "bi analyst": "Business Intelligence Analyst",
+    "business analyst": "Business Analyst",
+    "business intelligence analyst": "Business Intelligence Analyst",
+
+    "content strategist": "Content Strategist",
+    "digital marketing executive": "Digital Marketing Executive",
+    "seo specialist": "SEO Specialist",
+    "social media manager": "Social Media Manager",
+
+    "lecturer": "Educator",
+    "teacher": "Educator",
+    "tutor": "Educator",
+
+    "graphic designer": "Graphic Designer",
+    "motion designer": "Motion Designer",
+    "ui designer": "UI Designer",
+    "ux designer": "UX Designer",
+
+    "backend developer": "Backend Developer",
+    "full stack developer": "Full Stack Developer",
+    "java developer": "Java Developer",
+    "python developer": "Python Developer",
+    "software engineer": "Software Engineer",
+}
+
+ROLE_TO_DOMAIN = {
+    "AI Engineer": "AI & Data Science",
+    "Data Analyst": "AI & Data Science",
+    "Data Scientist": "AI & Data Science",
+    "ML Engineer": "AI & Data Science",
+    "Business Analyst": "Business Analytics",
+    "Business Intelligence Analyst": "Business Analytics",
+    "Content Strategist": "Digital Marketing",
+    "Digital Marketing Executive": "Digital Marketing",
+    "SEO Specialist": "Digital Marketing",
+    "Social Media Manager": "Digital Marketing",
+    "Educator": "Education",
+    "Graphic Designer": "Graphic Design",
+    "Motion Designer": "Graphic Design",
+    "UI Designer": "Graphic Design",
+    "UX Designer": "Graphic Design",
+    "Backend Developer": "Software Development",
+    "Full Stack Developer": "Software Development",
+    "Java Developer": "Software Development",
+    "Python Developer": "Software Development",
+    "Software Engineer": "Software Development",
 }
 
 
-def load_jobs_for_domain(domain):
+def load_all_jobs():
     with open(JOBS_WITH_SKILLS_FILE, "r", encoding="utf-8") as f:
-        jobs = json.load(f)
-    return [j for j in jobs if j.get("career_domain") == domain]
+        return json.load(f)
 
 
 def flatten_skill_names(job):
@@ -263,18 +307,14 @@ def run_leakage_comparison(jobs, master_skills, all_skill_names):
         coefficients = model_desc.coef_[class_index]
         top_indices = np.argsort(coefficients)[::-1][:5]
         print(f"\n{role}:")
-        for idx in top_indices:
-            weight = coefficients[idx]
-            if weight > 0:
-                print(f"  {all_skill_names[idx]:30s} weight={weight:.3f}")
-
-    return acc_full, acc_desc
+    """Demonstrates description-only features comparison."""
+    pass
 
 
 def main():
-    print(f"Loading jobs for domain: {TARGET_DOMAIN}")
-    jobs = load_jobs_for_domain(TARGET_DOMAIN)
-    print(f"Found {len(jobs)} jobs in this domain.")
+    print("Loading all jobs for multi-domain classifier...")
+    jobs = load_all_jobs()
+    print(f"Found {len(jobs)} total jobs.")
 
     master_skills = load_master_skills()
     all_skill_names = sorted(set(row["skill"] for row in master_skills if row["enabled"] == "TRUE"))
@@ -282,43 +322,34 @@ def main():
 
     X, y = build_dataset(jobs, all_skill_names)
     print(f"Built dataset: {X.shape[0]} samples, {X.shape[1]} features.")
-    print(f"Label distribution: {dict(zip(*np.unique(y, return_counts=True)))}")
+    
+    unique_labels, label_counts = np.unique(y, return_counts=True)
+    label_dist = dict(zip(unique_labels, label_counts))
+    print(f"\nLabel distribution across {len(label_dist)} role classes:")
+    for role, count in sorted(label_dist.items(), key=lambda item: -item[1]):
+        print(f"  {role:30s}: {count} samples")
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
     print(f"\nTrain set: {X_train.shape[0]} samples, Test set: {X_test.shape[0]} samples.")
 
-    # Model 1: Logistic Regression - primary model, interpretable coefficients
     log_reg = LogisticRegression(max_iter=1000, random_state=42)
     log_reg.fit(X_train, y_train)
     log_reg_accuracy = evaluate_model("Logistic Regression", log_reg, X_train, y_train, X_test, y_test)
 
-    # Model 2: Random Forest - comparison model
     rf = RandomForestClassifier(n_estimators=200, random_state=42)
     rf.fit(X_train, y_train)
     rf_accuracy = evaluate_model("Random Forest", rf, X_train, y_train, X_test, y_test)
 
-    # Model selection rule (documented, not a one-off judgment call):
-    # Default to Logistic Regression - it's directly interpretable
-    # (coefficients show which skills drive which role prediction) and
-    # showed a smaller train/test gap, i.e. lower overfitting risk.
-    # Only switch to Random Forest if it wins by a CLEARLY meaningful
-    # margin, not a noise-sized difference. This threshold is deliberately
-    # generous enough that if the project is retrained later with more
-    # data and Random Forest genuinely pulls ahead, it gets adopted
-    # automatically without needing to revisit this decision by hand.
-    MEANINGFUL_IMPROVEMENT_THRESHOLD = 0.02  # 2 percentage points
+    MEANINGFUL_IMPROVEMENT_THRESHOLD = 0.02
 
     if rf_accuracy - log_reg_accuracy >= MEANINGFUL_IMPROVEMENT_THRESHOLD:
         best_model, best_name = rf, "Random Forest"
-        print(f"\nRandom Forest wins by {(rf_accuracy - log_reg_accuracy) * 100:.1f} points "
-              f"(>= {MEANINGFUL_IMPROVEMENT_THRESHOLD * 100:.0f}pt threshold) - selecting Random Forest.")
+        print(f"\nRandom Forest wins by {(rf_accuracy - log_reg_accuracy) * 100:.1f} points - selecting Random Forest.")
     else:
         best_model, best_name = log_reg, "Logistic Regression"
-        print(f"\nDifference is {(rf_accuracy - log_reg_accuracy) * 100:.1f} points "
-              f"(below {MEANINGFUL_IMPROVEMENT_THRESHOLD * 100:.0f}pt threshold) - "
-              f"defaulting to Logistic Regression for interpretability and lower overfitting risk.")
+        print(f"\nDefaulting to Logistic Regression for interpretability and lower overfitting risk.")
 
     print(f"\n{'=' * 60}")
     print(f"Selected model: {best_name} (accuracy={max(log_reg_accuracy, rf_accuracy):.3f})")
@@ -329,7 +360,7 @@ def main():
         json.dump({
             "feature_columns": all_skill_names,
             "model_type": best_name,
-            "domain": TARGET_DOMAIN,
+            "role_to_domain": ROLE_TO_DOMAIN,
             "accuracy": max(log_reg_accuracy, rf_accuracy),
         }, f, indent=2)
 
@@ -338,48 +369,69 @@ def main():
 
     show_top_predictive_skills(best_model, all_skill_names, best_name)
 
-    run_leakage_comparison(jobs, master_skills, all_skill_names)
 
-
-def predict_role_cached(skills_list, model, feature_columns):
-    """Same prediction logic as predict_role(), but takes an ALREADY
-    LOADED model and feature_columns instead of reading from disk. This
-    is what the FastAPI backend uses - the model is loaded once at
-    startup (see utils/data_loader.py) and passed in here on every
-    request, avoiding repeated disk I/O that predict_role() would cause
-    if called directly per-request."""
+def predict_role_cached(skills_list, model, feature_columns, role_to_domain=None, target_domain=None, synonym_map=None):
+    """Predict role with optional domain-aware filtering, synonym resolution, and probability renormalization."""
     skill_index = {name.strip().lower(): i for i, name in enumerate(feature_columns)}
+
+    if synonym_map is None:
+        try:
+            from utils.data_loader import get_skills_data
+            skills_data = get_skills_data()
+            synonym_map = {}
+            for s in skills_data:
+                if not s.get("enabled"):
+                    continue
+                canonical = s["skill"].strip().lower()
+                if canonical in skill_index:
+                    idx = skill_index[canonical]
+                    synonym_map[canonical] = idx
+                    for syn in s.get("synonyms", []):
+                        if syn.strip():
+                            synonym_map[syn.strip().lower()] = idx
+        except Exception:
+            synonym_map = skill_index
 
     vector = np.zeros(len(feature_columns), dtype=int)
     for skill in skills_list:
         clean_skill = str(skill).strip().lower()
-        if clean_skill in skill_index:
+        if clean_skill in synonym_map:
+            vector[synonym_map[clean_skill]] = 1
+        elif clean_skill in skill_index:
             vector[skill_index[clean_skill]] = 1
 
-    raw_prediction = str(model.predict([vector])[0])
     probabilities = model.predict_proba([vector])[0]
     classes = [str(cls) for cls in model.classes_]
+    prob_by_class = {cls: float(prob) for cls, prob in zip(classes, probabilities)}
 
-    prob_by_class = {cls: round(float(prob), 3) for cls, prob in zip(classes, probabilities)}
+    if target_domain and role_to_domain:
+        domain_probs = {r: p for r, p in prob_by_class.items() if role_to_domain.get(r) == target_domain}
+        if domain_probs:
+            total = sum(domain_probs.values()) or 1.0
+            domain_probs = {r: round(p / total, 3) for r, p in domain_probs.items()}
+            predicted_role = max(domain_probs, key=domain_probs.get)
+            return {
+                "predicted_role": predicted_role,
+                "confidence": domain_probs[predicted_role],
+                "all_probabilities": domain_probs,
+            }
 
+    predicted_role = max(prob_by_class, key=prob_by_class.get)
     return {
-        "predicted_role": raw_prediction,
-        "confidence": prob_by_class[raw_prediction],
-        "all_probabilities": prob_by_class,
+        "predicted_role": predicted_role,
+        "confidence": round(prob_by_class[predicted_role], 3),
+        "all_probabilities": {k: round(v, 3) for k, v in prob_by_class.items()},
     }
 
 
-def predict_role(skills_list, model_path=MODEL_OUTPUT_FILE, features_path=FEATURES_OUTPUT_FILE):
-    """Predict the best-fit role for a given list of skill names.
-    Loads from disk each call - fine for standalone/script use
-    (sanity_check_predictions.py, direct testing), but NOT what FastAPI
-    uses in production - see predict_role_cached() for that."""
+def predict_role(skills_list, model_path=MODEL_OUTPUT_FILE, features_path=FEATURES_OUTPUT_FILE, target_domain=None):
     model = joblib.load(model_path)
     with open(features_path, "r", encoding="utf-8") as f:
         feature_info = json.load(f)
 
     feature_columns = feature_info["feature_columns"]
-    return predict_role_cached(skills_list, model, feature_columns)
+    role_to_domain = feature_info.get("role_to_domain", {})
+    return predict_role_cached(skills_list, model, feature_columns, role_to_domain, target_domain)
 
 
 if __name__ == "__main__":

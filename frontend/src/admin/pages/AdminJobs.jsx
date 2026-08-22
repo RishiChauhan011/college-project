@@ -156,7 +156,7 @@ const AdminJobs = () => {
                     </td>
                     <td className="py-3.5 px-4">
                       <div className="font-medium text-on-surface">{j.company}</div>
-                      <div className="text-xs text-on-surface-variant">{j.city || 'Remote'}, {j.state || ''}</div>
+                      <div className="text-xs text-on-surface-variant">{[j.city, j.state].map(p => (p || '').trim()).filter(p => p && p.toLowerCase() !== 'unknown').join(', ') || 'Remote'}</div>
                     </td>
                     <td className="py-3.5 px-4">
                       <span className="px-2.5 py-1 bg-surface rounded font-data-sm text-xs font-semibold text-secondary border border-outline-variant/30">
